@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1920, height=1080, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Menu Display</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   KIOSK MENU — 1920×1080 (16:9)
-   Aesthetic: Warm dark editorial, gold accents
+   KIOSK MENU — Responsive 16:9
+   Scales to fill any screen via vw/vh units.
    
-   TO EDIT MENU ITEMS: Scroll to the <script> section at the
-   bottom. All items are in simple arrays you can modify.
+   Route: ?page=1 (Breakfast), ?page=2 (Adverts), ?page=3 (Lunch)
+   
+   IMAGE HOSTING:
+   Put product photos in your GitHub Pages repo under /images/
+   Reference as: images/full-breakfast.jpg (relative path)
    ============================================================ */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,7 +23,6 @@
 :root {
   --bg-primary: #141210;
   --bg-card: #1C1A17;
-  --bg-card-alt: #1F1D19;
   --bg-subtle: #252220;
   --gold: #C9A54E;
   --gold-dim: #9A7A35;
@@ -29,17 +31,16 @@
   --text-secondary: #B5AFA3;
   --text-dim: #7A756B;
   --text-price: #D4B96A;
-  --accent-warm: #C45D3E;
-  --rule: rgba(201, 165, 78, 0.15);
-  --rule-strong: rgba(201, 165, 78, 0.3);
+  --rule: rgba(201, 165, 78, 0.12);
+  --rule-strong: rgba(201, 165, 78, 0.25);
 
   --font-display: 'Cormorant Garamond', 'Georgia', serif;
   --font-body: 'Outfit', 'Segoe UI', sans-serif;
 }
 
 html, body {
-  width: 1920px;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   background: var(--bg-primary);
   color: var(--text-primary);
@@ -47,95 +48,121 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle noise texture overlay */
-body::before {
+/* Subtle grain */
+body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
 }
 
-.screen { display: none; width: 1920px; height: 1080px; position: relative; }
+.screen { display: none; width: 100vw; height: 100vh; position: relative; }
 .screen.active { display: flex; }
 
-/* ── Shared top bar ── */
+/* ── Top bar ── */
 .top-bar {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 72px;
+  height: 7vh;
+  min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
-  background: linear-gradient(180deg, rgba(20,18,16,0.95) 0%, rgba(20,18,16,0) 100%);
+  background: linear-gradient(180deg, var(--bg-primary) 40%, transparent 100%);
 }
 
 .top-bar h1 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 28px;
+  font-size: clamp(18px, 2vw, 32px);
   color: var(--gold);
-  letter-spacing: 6px;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
 }
 
 .top-bar .diamond {
-  width: 6px; height: 6px;
+  width: clamp(4px, 0.4vw, 7px);
+  height: clamp(4px, 0.4vw, 7px);
   background: var(--gold);
   transform: rotate(45deg);
-  margin: 0 20px;
-  opacity: 0.6;
+  margin: 0 clamp(10px, 1.2vw, 24px);
+  opacity: 0.5;
+}
+
+/* ── Bottom bar ── */
+.bottom-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4vh;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(0deg, var(--bg-primary) 30%, transparent 100%);
+}
+
+.bottom-bar span {
+  font-size: clamp(8px, 0.7vw, 12px);
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
 }
 
 /* ============================================================
-   MENU SCREENS (Breakfast & Lunch)
+   MENU LAYOUT
    ============================================================ */
 .menu-screen {
   flex-direction: column;
-  padding: 80px 60px 40px;
+  padding: 8vh 4vw 5vh;
 }
 
 .menu-columns {
   flex: 1;
   display: flex;
-  gap: 40px;
-  padding-top: 10px;
+  gap: 2.5vw;
+  padding-top: 1vh;
+  overflow: hidden;
 }
 
 .menu-col {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 }
 
 .section-label {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 13px;
-  letter-spacing: 5px;
+  font-size: clamp(9px, 0.75vw, 14px);
+  letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 16px;
-  padding-bottom: 10px;
+  margin-bottom: 1.8vh;
+  padding-bottom: 1.2vh;
   border-bottom: 1px solid var(--rule-strong);
 }
 
-.menu-item {
-  display: flex;
-  align-items: baseline;
-  padding: 9px 0;
+.menu-item-block {
+  padding: 1.1vh 0;
   border-bottom: 1px solid var(--rule);
   animation: fadeInUp 0.5s ease both;
 }
 
-.menu-item:last-child { border-bottom: none; }
+.menu-item-block:last-child { border-bottom: none; }
+
+.menu-item {
+  display: flex;
+  align-items: baseline;
+}
 
 .item-name {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 22px;
+  font-size: clamp(15px, 1.3vw, 26px);
   color: var(--text-primary);
   white-space: nowrap;
 }
@@ -143,17 +170,17 @@ body::before {
 .item-dots {
   flex: 1;
   border-bottom: 1px dotted var(--text-dim);
-  margin: 0 12px;
-  min-width: 20px;
+  margin: 0 clamp(6px, 0.7vw, 14px);
+  min-width: 10px;
   position: relative;
-  top: -4px;
-  opacity: 0.4;
+  top: -0.3em;
+  opacity: 0.35;
 }
 
 .item-price {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 18px;
+  font-size: clamp(13px, 1.05vw, 20px);
   color: var(--text-price);
   white-space: nowrap;
 }
@@ -161,47 +188,27 @@ body::before {
 .item-desc {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 13px;
+  font-size: clamp(10px, 0.75vw, 15px);
   color: var(--text-secondary);
-  padding: 2px 0 4px;
-  line-height: 1.4;
+  padding: 0.4vh 0 0.3vh;
+  line-height: 1.5;
 }
 
 .item-addons {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 13px;
+  font-size: clamp(9px, 0.7vw, 14px);
   color: var(--text-dim);
-  padding-bottom: 2px;
+  padding-top: 0.2vh;
 }
 
-/* Vertical divider between columns */
 .col-divider {
   width: 1px;
-  background: linear-gradient(180deg, transparent 0%, var(--rule-strong) 15%, var(--rule-strong) 85%, transparent 100%);
-}
-
-/* Bottom accent bar */
-.bottom-bar {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  background: linear-gradient(0deg, rgba(20,18,16,0.95) 0%, rgba(20,18,16,0) 100%);
-}
-
-.bottom-bar span {
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--text-dim);
-  text-transform: uppercase;
+  background: linear-gradient(180deg, transparent 0%, var(--rule-strong) 10%, var(--rule-strong) 90%, transparent 100%);
 }
 
 /* ============================================================
-   ADVERTS / SLIDESHOW SCREEN
+   ADVERTS SLIDESHOW
    ============================================================ */
 .advert-screen {
   position: relative;
@@ -213,39 +220,51 @@ body::before {
   inset: 0;
   opacity: 0;
   transition: opacity 1.2s ease;
-  display: flex;
 }
 
 .slide.active { opacity: 1; }
 
 .slide-image {
-  flex: 1;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
-  position: relative;
+  position: absolute;
+  inset: 0;
 }
 
-/* Cinematic overlay gradient */
-.slide-image::after {
-  content: '';
+.slide.active .slide-image {
+  animation: kenBurns var(--slide-duration) ease-out forwards;
+}
+
+.slide-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    90deg,
+    100deg,
     transparent 0%,
-    transparent 50%,
-    rgba(20,18,16,0.3) 70%,
-    rgba(20,18,16,0.85) 90%,
-    rgba(20,18,16,0.95) 100%
+    transparent 40%,
+    rgba(20,18,16,0.4) 55%,
+    rgba(20,18,16,0.82) 75%,
+    rgba(20,18,16,0.96) 100%
   );
+  z-index: 1;
+}
+
+.slide-overlay::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 15vh;
+  background: linear-gradient(0deg, rgba(20,18,16,0.7) 0%, transparent 100%);
 }
 
 .slide-content {
   position: absolute;
-  right: 80px;
+  right: 5vw;
   top: 50%;
   transform: translateY(-50%);
-  width: 480px;
+  width: clamp(280px, 28vw, 520px);
   z-index: 2;
   text-align: right;
 }
@@ -253,53 +272,52 @@ body::before {
 .slide-tag {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 5px;
+  font-size: clamp(9px, 0.7vw, 13px);
+  letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 16px;
+  margin-bottom: 1.5vh;
 }
 
 .slide-title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 56px;
-  line-height: 1.1;
+  font-size: clamp(28px, 3.2vw, 62px);
+  line-height: 1.05;
   color: var(--text-primary);
-  margin-bottom: 14px;
+  margin-bottom: 1.5vh;
 }
 
 .slide-desc {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 18px;
+  font-size: clamp(12px, 1vw, 20px);
   color: var(--text-secondary);
   line-height: 1.5;
-  margin-bottom: 24px;
+  margin-bottom: 2.5vh;
 }
 
 .slide-price {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 40px;
+  font-size: clamp(22px, 2.4vw, 46px);
   color: var(--gold-glow);
 }
 
-/* Progress bar */
 .progress-track {
   position: absolute;
-  bottom: 40px;
+  bottom: 3.5vh;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: clamp(4px, 0.5vw, 10px);
   z-index: 10;
 }
 
 .progress-pip {
-  width: 40px;
+  width: clamp(24px, 2.5vw, 48px);
   height: 3px;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.12);
   border-radius: 2px;
   overflow: hidden;
   position: relative;
@@ -315,50 +333,28 @@ body::before {
   animation: progressFill var(--slide-duration) linear forwards;
 }
 
-@keyframes progressFill {
-  from { width: 0%; }
-  to { width: 100%; }
-}
+@keyframes progressFill { from { width: 0%; } to { width: 100%; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes kenBurns { from { transform: scale(1); } to { transform: scale(1.05); } }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Ken Burns zoom on active slide image */
-.slide.active .slide-image {
-  animation: kenBurns var(--slide-duration) ease-out forwards;
-}
-
-@keyframes kenBurns {
-  from { transform: scale(1); }
-  to { transform: scale(1.06); }
-}
-
-/* Stagger animations for menu items */
-.menu-item:nth-child(1) { animation-delay: 0.05s; }
-.menu-item:nth-child(2) { animation-delay: 0.1s; }
-.menu-item:nth-child(3) { animation-delay: 0.15s; }
-.menu-item:nth-child(4) { animation-delay: 0.2s; }
-.menu-item:nth-child(5) { animation-delay: 0.25s; }
-.menu-item:nth-child(6) { animation-delay: 0.3s; }
-.menu-item:nth-child(7) { animation-delay: 0.35s; }
-.menu-item:nth-child(8) { animation-delay: 0.4s; }
+.menu-item-block:nth-child(1) { animation-delay: 0.04s; }
+.menu-item-block:nth-child(2) { animation-delay: 0.08s; }
+.menu-item-block:nth-child(3) { animation-delay: 0.12s; }
+.menu-item-block:nth-child(4) { animation-delay: 0.16s; }
+.menu-item-block:nth-child(5) { animation-delay: 0.20s; }
+.menu-item-block:nth-child(6) { animation-delay: 0.24s; }
+.menu-item-block:nth-child(7) { animation-delay: 0.28s; }
+.menu-item-block:nth-child(8) { animation-delay: 0.32s; }
+.menu-item-block:nth-child(9) { animation-delay: 0.36s; }
+.menu-item-block:nth-child(10) { animation-delay: 0.40s; }
 </style>
 </head>
 <body>
 
-<!-- All three screens live here, JS shows the correct one -->
 <div id="screen-breakfast" class="screen menu-screen">
-  <div class="top-bar">
-    <div class="diamond"></div>
-    <h1>Breakfast</h1>
-    <div class="diamond"></div>
-  </div>
+  <div class="top-bar"><div class="diamond"></div><h1>Breakfast</h1><div class="diamond"></div></div>
   <div class="menu-columns" id="breakfast-columns"></div>
-  <div class="bottom-bar">
-    <span>Prices subject to applicable taxes</span>
-  </div>
+  <div class="bottom-bar"><span>Prices subject to applicable taxes</span></div>
 </div>
 
 <div id="screen-adverts" class="screen advert-screen">
@@ -367,31 +363,18 @@ body::before {
 </div>
 
 <div id="screen-lunch" class="screen menu-screen">
-  <div class="top-bar">
-    <div class="diamond"></div>
-    <h1>Lunch</h1>
-    <div class="diamond"></div>
-  </div>
+  <div class="top-bar"><div class="diamond"></div><h1>Lunch</h1><div class="diamond"></div></div>
   <div class="menu-columns" id="lunch-columns"></div>
-  <div class="bottom-bar">
-    <span>Prices subject to applicable taxes</span>
-  </div>
+  <div class="bottom-bar"><span>Prices subject to applicable taxes</span></div>
 </div>
-
 
 <script>
 /* ============================================================
-   MENU DATA — EDIT ITEMS HERE
-   
-   Each item: { name, price, desc? (optional), addons? (optional) }
-   
-   For the advert slideshow, each slide has:
-   { image (URL), tag, title, desc, price }
+   ★ EDIT MENU DATA HERE ★
    ============================================================ */
 
-const SLIDE_DURATION = 7000; // ms per advert slide
+const SLIDE_DURATION = 7000;
 
-// ── BREAKFAST ──
 const breakfastSections = [
   {
     label: "Morning Classics",
@@ -411,7 +394,6 @@ const breakfastSections = [
   }
 ];
 
-// ── LUNCH — Burgers, Sandwiches, Tacos, Sides ──
 const lunchSections = [
   {
     label: "Burgers & Sandwiches",
@@ -450,8 +432,6 @@ const lunchSections = [
   }
 ];
 
-// ── ADVERT SLIDES — Featured Items ──
-// Replace image URLs with your own photos. Current: Unsplash food placeholders.
 const advertSlides = [
   {
     image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1920&q=80",
@@ -461,14 +441,14 @@ const advertSlides = [
     price: "$22.50"
   },
   {
-    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=1920&q=80",
+    image: "images/fullbreakfast.png",
     tag: "Breakfast",
     title: "Full Breakfast",
     desc: "Two eggs any style with bacon or sausage, crispy potatoes, beans, and toast.",
     price: "$16.00"
   },
   {
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1920&q=80",
+    image: "images/bacon-marm-burger.png",
     tag: "New",
     title: "Bacon Marmalade Burger",
     desc: "Spicy mayo, house-made bacon jam, Havarti cheese, golden onion rings.",
@@ -497,12 +477,10 @@ const advertSlides = [
   },
 ];
 
-
 /* ============================================================
-   RENDERING — You probably don't need to edit below here
+   RENDER ENGINE
    ============================================================ */
 
-// Build a menu item HTML
 function renderItem(item) {
   let html = `<div class="menu-item-block">
     <div class="menu-item">
@@ -516,132 +494,87 @@ function renderItem(item) {
   return html;
 }
 
-// Build menu columns with auto-balancing
 function renderMenuScreen(containerId, sections) {
   const container = document.getElementById(containerId);
-  
-  // Flatten all content into blocks with estimated heights
   const blocks = [];
   sections.forEach(section => {
-    blocks.push({ type: 'label', html: `<div class="section-label">${section.label}</div>`, height: 40 });
+    blocks.push({ type: 'label', html: `<div class="section-label">${section.label}</div>`, height: 48 });
     section.items.forEach(item => {
-      let h = 38; // base item height
-      if (item.desc) h += 20;
-      if (item.addons) h += 18;
+      let h = 46;
+      if (item.desc) h += 24;
+      if (item.addons) h += 20;
       blocks.push({ type: 'item', html: renderItem(item), height: h });
     });
   });
 
-  // Split into 2 balanced columns by height
-  const totalHeight = blocks.reduce((s, b) => s + b.height, 0);
-  const targetHeight = totalHeight / 2;
-  
-  let col1Html = '', col2Html = '';
-  let currentHeight = 0;
-  let splitDone = false;
+  const total = blocks.reduce((s, b) => s + b.height, 0);
+  const target = total / 2;
+  let col1 = '', col2 = '', accum = 0, split = false;
 
   blocks.forEach(block => {
-    if (!splitDone && currentHeight + block.height > targetHeight && block.type === 'label') {
-      splitDone = true;
-    }
-    if (!splitDone) {
-      col1Html += block.html;
-      currentHeight += block.height;
-    } else {
-      col2Html += block.html;
-    }
+    if (!split && accum >= target * 0.8 && block.type === 'label') split = true;
+    if (!split) { col1 += block.html; accum += block.height; }
+    else col2 += block.html;
   });
 
-  // If we never found a good split point, force split at midpoint
-  if (!splitDone) {
-    col1Html = ''; col2Html = '';
-    currentHeight = 0;
+  if (!split) {
+    col1 = ''; col2 = ''; accum = 0;
     blocks.forEach(block => {
-      if (currentHeight < targetHeight) {
-        col1Html += block.html;
-      } else {
-        col2Html += block.html;
-      }
-      currentHeight += block.height;
+      if (accum < target) col1 += block.html; else col2 += block.html;
+      accum += block.height;
     });
   }
 
   container.innerHTML = `
-    <div class="menu-col">${col1Html}</div>
+    <div class="menu-col">${col1}</div>
     <div class="col-divider"></div>
-    <div class="menu-col">${col2Html}</div>
-  `;
+    <div class="menu-col">${col2}</div>`;
 }
 
-// Build slideshow
 function renderSlideshow() {
   const container = document.getElementById('slideshow');
   const track = document.getElementById('progress-track');
-
   document.documentElement.style.setProperty('--slide-duration', SLIDE_DURATION + 'ms');
 
-  let slidesHtml = '';
-  let pipsHtml = '';
+  container.innerHTML = advertSlides.map((s, i) => `
+    <div class="slide ${i === 0 ? 'active' : ''}">
+      <div class="slide-image" style="background-image:url('${s.image}')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-tag">${s.tag}</div>
+        <div class="slide-title">${s.title}</div>
+        <div class="slide-desc">${s.desc}</div>
+        <div class="slide-price">${s.price}</div>
+      </div>
+    </div>`).join('');
 
-  advertSlides.forEach((slide, i) => {
-    slidesHtml += `
-      <div class="slide ${i === 0 ? 'active' : ''}" data-index="${i}">
-        <div class="slide-image" style="background-image: url('${slide.image}')"></div>
-        <div class="slide-content">
-          <div class="slide-tag">${slide.tag}</div>
-          <div class="slide-title">${slide.title}</div>
-          <div class="slide-desc">${slide.desc}</div>
-          <div class="slide-price">${slide.price}</div>
-        </div>
-      </div>`;
-    pipsHtml += `<div class="progress-pip ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`;
-  });
+  track.innerHTML = advertSlides.map((_, i) =>
+    `<div class="progress-pip ${i === 0 ? 'active' : ''}"></div>`).join('');
 
-  container.innerHTML = slidesHtml;
-  track.innerHTML = pipsHtml;
-
-  // Auto-advance
-  let current = 0;
+  let cur = 0;
   setInterval(() => {
     const slides = container.querySelectorAll('.slide');
     const pips = track.querySelectorAll('.progress-pip');
-
-    slides[current].classList.remove('active');
-    pips[current].classList.remove('active');
-
-    current = (current + 1) % advertSlides.length;
-
-    slides[current].classList.add('active');
-    // Force re-trigger animation by cloning pip
-    const oldPip = pips[current];
-    const newPip = oldPip.cloneNode(true);
-    newPip.classList.add('active');
-    oldPip.parentNode.replaceChild(newPip, oldPip);
+    slides[cur].classList.remove('active');
+    pips[cur].classList.remove('active');
+    cur = (cur + 1) % advertSlides.length;
+    slides[cur].classList.add('active');
+    const old = pips[cur], fresh = old.cloneNode(true);
+    fresh.classList.add('active');
+    old.parentNode.replaceChild(fresh, old);
   }, SLIDE_DURATION);
 }
 
-// Route based on ?page= parameter
 function init() {
-  const params = new URLSearchParams(window.location.search);
-  const page = parseInt(params.get('page') || '1');
-
-  // Render all content
+  const page = parseInt(new URLSearchParams(window.location.search).get('page') || '1');
   renderMenuScreen('breakfast-columns', breakfastSections);
   renderMenuScreen('lunch-columns', lunchSections);
   renderSlideshow();
-
-  // Show correct screen
-  const screens = {
-    1: 'screen-breakfast',
-    2: 'screen-adverts',
-    3: 'screen-lunch'
-  };
-
-  const activeId = screens[page] || screens[1];
-  document.getElementById(activeId).classList.add('active');
+  const map = { 1: 'screen-breakfast', 2: 'screen-adverts', 3: 'screen-lunch' };
+  document.getElementById(map[page] || map[1]).classList.add('active');
 }
 
 init();
 </script>
-</body>
 </html>
+</body>

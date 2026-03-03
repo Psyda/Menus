@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, height=1080, initial-scale=1">
+<title>Menu Display</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   KIOSK MENU — 1920×1080 (16:9)
+   Aesthetic: Warm dark editorial, gold accents
+   
+   TO EDIT MENU ITEMS: Scroll to the <script> section at the
+   bottom. All items are in simple arrays you can modify.
+   ============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #141210;
+  --bg-card: #1C1A17;
+  --bg-card-alt: #1F1D19;
+  --bg-subtle: #252220;
+  --gold: #C9A54E;
+  --gold-dim: #9A7A35;
+  --gold-glow: #D4B96A;
+  --text-primary: #F0EBE0;
+  --text-secondary: #B5AFA3;
+  --text-dim: #7A756B;
+  --text-price: #D4B96A;
+  --accent-warm: #C45D3E;
+  --rule: rgba(201, 165, 78, 0.15);
+  --rule-strong: rgba(201, 165, 78, 0.3);
+
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'Outfit', 'Segoe UI', sans-serif;
+}
+
+html, body {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.screen { display: none; width: 1920px; height: 1080px; position: relative; }
+.screen.active { display: flex; }
+
+/* ── Shared top bar ── */
+.top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(20,18,16,0.95) 0%, rgba(20,18,16,0) 100%);
+}
+
+.top-bar h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 28px;
+  color: var(--gold);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+
+.top-bar .diamond {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  margin: 0 20px;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   MENU SCREENS (Breakfast & Lunch)
+   ============================================================ */
+.menu-screen {
+  flex-direction: column;
+  padding: 80px 60px 40px;
+}
+
+.menu-columns {
+  flex: 1;
+  display: flex;
+  gap: 40px;
+  padding-top: 10px;
+}
+
+.menu-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.menu-item {
+  display: flex;
+  align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+  animation: fadeInUp 0.5s ease both;
+}
+
+.menu-item:last-child { border-bottom: none; }
+
+.item-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.item-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--text-dim);
+  margin: 0 12px;
+  min-width: 20px;
+  position: relative;
+  top: -4px;
+  opacity: 0.4;
+}
+
+.item-price {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  color: var(--text-price);
+  white-space: nowrap;
+}
+
+.item-desc {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 2px 0 4px;
+  line-height: 1.4;
+}
+
+.item-addons {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-dim);
+  padding-bottom: 2px;
+}
+
+/* Vertical divider between columns */
+.col-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, var(--rule-strong) 15%, var(--rule-strong) 85%, transparent 100%);
+}
+
+/* Bottom accent bar */
+.bottom-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  background: linear-gradient(0deg, rgba(20,18,16,0.95) 0%, rgba(20,18,16,0) 100%);
+}
+
+.bottom-bar span {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   ADVERTS / SLIDESHOW SCREEN
+   ============================================================ */
+.advert-screen {
+  position: relative;
+  background: var(--bg-primary);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  display: flex;
+}
+
+.slide.active { opacity: 1; }
+
+.slide-image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Cinematic overlay gradient */
+.slide-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 50%,
+    rgba(20,18,16,0.3) 70%,
+    rgba(20,18,16,0.85) 90%,
+    rgba(20,18,16,0.95) 100%
+  );
+}
+
+.slide-content {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 480px;
+  z-index: 2;
+  text-align: right;
+}
+
+.slide-tag {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.slide-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.slide-desc {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.slide-price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--gold-glow);
+}
+
+/* Progress bar */
+.progress-track {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.progress-pip {
+  width: 40px;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-pip.active::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0%;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: progressFill var(--slide-duration) linear forwards;
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ken Burns zoom on active slide image */
+.slide.active .slide-image {
+  animation: kenBurns var(--slide-duration) ease-out forwards;
+}
+
+@keyframes kenBurns {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+/* Stagger animations for menu items */
+.menu-item:nth-child(1) { animation-delay: 0.05s; }
+.menu-item:nth-child(2) { animation-delay: 0.1s; }
+.menu-item:nth-child(3) { animation-delay: 0.15s; }
+.menu-item:nth-child(4) { animation-delay: 0.2s; }
+.menu-item:nth-child(5) { animation-delay: 0.25s; }
+.menu-item:nth-child(6) { animation-delay: 0.3s; }
+.menu-item:nth-child(7) { animation-delay: 0.35s; }
+.menu-item:nth-child(8) { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- All three screens live here, JS shows the correct one -->
+<div id="screen-breakfast" class="screen menu-screen">
+  <div class="top-bar">
+    <div class="diamond"></div>
+    <h1>Breakfast</h1>
+    <div class="diamond"></div>
+  </div>
+  <div class="menu-columns" id="breakfast-columns"></div>
+  <div class="bottom-bar">
+    <span>Prices subject to applicable taxes</span>
+  </div>
+</div>
+
+<div id="screen-adverts" class="screen advert-screen">
+  <div id="slideshow"></div>
+  <div class="progress-track" id="progress-track"></div>
+</div>
+
+<div id="screen-lunch" class="screen menu-screen">
+  <div class="top-bar">
+    <div class="diamond"></div>
+    <h1>Lunch</h1>
+    <div class="diamond"></div>
+  </div>
+  <div class="menu-columns" id="lunch-columns"></div>
+  <div class="bottom-bar">
+    <span>Prices subject to applicable taxes</span>
+  </div>
+</div>
+
+
+<script>
+/* ============================================================
+   MENU DATA — EDIT ITEMS HERE
+   
+   Each item: { name, price, desc? (optional), addons? (optional) }
+   
+   For the advert slideshow, each slide has:
+   { image (URL), tag, title, desc, price }
+   ============================================================ */
+
+const SLIDE_DURATION = 7000; // ms per advert slide
+
+// ── BREAKFAST ──
+const breakfastSections = [
+  {
+    label: "Morning Classics",
+    items: [
+      { name: "Full Breakfast", price: "$16.00", desc: "2 eggs, bacon or sausage, potatoes, beans, toast" },
+      { name: "Breakfast Wrap", price: "$14.00", desc: "Egg, cheese, bacon, sausage, mushroom, green pepper, onions, mayo or salsa" },
+      { name: "3 Egg Omelette", price: "$12.00", desc: "Served with home fries & toast", addons: "Cheese $2.50 · Protein $3.00 · Veggies $2.00 · Extra Egg $2.00" },
+    ]
+  },
+  {
+    label: "Light Bites",
+    items: [
+      { name: "French Toast (3)", price: "$10.00" },
+      { name: "Breakfast Sandwich", price: "$8.50", desc: "Egg, bacon or sausage, lettuce, tomato, cheese" },
+      { name: "BLT", price: "$7.00", desc: "White bread, brown bread, bagel, or English muffin" },
+    ]
+  }
+];
+
+// ── LUNCH — Burgers, Sandwiches, Tacos, Sides ──
+const lunchSections = [
+  {
+    label: "Burgers & Sandwiches",
+    items: [
+      { name: "Island Burger", price: "$22.50", desc: "Thousand Island, caramelized onions, mushrooms, bacon, cheddar" },
+      { name: "B.B.Q Burger", price: "$22.50", desc: "BBQ sauce, pulled pork, bacon, Havarti, fried onions" },
+      { name: "Bacon Marmalade Burger", price: "$20.00", desc: "Spicy mayo, bacon jam, Havarti, onion rings" },
+      { name: "Mozzarella Melt Burger", price: "$19.50", desc: "Marinara, pepperoni spread, Swiss, mozzarella sticks" },
+      { name: "Po Boy Sandwich", price: "$25.00", desc: "Fried shrimp, lettuce, tomato, pickles, remoulade" },
+      { name: "Pulled Pork Sandwich", price: "$20.00", desc: "Topped with coleslaw" },
+      { name: "Steak & Pepperoni", price: "$19.50", desc: "Steak, pepperoni, lettuce, tomato, caramelized onions" },
+      { name: "Chicken Sandwich", price: "$18.00", desc: "Coleslaw, spicy mayo, pickles" },
+    ]
+  },
+  {
+    label: "Tacos",
+    items: [
+      { name: "Bacon Shrimp Taco (3)", price: "$22.50", desc: "Bacon-wrapped shrimp, guacamole, pineapple salsa" },
+      { name: "Fried Chicken Taco (3)", price: "$16.00", desc: "Jalapeño sauce, Monterey Jack, corn salsa, coleslaw" },
+    ]
+  },
+  {
+    label: "Sides & Snacks",
+    items: [
+      { name: "Poutine", price: "Sm $10 | Lg $16" },
+      { name: "Chicken Wings (8)", price: "$16.00", desc: "BBQ or Buffalo" },
+      { name: "Chicken Tenders (5)", price: "$12.00" },
+      { name: "Popcorn Chicken", price: "$10.00" },
+      { name: "Onion Rings", price: "$9.00" },
+      { name: "Fries", price: "Sm $5 | Lg $8.50" },
+      { name: "Cheese Sticks (4)", price: "$8.00" },
+      { name: "Pizza Slice", price: "$5.00" },
+      { name: "Pogos", price: "$4.00" },
+      { name: "Hot Dog", price: "$3.75" },
+    ]
+  }
+];
+
+// ── ADVERT SLIDES — Featured Items ──
+// Replace image URLs with your own photos. Current: Unsplash food placeholders.
+const advertSlides = [
+  {
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1920&q=80",
+    tag: "Fan Favourite",
+    title: "Island Burger",
+    desc: "Thousand Island dressing, caramelized onions, roasted mushrooms, bacon, and melted cheddar.",
+    price: "$22.50"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=1920&q=80",
+    tag: "Breakfast",
+    title: "Full Breakfast",
+    desc: "Two eggs any style with bacon or sausage, crispy potatoes, beans, and toast.",
+    price: "$16.00"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1920&q=80",
+    tag: "New",
+    title: "Bacon Marmalade Burger",
+    desc: "Spicy mayo, house-made bacon jam, Havarti cheese, golden onion rings.",
+    price: "$20.00"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=1920&q=80",
+    tag: "Tacos",
+    title: "Bacon Shrimp Tacos",
+    desc: "Bacon-wrapped shrimp, spicy mayo, fresh guacamole, pineapple salsa, pickled onions.",
+    price: "$22.50"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=1920&q=80",
+    tag: "Breakfast",
+    title: "French Toast",
+    desc: "Three slices of thick-cut golden French toast. A morning classic.",
+    price: "$10.00"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1513185158878-8d8c2a2a3da3?w=1920&q=80",
+    tag: "Crispy & Golden",
+    title: "Poutine",
+    desc: "Fresh-cut fries, squeaky cheese curds, rich brown gravy.",
+    price: "From $10.00"
+  },
+];
+
+
+/* ============================================================
+   RENDERING — You probably don't need to edit below here
+   ============================================================ */
+
+// Build a menu item HTML
+function renderItem(item) {
+  let html = `<div class="menu-item-block">
+    <div class="menu-item">
+      <span class="item-name">${item.name}</span>
+      <span class="item-dots"></span>
+      <span class="item-price">${item.price}</span>
+    </div>`;
+  if (item.desc) html += `<div class="item-desc">${item.desc}</div>`;
+  if (item.addons) html += `<div class="item-addons">${item.addons}</div>`;
+  html += `</div>`;
+  return html;
+}
+
+// Build menu columns with auto-balancing
+function renderMenuScreen(containerId, sections) {
+  const container = document.getElementById(containerId);
+  
+  // Flatten all content into blocks with estimated heights
+  const blocks = [];
+  sections.forEach(section => {
+    blocks.push({ type: 'label', html: `<div class="section-label">${section.label}</div>`, height: 40 });
+    section.items.forEach(item => {
+      let h = 38; // base item height
+      if (item.desc) h += 20;
+      if (item.addons) h += 18;
+      blocks.push({ type: 'item', html: renderItem(item), height: h });
+    });
+  });
+
+  // Split into 2 balanced columns by height
+  const totalHeight = blocks.reduce((s, b) => s + b.height, 0);
+  const targetHeight = totalHeight / 2;
+  
+  let col1Html = '', col2Html = '';
+  let currentHeight = 0;
+  let splitDone = false;
+
+  blocks.forEach(block => {
+    if (!splitDone && currentHeight + block.height > targetHeight && block.type === 'label') {
+      splitDone = true;
+    }
+    if (!splitDone) {
+      col1Html += block.html;
+      currentHeight += block.height;
+    } else {
+      col2Html += block.html;
+    }
+  });
+
+  // If we never found a good split point, force split at midpoint
+  if (!splitDone) {
+    col1Html = ''; col2Html = '';
+    currentHeight = 0;
+    blocks.forEach(block => {
+      if (currentHeight < targetHeight) {
+        col1Html += block.html;
+      } else {
+        col2Html += block.html;
+      }
+      currentHeight += block.height;
+    });
+  }
+
+  container.innerHTML = `
+    <div class="menu-col">${col1Html}</div>
+    <div class="col-divider"></div>
+    <div class="menu-col">${col2Html}</div>
+  `;
+}
+
+// Build slideshow
+function renderSlideshow() {
+  const container = document.getElementById('slideshow');
+  const track = document.getElementById('progress-track');
+
+  document.documentElement.style.setProperty('--slide-duration', SLIDE_DURATION + 'ms');
+
+  let slidesHtml = '';
+  let pipsHtml = '';
+
+  advertSlides.forEach((slide, i) => {
+    slidesHtml += `
+      <div class="slide ${i === 0 ? 'active' : ''}" data-index="${i}">
+        <div class="slide-image" style="background-image: url('${slide.image}')"></div>
+        <div class="slide-content">
+          <div class="slide-tag">${slide.tag}</div>
+          <div class="slide-title">${slide.title}</div>
+          <div class="slide-desc">${slide.desc}</div>
+          <div class="slide-price">${slide.price}</div>
+        </div>
+      </div>`;
+    pipsHtml += `<div class="progress-pip ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`;
+  });
+
+  container.innerHTML = slidesHtml;
+  track.innerHTML = pipsHtml;
+
+  // Auto-advance
+  let current = 0;
+  setInterval(() => {
+    const slides = container.querySelectorAll('.slide');
+    const pips = track.querySelectorAll('.progress-pip');
+
+    slides[current].classList.remove('active');
+    pips[current].classList.remove('active');
+
+    current = (current + 1) % advertSlides.length;
+
+    slides[current].classList.add('active');
+    // Force re-trigger animation by cloning pip
+    const oldPip = pips[current];
+    const newPip = oldPip.cloneNode(true);
+    newPip.classList.add('active');
+    oldPip.parentNode.replaceChild(newPip, oldPip);
+  }, SLIDE_DURATION);
+}
+
+// Route based on ?page= parameter
+function init() {
+  const params = new URLSearchParams(window.location.search);
+  const page = parseInt(params.get('page') || '1');
+
+  // Render all content
+  renderMenuScreen('breakfast-columns', breakfastSections);
+  renderMenuScreen('lunch-columns', lunchSections);
+  renderSlideshow();
+
+  // Show correct screen
+  const screens = {
+    1: 'screen-breakfast',
+    2: 'screen-adverts',
+    3: 'screen-lunch'
+  };
+
+  const activeId = screens[page] || screens[1];
+  document.getElementById(activeId).classList.add('active');
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Green Room — XL Vapes &amp; Refills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:     #08070c;
+    --panel:  #0f0d16;
+    --line:   rgba(255,255,255,0.06);
+    --purple: #b06ef3;
+    --amber:  #f8a800;
+    --blue:   #38c4f5;
+    --text:   #eef0f4;
+    --sub:    rgba(238,240,244,0.42);
+  }
+
+  html, body { width:100%; height:100%; overflow:hidden; background:var(--bg); color:var(--text); }
+
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(ellipse 65% 50% at 5% 10%,   rgba(176,110,243,0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 45% at 95% 90%,   rgba(248,168,0,0.045) 0%, transparent 65%);
+  }
+
+  .screen { width:100vw; height:100vh; display:flex; flex-direction:column; position:relative; z-index:1; }
+
+  /* ─── HEADER ─── */
+  .header {
+    flex-shrink:0; height:68px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 28px;
+    background:rgba(8,7,12,0.92); backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-left { display:flex; align-items:center; gap:18px; }
+  .logo        { height:44px; width:auto; object-fit:contain; }
+  .vr          { width:1px; height:32px; background:linear-gradient(to bottom, transparent, rgba(255,255,255,0.12), transparent); }
+  .page-title  { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:.1em; line-height:1; }
+  .page-sub    { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--sub); margin-top:3px; }
+  .header-right { display:flex; gap:8px; }
+  .pill {
+    padding:4px 13px; border-radius:100px; border:1px solid;
+    font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--purple); border-color:rgba(176,110,243,0.28); background:rgba(176,110,243,0.06);
+  }
+
+  /* ─── 2-COLUMN LAYOUT ─── */
+  /* Left ~42% = Vapes (3g + 6g), Right ~58% = Refills (6 items) */
+  .columns {
+    flex:1; display:grid;
+    grid-template-columns: 42fr 58fr;
+    overflow:hidden;
+  }
+
+  .col {
+    display:flex; flex-direction:column;
+    border-right:1px solid var(--line);
+    overflow:hidden;
+  }
+  .col:last-child { border-right:none; }
+
+  /* ─── SECTION (within a column) ─── */
+  .section { display:flex; flex-direction:column; }
+  .section + .section { border-top: 2px solid rgba(255,255,255,0.04); }
+
+  /* ─── SECTION HEADER ─── */
+  .sec-header {
+    flex-shrink:0; padding:18px 24px 14px;
+    border-bottom:1px solid var(--line);
+  }
+  .sec-header.purple { border-top:3px solid var(--purple); background:linear-gradient(160deg, rgba(176,110,243,0.07) 0%, transparent 70%); }
+  .sec-header.amber  { border-top:3px solid var(--amber);  background:linear-gradient(160deg, rgba(248,168,0,0.07) 0%, transparent 70%); }
+  .sec-header.blue   { border-top:3px solid var(--blue);   background:linear-gradient(160deg, rgba(56,196,245,0.07) 0%, transparent 70%); }
+
+  .sec-title { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:.1em; line-height:1; }
+  .sec-title.purple { color:var(--purple); }
+  .sec-title.amber  { color:var(--amber); }
+  .sec-title.blue   { color:var(--blue); }
+
+  .deals { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .deal {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    padding:4px 12px; border-radius:5px; border:1px solid; white-space:nowrap;
+  }
+  .deal.purple { color:var(--purple); border-color:rgba(176,110,243,0.3); background:rgba(176,110,243,0.08); }
+  .deal.amber  { color:var(--amber);  border-color:rgba(248,168,0,0.3);   background:rgba(248,168,0,0.08); }
+  .deal.blue   { color:var(--blue);   border-color:rgba(56,196,245,0.3);  background:rgba(56,196,245,0.08); }
+
+  /* ─── PRODUCT LIST ─── */
+  .product-list { flex:1; display:flex; flex-direction:column; padding:6px 0 6px; }
+
+  /* ─── PRODUCT ROW ─── */
+  .prow {
+    flex:1; min-height:0;
+    display:flex; align-items:center;
+    padding:0 22px 0 14px;
+    border-bottom:1px solid var(--line);
+    gap:14px;
+  }
+  .prow:last-child { border-bottom:none; }
+
+  .thumb {
+    flex-shrink:0; width:72px; height:72px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.06);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .thumb img { width:100%; height:100%; object-fit:contain; padding:7px; }
+
+  .prow-mid {
+    flex:1; min-width:0;
+    display:flex; align-items:baseline; overflow:hidden;
+  }
+
+  .prow-name {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:30px; letter-spacing:.06em; line-height:1;
+    color:var(--text); white-space:nowrap; flex-shrink:0;
+  }
+
+  .prow-detail {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:13px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--sub); margin-left:10px; white-space:nowrap; flex-shrink:0;
+    align-self:center;
+  }
+
+  .leader {
+    flex:1; min-width:16px;
+    border-bottom:2px dotted rgba(255,255,255,0.07);
+    margin:0 12px; margin-bottom:5px;
+  }
+
+  .prow-price {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:42px; letter-spacing:.02em; line-height:1; flex-shrink:0;
+  }
+  .prow-price.purple { color:var(--purple); }
+  .prow-price.amber  { color:var(--amber); }
+  .prow-price.blue   { color:var(--blue); }
+
+  /* ─── MARQUEE ─── */
+  .marquee-bar {
+    flex-shrink:0; height:34px; background:var(--purple);
+    display:flex; align-items:center; overflow:hidden;
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+  .marquee-track { display:inline-block; white-space:nowrap; animation:marquee 32s linear infinite; }
+  .marquee-text  {
+    font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:.18em;
+    text-transform:uppercase; color:rgba(255,255,255,0.75); padding:0 28px;
+  }
+  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  ::-webkit-scrollbar { display:none; }
+</style>
+</head>
+<body>
+<div class="screen">
+
+  <header class="header">
+    <div class="header-left">
+      <img class="logo" src="images/logo.png" alt="Green Room" />
+      <div class="vr"></div>
+      <div>
+        <div class="page-title">XL Vapes &amp; Cart Refills</div>
+        <div class="page-sub">3g · 6g Cartridges &amp; Refill Options</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="pill">Lab Tested</div>
+      <div class="pill">Premium Quality</div>
+    </div>
+  </header>
+
+  <div class="columns">
+
+    <!-- LEFT COL: 3g + 6g stacked -->
+    <div class="col">
+
+      <!-- 3 Gram -->
+      <div class="section" style="flex:3;">
+        <div class="sec-header purple">
+          <div class="sec-title purple">3 Gram Vapes</div>
+          <div class="deals">
+            <span class="deal purple">1 for $60</span>
+            <span class="deal purple">2 for $110</span>
+            <span class="deal purple">3+ @ $55 ea</span>
+          </div>
+        </div>
+        <div class="product-list">
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/panda_tempimage.png" alt="Panda" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">Panda</span>
+              <span class="prow-detail">Hybrid</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price purple">$60</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/Drizzle-BlueBerryYogurt-Sativa.png" alt="Drizzle" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">Drizzle</span>
+              <span class="prow-detail">Blueberry Yogurt · Sativa</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price purple">$60</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/heisenberg-extreme-blueberry.png" alt="Heisenberg" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">Heisenberg</span>
+              <span class="prow-detail">Blue Sky</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price purple">$60</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 6 Gram -->
+      <div class="section" style="flex:1;">
+        <div class="sec-header amber">
+          <div class="sec-title amber">6 Gram Vapes</div>
+          <div class="deals">
+            <span class="deal amber">1 for $100</span>
+          </div>
+        </div>
+        <div class="product-list">
+
+          <div class="prow">
+            <div class="thumb"><img src="images/productPics/heisenberg-flavour.png" alt="Heisenberg" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">Heisenberg</span>
+              <span class="prow-detail">The One</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price amber">$100</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COL: All 6 Cart Refills in one block -->
+    <div class="col">
+      <div class="section" style="flex:1; display:flex; flex-direction:column;">
+        <div class="sec-header blue">
+          <div class="sec-title blue">Cart Refills</div>
+        </div>
+        <div class="product-list">
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/Cart-HighVoltage.png" alt="High Voltage" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">High Voltage</span>
+              <span class="prow-detail">Sauce</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price blue">$40</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/drizzle-dragonfly.png" alt="Drizzle" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">Drizzle</span>
+              <span class="prow-detail">Dragonfly · Distillate</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price blue">$30</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/GoldStream Refills.png" alt="Gold Stream" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">Gold Stream</span>
+              <span class="prow-detail">CO2 Oil</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price blue">$35</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/wonka.avif" alt="Wonka" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">Wonka</span>
+              <span class="prow-detail">Full Spectrum</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price blue">$35</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/drip.jpg" alt="Drip" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">Drip</span>
+              <span class="prow-detail">Diamond</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price blue">$45</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/ggcart.jpg" alt="Gas Gang" /></div>
+            <div class="prow-mid">
+              <span class="prow-name">Gas Gang</span>
+              <span class="prow-detail">HTPSE</span>
+              <div class="leader"></div>
+            </div>
+            <div class="prow-price blue">$40</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span class="marquee-text">Welcome to The Green Room Dispensary &nbsp;•&nbsp; Open Daily 8AM – 10PM &nbsp;•&nbsp; Valid ID Required &nbsp;•&nbsp; Cash Only &nbsp;•&nbsp; ATM Inside &nbsp;•&nbsp; Ask About Our Daily Specials &nbsp;•&nbsp; Welcome to The Green Room Dispensary &nbsp;•&nbsp; Open Daily 8AM – 10PM &nbsp;•&nbsp; Valid ID Required &nbsp;•&nbsp; Cash Only &nbsp;•&nbsp; ATM Inside &nbsp;•&nbsp; Ask About Our Daily Specials &nbsp;•&nbsp;</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

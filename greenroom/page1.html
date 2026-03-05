@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Green Room — Vape Pens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:     #08090c;
+    --panel:  #0d0f14;
+    --line:   rgba(255,255,255,0.06);
+    --green:  #00e87c;
+    --purple: #b06ef3;
+    --amber:  #f8a800;
+    --text:   #eef0f4;
+    --sub:    rgba(238,240,244,0.42);
+  }
+
+  html, body { width:100%; height:100%; overflow:hidden; background:var(--bg); color:var(--text); }
+
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(ellipse 70% 50% at 0% 0%,    rgba(0,232,124,0.055) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 45% at 100% 100%, rgba(168,85,247,0.045) 0%, transparent 65%);
+  }
+
+  .screen { width:100vw; height:100vh; display:flex; flex-direction:column; position:relative; z-index:1; }
+
+  /* ─── HEADER ─── */
+  .header {
+    flex-shrink:0; height:68px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 28px;
+    background:rgba(8,9,12,0.92); backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-left { display:flex; align-items:center; gap:18px; }
+  .logo        { height:44px; width:auto; object-fit:contain; }
+  .vr          { width:1px; height:32px; background:linear-gradient(to bottom, transparent, rgba(255,255,255,0.12), transparent); }
+  .page-title  { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:.1em; line-height:1; }
+  .page-sub    { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--sub); margin-top:3px; }
+  .header-right { display:flex; gap:8px; }
+  .pill {
+    padding:4px 13px; border-radius:100px; border:1px solid;
+    font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--green); border-color:rgba(0,232,124,0.28); background:rgba(0,232,124,0.06);
+  }
+
+  /* ─── 3-COLUMN LAYOUT ─── */
+  .columns {
+    flex:1; display:grid; grid-template-columns:1fr 1fr 1fr;
+    overflow:hidden;
+  }
+
+  .col {
+    display:flex; flex-direction:column;
+    border-right:1px solid var(--line);
+    overflow:hidden;
+  }
+  .col:last-child { border-right:none; }
+
+  /* ─── COLUMN HEADER ─── */
+  .col-header {
+    flex-shrink:0; padding:20px 24px 16px;
+    border-bottom:1px solid var(--line);
+  }
+  .col-header.green  { border-top:3px solid var(--green);  background:linear-gradient(160deg, rgba(0,232,124,0.07) 0%, transparent 70%); }
+  .col-header.purple { border-top:3px solid var(--purple); background:linear-gradient(160deg, rgba(176,110,243,0.07) 0%, transparent 70%); }
+  .col-header.amber  { border-top:3px solid var(--amber);  background:linear-gradient(160deg, rgba(248,168,0,0.07) 0%, transparent 70%); }
+
+  .col-title { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:.1em; line-height:1; }
+  .col-title.green  { color:var(--green); }
+  .col-title.purple { color:var(--purple); }
+  .col-title.amber  { color:var(--amber); }
+
+  .deals { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .deal {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    padding:4px 12px; border-radius:5px; border:1px solid; white-space:nowrap;
+  }
+  .deal.green  { color:var(--green);  border-color:rgba(0,232,124,0.3);   background:rgba(0,232,124,0.08); }
+  .deal.purple { color:var(--purple); border-color:rgba(176,110,243,0.3); background:rgba(176,110,243,0.08); }
+  .deal.amber  { color:var(--amber);  border-color:rgba(248,168,0,0.3);   background:rgba(248,168,0,0.08); }
+
+  /* ─── PRODUCT LIST ─── */
+  .product-list { flex:1; display:flex; flex-direction:column; padding:6px 0 6px; }
+
+  /* ─── PRODUCT ROW ─── */
+  .prow {
+    flex:1;
+    display:flex; align-items:center;
+    padding:0 20px 0 14px;
+    border-bottom:1px solid var(--line);
+    gap:14px;
+    min-height:0;
+  }
+  .prow:last-child { border-bottom:none; }
+
+  /* thumbnail */
+  .thumb {
+    flex-shrink:0; width:72px; height:72px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.06);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .thumb img { width:100%; height:100%; object-fit:contain; padding:7px; }
+
+  /* middle: name + detail + leader */
+  .prow-mid {
+    flex:1; min-width:0;
+    display:flex; align-items:baseline; overflow:hidden;
+  }
+
+  .prow-name {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:30px; letter-spacing:.06em; line-height:1;
+    color:var(--text); white-space:nowrap; flex-shrink:0;
+  }
+
+  .prow-detail {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:13px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--sub); margin-left:10px; white-space:nowrap; flex-shrink:0;
+    align-self:center;
+  }
+
+  .leader {
+    flex:1; min-width:16px;
+    border-bottom:2px dotted rgba(255,255,255,0.07);
+    margin:0 12px; margin-bottom:5px;
+  }
+
+  /* price */
+  .prow-price {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:42px; letter-spacing:.02em; line-height:1; flex-shrink:0;
+  }
+  .prow-price.green  { color:var(--green); }
+  .prow-price.purple { color:var(--purple); }
+  .prow-price.amber  { color:var(--amber); }
+
+  /* ─── MARQUEE ─── */
+  .marquee-bar {
+    flex-shrink:0; height:34px; background:var(--green);
+    display:flex; align-items:center; overflow:hidden;
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+  .marquee-track { display:inline-block; white-space:nowrap; animation:marquee 32s linear infinite; }
+  .marquee-text  {
+    font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:.18em;
+    text-transform:uppercase; color:rgba(0,0,0,0.7); padding:0 28px;
+  }
+  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  ::-webkit-scrollbar { display:none; }
+</style>
+</head>
+<body>
+<div class="screen">
+
+  <header class="header">
+    <div class="header-left">
+      <img class="logo" src="images/logo.png" alt="Green Room" />
+      <div class="vr"></div>
+      <div>
+        <div class="page-title">Vape Pens</div>
+        <div class="page-sub">Distillate · Live Resin · HTFSE</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="pill">Lab Tested</div>
+      <div class="pill">Premium Quality</div>
+    </div>
+  </header>
+
+  <div class="columns">
+
+    <!-- COL 1: 1g Vapes -->
+    <div class="col">
+      <div class="col-header green">
+        <div class="col-title green">1 Gram Vapes</div>
+        <div class="deals">
+          <span class="deal green">1 for $30</span>
+          <span class="deal green">2 for $50</span>
+          <span class="deal green">3+ @ $25 ea</span>
+        </div>
+      </div>
+      <div class="product-list">
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/Drizzle-WonkaGum.png" alt="Drizzle" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">Drizzle</span>
+            <span class="prow-detail">Wonka Gum · Distillate</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price green">$30</div>
+        </div>
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/GasGang.png" alt="Gas Gang" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">Gas Gang</span>
+            <span class="prow-detail">Distillate</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price green">$30</div>
+        </div>
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/Vikingz-BlackWidow-Indica.png" alt="Vikingz" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">Vikingz</span>
+            <span class="prow-detail">Black Widow · Indica</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price green">$30</div>
+        </div>
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/IB-HIGH-RainbowPop.png" alt="1B B-High" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">1B B-High</span>
+            <span class="prow-detail">Rainbow Pop · Distillate</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price green">$30</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COL 2: HTFSE / Live Resin -->
+    <div class="col">
+      <div class="col-header purple">
+        <div class="col-title purple">1g HTFSE / Live Resin</div>
+        <div class="deals">
+          <span class="deal purple">1 for $50</span>
+          <span class="deal purple">2 for $70</span>
+        </div>
+      </div>
+      <div class="product-list">
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/Drizzle-BlueBerryYogurt-Sativa.png" alt="Drizzle" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">Drizzle</span>
+            <span class="prow-detail">Blueberry Yogurt · Live Resin</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price purple">$50</div>
+        </div>
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/gasgang-sour-tsunami-hybrid-box.png" alt="Gas Gang" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">Gas Gang</span>
+            <span class="prow-detail">HTFSE</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price purple">$50</div>
+        </div>
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/Cart-HighVoltage.png" alt="High Voltage" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">High Voltage</span>
+            <span class="prow-detail">Sauce</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price purple">$50</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COL 3: 2g Vapes -->
+    <div class="col">
+      <div class="col-header amber">
+        <div class="col-title amber">2 Gram Vapes</div>
+        <div class="deals">
+          <span class="deal amber">1 for $50</span>
+          <span class="deal amber">2 for $70</span>
+          <span class="deal amber">3+ @ $35 ea</span>
+        </div>
+      </div>
+      <div class="product-list">
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/2g-gas-gang-blue-dream.png" alt="Gas Gang" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">Gas Gang</span>
+            <span class="prow-detail">Blue Dream · Hybrid</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price amber">$50</div>
+        </div>
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/vikings-platinum-cake-2.2g-indica.png" alt="Vikingz" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">Vikingz</span>
+            <span class="prow-detail">Platinum Cake · Indica</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price amber">$50</div>
+        </div>
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/2g-Drizzleswitch-indica+pom.png" alt="Drizzle Switch" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">Drizzle Switch</span>
+            <span class="prow-detail">Indica + POM · Sativa</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price amber">$50</div>
+        </div>
+
+        <div class="prow">
+          <div class="thumb"><img src="images/ProductPics/golden-stream-flavoured-gummi.png" alt="Golden Stream" /></div>
+          <div class="prow-mid">
+            <span class="prow-name">Golden Stream</span>
+            <span class="prow-detail">Flavoured · Hybrid</span>
+            <div class="leader"></div>
+          </div>
+          <div class="prow-price amber">$50</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span class="marquee-text">Welcome to The Green Room Dispensary &nbsp;•&nbsp; Open Daily 8AM – 10PM &nbsp;•&nbsp; Valid ID Required &nbsp;•&nbsp; Cash Only &nbsp;•&nbsp; ATM Inside &nbsp;•&nbsp; Ask About Our Daily Specials &nbsp;•&nbsp; Welcome to The Green Room Dispensary &nbsp;•&nbsp; Open Daily 8AM – 10PM &nbsp;•&nbsp; Valid ID Required &nbsp;•&nbsp; Cash Only &nbsp;•&nbsp; ATM Inside &nbsp;•&nbsp; Ask About Our Daily Specials &nbsp;•&nbsp;</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

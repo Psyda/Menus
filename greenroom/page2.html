@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Green Room — Featured</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    background: #020204;
+    font-family: 'Barlow', sans-serif;
+    color: #f0f2f5;
+  }
+
+  .screen {
+    width: 100vw; height: 100vh;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── BACKGROUND LAYER ── */
+  .bg-layer {
+    position: absolute; inset: 0; z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+  }
+
+  .bg-layer.visible { opacity: 1; }
+
+  .bg-image {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  .bg-overlay {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to top, rgba(2,2,4,1) 0%, rgba(2,2,4,0.55) 35%, rgba(2,2,4,0.2) 60%),
+      linear-gradient(to right, rgba(2,2,4,0.75) 0%, rgba(2,2,4,0.1) 50%, rgba(2,2,4,0.4) 100%),
+      rgba(2,2,4,0.12);
+  }
+
+  /* ── FILM GRAIN ── */
+  .grain {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    opacity: 0.028; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    position: relative; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 36px;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    height: 52px; width: auto; object-fit: contain;
+    filter: brightness(1.05) drop-shadow(0 2px 16px rgba(0,0,0,0.8));
+  }
+
+  /* progress dots */
+  .progress-dots {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .dot {
+    height: 5px; border-radius: 100px;
+    background: rgba(255,255,255,0.18);
+    transition: all 0.7s ease;
+    width: 6px;
+  }
+
+  .dot.active {
+    width: 32px;
+    background: #fff;
+    box-shadow: 0 0 12px rgba(255,255,255,0.4);
+  }
+
+  /* ── MAIN SHOWCASE ── */
+  .showcase {
+    position: relative; z-index: 20;
+    flex: 1; display: flex; align-items: flex-end;
+    padding: 0 48px 0 52px;
+    overflow: hidden;
+  }
+
+  /* Product image */
+  .product-img-wrap {
+    position: absolute;
+    right: 0; top: 3%;
+    height: 92%; width: 55%;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transform: translateX(60px) scale(0.93);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .product-img-wrap.visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .product-glow {
+    position: absolute;
+    width: 65%; height: 65%;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.3;
+  }
+
+  .product-img {
+    max-height: 88%; max-width: 88%;
+    object-fit: contain;
+    position: relative; z-index: 2;
+  }
+
+  /* Text block */
+  .text-block {
+    position: relative; z-index: 30;
+    max-width: 50%;
+    padding-bottom: 60px;
+  }
+
+  /* badge */
+  .badge {
+    display: inline-block;
+    padding: 10px 22px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 0% 100%);
+    margin-bottom: 22px;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+  }
+
+  .badge.visible { opacity: 1; transform: translateX(0); }
+
+  /* product name */
+  .product-name-line {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 12vw, 11rem);
+    line-height: 0.85;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .product-name-line.visible { opacity: 1; transform: translateY(0); }
+
+  /* price + descriptor */
+  .price-row {
+    display: flex; align-items: center; gap: 28px;
+    margin-top: 28px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+  }
+
+  .price-row.visible { opacity: 1; transform: translateY(0); }
+
+  .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 10vw, 9rem);
+    line-height: 1; color: #fff;
+    letter-spacing: -0.01em;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+  }
+
+  .price-divider {
+    width: 1px; height: 64px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 1px;
+  }
+
+  .descriptor {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(240,242,245,0.55);
+    max-width: 280px; line-height: 1.4;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-bar {
+    position: relative; z-index: 20; flex-shrink: 0;
+    height: 36px;
+    background: #00e57a;
+    display: flex; align-items: center;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .marquee-track {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(0,0,0,0.72);
+    padding: 0 24px;
+  }
+
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes slowZoom {
+    0%   { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.1) translate(-1%, -1%); }
+  }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+
+  <!-- BACKGROUND (swapped via JS) -->
+  <div class="bg-layer" id="bgLayer">
+    <div class="bg-image" id="bgImage"></div>
+    <div class="bg-overlay"></div>
+  </div>
+
+  <!-- FILM GRAIN -->
+  <div class="grain"></div>
+
+  <!-- Glow accent (per-product color) -->
+  <div id="glowAccent" style="
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    opacity:0; transition: opacity 1.2s ease;
+    mix-blend-mode: soft-light;
+  "></div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <img class="logo" src="images/logo.png" alt="Green Room" />
+    <div class="progress-dots" id="dots"></div>
+  </div>
+
+  <!-- SHOWCASE -->
+  <div class="showcase">
+    <!-- Product image -->
+    <div class="product-img-wrap" id="imgWrap">
+      <div class="product-glow" id="productGlow"></div>
+      <img class="product-img" id="productImg" src="" alt="" />
+    </div>
+
+    <!-- Text -->
+    <div class="text-block">
+      <div class="badge" id="badge"></div>
+      <div id="nameBlock"></div>
+      <div class="price-row" id="priceRow">
+        <div class="price" id="priceVal"></div>
+        <div class="price-divider"></div>
+        <div class="descriptor" id="descriptor"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span class="marquee-text">Welcome to The Green Room Dispensary &nbsp;•&nbsp; Open Daily 8AM – 10PM &nbsp;•&nbsp; Valid ID Required &nbsp;•&nbsp; Cash Only &nbsp;•&nbsp; ATM Inside &nbsp;•&nbsp; Ask About Our Daily Specials &nbsp;•&nbsp; Welcome to The Green Room Dispensary &nbsp;•&nbsp; Open Daily 8AM – 10PM &nbsp;•&nbsp; Valid ID Required &nbsp;•&nbsp; Cash Only &nbsp;•&nbsp; ATM Inside &nbsp;•&nbsp; Ask About Our Daily Specials &nbsp;•&nbsp;</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const PRODUCTS = [
+    {
+      name: "Vice Lady",
+      price: "$65",
+      badge: "New Arrival!",
+      description: "Premium Distillate · INDIV · 96% THC",
+      productImage: "https://i.imgur.com/B7laCtK.png",
+      backgroundImage: "https://images.unsplash.com/photo-1605648916361-9bc12ad6a569?q=80&w=1200&auto=format&fit=crop",
+      badgeStyle: "background:#2563eb; color:#fff;",
+      gradient: "linear-gradient(90deg, #67e8f9, #3b82f6, #a855f7)",
+      glowRGB: "59,130,246",
+    },
+    {
+      name: "Gas Gang HTPSE",
+      price: "$45",
+      badge: "High Terpene",
+      description: "Full Spectrum · 1g Cart · Lab Tested",
+      productImage: "images/ProductPics/GasGang.png",
+      backgroundImage: "https://images.unsplash.com/photo-1547070451-e3857a8ea62a?q=80&w=1200&auto=format&fit=crop",
+      badgeStyle: "background:#d97706; color:#000;",
+      gradient: "linear-gradient(90deg, #fde68a, #fb923c, #ef4444)",
+      glowRGB: "234,179,8",
+    },
+    {
+      name: "High Voltage",
+      price: "$35",
+      badge: "Premium Refill",
+      description: "Sauce Cart · 98% THC · Solventless",
+      productImage: "images/ProductPics/Cart-HighVoltage.png",
+      backgroundImage: "https://i.imgur.com/KB74Vl1.jpeg",
+      badgeStyle: "background:#9333ea; color:#fff;",
+      gradient: "linear-gradient(90deg, #c084fc, #e879f9, #818cf8)",
+      glowRGB: "168,85,247",
+    },
+  ];
+
+  const HOLD = 10000;
+  const FADE = 1200;
+
+  let current = 0;
+  let timer = null;
+
+  const bgLayer   = document.getElementById('bgLayer');
+  const bgImage   = document.getElementById('bgImage');
+  const glowAccent = document.getElementById('glowAccent');
+  const imgWrap   = document.getElementById('imgWrap');
+  const productImg = document.getElementById('productImg');
+  const productGlow = document.getElementById('productGlow');
+  const badge     = document.getElementById('badge');
+  const nameBlock = document.getElementById('nameBlock');
+  const priceRow  = document.getElementById('priceRow');
+  const priceVal  = document.getElementById('priceVal');
+  const descriptor = document.getElementById('descriptor');
+  const dotsEl    = document.getElementById('dots');
+
+  // Build dots
+  PRODUCTS.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.id = `dot-${i}`;
+    dotsEl.appendChild(d);
+  });
+
+  function updateDots(idx) {
+    PRODUCTS.forEach((_, i) => {
+      const d = document.getElementById(`dot-${i}`);
+      d.className = i === idx ? 'dot active' : 'dot';
+    });
+  }
+
+  function setVisible(el, on) {
+    if (on) el.classList.add('visible');
+    else el.classList.remove('visible');
+  }
+
+  function hideAll() {
+    setVisible(bgLayer, false);
+    setVisible(imgWrap, false);
+    setVisible(badge, false);
+    setVisible(priceRow, false);
+    glowAccent.style.opacity = '0';
+    // hide name lines
+    document.querySelectorAll('.product-name-line').forEach(l => setVisible(l, false));
+  }
+
+  function showProduct(idx) {
+    const p = PRODUCTS[idx];
+    updateDots(idx);
+
+    // Background
+    bgImage.style.backgroundImage = `url('${p.backgroundImage}')`;
+    bgImage.style.animation = 'none';
+    // force reflow for animation restart
+    void bgImage.offsetWidth;
+    bgImage.style.animation = `slowZoom ${HOLD + FADE * 2}ms ease-in-out forwards`;
+
+    // Glow
+    glowAccent.style.background = `radial-gradient(ellipse at 55% 45%, rgba(${p.glowRGB},0.5), transparent 65%)`;
+
+    // Product image
+    productImg.src = p.productImage;
+    productImg.alt = p.name;
+    productGlow.style.background = `rgba(${p.glowRGB},0.4)`;
+    productImg.style.filter = `drop-shadow(0 0 80px rgba(${p.glowRGB},0.3))`;
+
+    // Badge
+    badge.setAttribute('style', p.badgeStyle);
+    badge.textContent = p.badge;
+
+    // Name lines
+    nameBlock.innerHTML = '';
+    p.name.split(' ').forEach((word, i) => {
+      const span = document.createElement('span');
+      span.className = 'product-name-line';
+      span.style.backgroundImage = p.gradient;
+      span.style.transitionDelay = `${0.25 + i * 0.08}s`;
+      span.textContent = word;
+      nameBlock.appendChild(span);
+    });
+
+    // Price / descriptor
+    priceVal.textContent = p.price;
+    descriptor.textContent = p.description;
+
+    // Fade in
+    setTimeout(() => {
+      setVisible(bgLayer, true);
+      glowAccent.style.opacity = '1';
+      setTimeout(() => {
+        setVisible(imgWrap, true);
+        setVisible(badge, true);
+        document.querySelectorAll('.product-name-line').forEach(l => setVisible(l, true));
+        setTimeout(() => setVisible(priceRow, true), 200);
+      }, 80);
+    }, 60);
+  }
+
+  function advance() {
+    hideAll();
+    setTimeout(() => {
+      current = (current + 1) % PRODUCTS.length;
+      showProduct(current);
+    }, FADE + 200);
+  }
+
+  function startCycle() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      advance();
+      // re-schedule
+      const loop = () => {
+        timer = setTimeout(() => { advance(); loop(); }, HOLD + FADE * 2 + 300);
+      };
+      loop();
+    }, HOLD + FADE * 2 + 300);
+  }
+
+  // Init
+  showProduct(0);
+  startCycle();
+</script>
+</body>
+</html>

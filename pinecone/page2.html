@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Pine Cone — Burgers &amp; Sandwiches</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A843;
+    --gold-light: #E8C96A;
+    --dark: #1A1A1A;
+    --charcoal: #2C2C2C;
+    --white: #FFFFFF;
+    --wood: #5C4033;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Barlow', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+  }
+
+  .page-wrapper {
+    width: 100%;
+    height: 100%;
+    transform-origin: top left;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* ===== LEFT: HERO SHOWCASE ===== */
+  .p2-left {
+    width: 36%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .showcase-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .showcase-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .showcase-slide.active { opacity: 1; }
+
+  .showcase-slide .bg-img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .showcase-slide .bg-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: slowZoom 8s ease-in-out infinite alternate;
+  }
+  @keyframes slowZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+  }
+
+  .showcase-slide .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);
+    z-index: 1;
+  }
+
+  .showcase-info {
+    position: relative;
+    z-index: 2;
+    padding: 5vh 2.5vw;
+  }
+  .showcase-info .s-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 2.8vw, 56px);
+    text-transform: uppercase;
+    letter-spacing: 0.15vw;
+    color: var(--white);
+    margin-bottom: 0.6vh;
+  }
+  .showcase-info .s-desc {
+    font-size: clamp(12px, 1.1vw, 22px);
+    color: rgba(255,255,255,0.6);
+    max-width: 92%;
+    line-height: 1.4;
+  }
+  .showcase-info .s-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 3.2vw, 64px);
+    color: var(--gold);
+    margin-top: 1vh;
+  }
+
+  .showcase-dots {
+    position: absolute;
+    bottom: 2.5vh;
+    right: 2vw;
+    display: flex;
+    gap: 0.5vw;
+    z-index: 3;
+  }
+  .showcase-dots .dot {
+    width: clamp(6px, 0.5vw, 10px);
+    height: clamp(6px, 0.5vw, 10px);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: all 0.3s;
+  }
+  .showcase-dots .dot.active {
+    background: var(--gold);
+    width: clamp(18px, 1.6vw, 32px);
+    border-radius: 4px;
+  }
+
+  /* ===== RIGHT: FULL MENU LIST ===== */
+  .p2-right {
+    width: 64%;
+    height: 100%;
+    padding: 3.5vh 3.2vw 2.5vh 3.2vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: linear-gradient(180deg, #2C2C2C 0%, #232323 100%);
+  }
+  .p2-right::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold) 0%, transparent 40%, transparent 60%, var(--gold) 100%);
+  }
+
+  .menu-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 3.5vw, 80px);
+    letter-spacing: 0.3vw;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6vh;
+    position: relative;
+  }
+  .menu-title::after {
+    content: '';
+    display: block;
+    width: clamp(40px, 4vw, 80px);
+    height: 3px;
+    background: var(--gold);
+    margin-top: 0.8vh;
+  }
+
+  /* ===== MENU LIST ===== */
+  .menu-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2vh 2.4vw;
+    margin-top: 1.8vh;
+    flex: 1;
+  }
+
+  .menu-item {
+    padding: 1.6vh 1.2vw 1.6vh 1.4vw;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-left: 3px solid var(--gold);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.6vw;
+  }
+
+  .menu-item-header .name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(18px, 1.65vw, 36px);
+    text-transform: uppercase;
+    letter-spacing: 0.05vw;
+    color: var(--white);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .menu-item-header .dots {
+    flex: 1;
+    min-width: 1.2vw;
+    border-bottom: 2px dotted rgba(255,255,255,0.12);
+    margin-bottom: 0.4vh;
+  }
+
+  .menu-item-header .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(20px, 1.9vw, 42px);
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .menu-item .desc {
+    font-size: clamp(11px, 0.95vw, 20px);
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    margin-top: 0.3vh;
+    line-height: 1.35;
+  }
+
+  .menu-item .tag {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(11px, 0.9vw, 18px);
+    letter-spacing: 0.15vw;
+    color: var(--gold);
+    background: rgba(212,168,67,0.1);
+    padding: 0.2vh 0.5vw;
+    margin-top: 0.5vh;
+    border-radius: 2px;
+  }
+
+  /* ===== CORNER ACCENT ===== */
+  .corner-accent { position: absolute; width: clamp(30px, 3vw, 50px); height: clamp(30px, 3vw, 50px); }
+  .corner-accent.tr { top: 2vh; right: 1.5vw; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+  /* ===== PAGE INDICATOR ===== */
+  .page-indicator {
+    position: absolute;
+    bottom: 1.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5vw;
+    z-index: 100;
+  }
+  .page-indicator .pip {
+    width: clamp(5px, 0.4vw, 8px);
+    height: clamp(5px, 0.4vw, 8px);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+  }
+  .page-indicator .pip.active {
+    background: var(--gold);
+    width: clamp(16px, 1.4vw, 28px);
+    border-radius: 3px;
+  }
+
+  /* ===== NOISE ===== */
+  .noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .menu-title { animation: fadeInUp 0.6s ease both; }
+  .menu-item { animation: fadeInUp 0.5s ease both; }
+  .menu-item:nth-child(1) { animation-delay: 0.08s; }
+  .menu-item:nth-child(2) { animation-delay: 0.12s; }
+  .menu-item:nth-child(3) { animation-delay: 0.16s; }
+  .menu-item:nth-child(4) { animation-delay: 0.2s; }
+  .menu-item:nth-child(5) { animation-delay: 0.24s; }
+  .menu-item:nth-child(6) { animation-delay: 0.28s; }
+  .menu-item:nth-child(7) { animation-delay: 0.32s; }
+  .menu-item:nth-child(8) { animation-delay: 0.36s; }
+
+  /* ===== FOOTER NOTE ===== */
+  .footer-note {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    margin-top: 1.2vh;
+    padding-top: 1vh;
+  }
+  .footer-note .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .footer-note .text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 1.2vw, 26px);
+    color: rgba(212,168,67,0.5);
+    letter-spacing: 0.4vw;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+<div class="noise"></div>
+
+<!-- LEFT: Rotating showcase of hero items -->
+<div class="p2-left">
+  <div class="showcase-container" id="showcase">
+    <!-- Slide 1: Island Burger -->
+    <div class="showcase-slide active" data-index="0">
+      <div class="bg-img"><img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=900&q=80" alt="Island Burger"></div>
+      <div class="overlay"></div>
+      <div class="showcase-info">
+        <div class="s-name">Island Burger</div>
+        <div class="s-desc">Thousand Island dressing, caramelized onions, roasted mushrooms, bacon, lettuce, tomato, pickles, cheddar cheese</div>
+        <div class="s-price">$22.50</div>
+      </div>
+    </div>
+    <!-- Slide 2: B.B.Q Burger -->
+    <div class="showcase-slide" data-index="1">
+      <div class="bg-img"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=900&q=80" alt="BBQ Burger"></div>
+      <div class="overlay"></div>
+      <div class="showcase-info">
+        <div class="s-name">B.B.Q Burger</div>
+        <div class="s-desc">BBQ sauce, pickles, pulled pork, bacon, Havarti cheese, fried onions</div>
+        <div class="s-price">$22.50</div>
+      </div>
+    </div>
+    <!-- Slide 3: Bacon Marmalade Burger -->
+    <div class="showcase-slide" data-index="2">
+      <div class="bg-img"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=900&q=80" alt="Bacon Marmalade Burger"></div>
+      <div class="overlay"></div>
+      <div class="showcase-info">
+        <div class="s-name">Bacon Marmalade Burger</div>
+        <div class="s-desc">Spicy mayo, bacon jam, Havarti cheese, onion rings</div>
+        <div class="s-price">$20.00</div>
+      </div>
+    </div>
+    <!-- Slide 4: Po Boy Sandwich -->
+    <div class="showcase-slide" data-index="3">
+      <div class="bg-img"><img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=900&q=80" alt="Po Boy Sandwich"></div>
+      <div class="overlay"></div>
+      <div class="showcase-info">
+        <div class="s-name">Po Boy Sandwich</div>
+        <div class="s-desc">Fried shrimp, lettuce, tomato, pickles, remoulade sauce</div>
+        <div class="s-price">$25.00</div>
+      </div>
+    </div>
+
+    <div class="showcase-dots">
+      <div class="dot active" data-dot="0"></div>
+      <div class="dot" data-dot="1"></div>
+      <div class="dot" data-dot="2"></div>
+      <div class="dot" data-dot="3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- RIGHT: Full menu list -->
+<div class="p2-right">
+  <div class="corner-accent tr"></div>
+  <div class="menu-title">Burgers &amp; Sandwiches</div>
+
+  <div class="menu-list">
+    <!-- Island Burger -->
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Island Burger</span>
+        <span class="dots"></span>
+        <span class="price">$22.50</span>
+      </div>
+      <div class="desc">Thousand Island dressing, caramelized onions, roasted mushrooms, bacon, lettuce, tomato, pickles, cheddar cheese</div>
+    </div>
+
+    <!-- B.B.Q Burger -->
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">B.B.Q Burger</span>
+        <span class="dots"></span>
+        <span class="price">$22.50</span>
+      </div>
+      <div class="desc">BBQ sauce, pickles, pulled pork, bacon, Havarti cheese, fried onions</div>
+    </div>
+
+    <!-- Bacon Marmalade Burger -->
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Bacon Marmalade Burger</span>
+        <span class="dots"></span>
+        <span class="price">$20.00</span>
+      </div>
+      <div class="desc">Spicy mayo, bacon jam, Havarti cheese, onion rings</div>
+    </div>
+
+    <!-- Mozzarella Melt Burger -->
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Mozzarella Melt Burger</span>
+        <span class="dots"></span>
+        <span class="price">$19.50</span>
+      </div>
+      <div class="desc">Marinara sauce, pepperoni spread, Swiss cheese, 2 mozzarella sticks</div>
+    </div>
+
+    <!-- Po Boy Sandwich -->
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Po Boy Sandwich</span>
+        <span class="dots"></span>
+        <span class="price">$25.00</span>
+      </div>
+      <div class="desc">Fried shrimp, lettuce, tomato, pickles, remoulade sauce</div>
+      <span class="tag">House Favourite</span>
+    </div>
+
+    <!-- Pulled Pork Sandwich -->
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Pulled Pork Sandwich</span>
+        <span class="dots"></span>
+        <span class="price">$20.00</span>
+      </div>
+      <div class="desc">Topped with coleslaw</div>
+    </div>
+
+    <!-- Steak & Pepperoni Sandwich -->
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Steak &amp; Pepperoni Sandwich</span>
+        <span class="dots"></span>
+        <span class="price">$19.50</span>
+      </div>
+      <div class="desc">Steak, pepperoni, lettuce, tomato, caramelized onions, special sauce</div>
+    </div>
+
+    <!-- Chicken Sandwich -->
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Chicken Sandwich</span>
+        <span class="dots"></span>
+        <span class="price">$18.00</span>
+      </div>
+      <div class="desc">Coleslaw, spicy mayo, pickles</div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <div class="line"></div>
+    <div class="text">All Burgers Served With Fries</div>
+    <div class="line" style="background:linear-gradient(270deg, var(--gold), transparent);"></div>
+  </div>
+
+  <div class="page-indicator">
+    <div class="pip"></div>
+    <div class="pip active"></div>
+    <div class="pip"></div>
+  </div>
+</div>
+</div>
+
+<script>
+  // Showcase cycling
+  const slides = document.querySelectorAll('.showcase-slide');
+  const dots = document.querySelectorAll('.showcase-dots .dot');
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+  }
+
+  setInterval(() => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }, 5000);
+</script>
+</body>
+</html>

@@ -102,7 +102,7 @@
   .prow:last-child { border-bottom:none; }
 
   .thumb {
-    flex-shrink:0; width:22vh; height:20vh;
+    flex-shrink:0; width:19vh; height:20vh;
     border-radius:0.8vh;
     background:rgba(255,255,255,0.025);
     border:1px solid rgba(255,255,255,0.06);
@@ -202,7 +202,7 @@
   /* ═══════════════════════════════════════
      AD LAYER
      ═══════════════════════════════════════ */
-  .ad-layer {
+  .promo-layer {
     position:absolute; inset:0; z-index:20;
     display:flex; flex-direction:column;
     padding-bottom:3.2vh; /* marquee space */
@@ -210,21 +210,21 @@
     opacity:0; pointer-events:none;
     transition: opacity 0.9s ease;
   }
-  .ad-layer.visible { opacity:1; pointer-events:auto; }
+  .promo-layer.visible { opacity:1; pointer-events:auto; }
 
-  .ad-bg {
+  .promo-bg {
     position:absolute; inset:0; z-index:0;
     opacity:0; transition: opacity 1.2s ease;
   }
-  .ad-bg.visible { opacity:1; }
+  .promo-bg.visible { opacity:1; }
 
-  .ad-bg-image {
+  .promo-bg-image {
     position:absolute; inset:0;
     background-size:cover; background-position:center;
     will-change:transform;
   }
 
-  .ad-bg-overlay {
+  .promo-bg-overlay {
     position:absolute; inset:0;
     background:
       linear-gradient(to top, rgba(2,2,4,1) 0%, rgba(2,2,4,0.55) 35%, rgba(2,2,4,0.2) 60%),
@@ -232,51 +232,51 @@
       rgba(2,2,4,0.12);
   }
 
-  .ad-grain {
+  .promo-grain {
     position:absolute; inset:0; z-index:1; pointer-events:none;
     opacity:0.028; mix-blend-mode:overlay;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .ad-glow {
+  .promo-glow {
     position:absolute; inset:0; z-index:1; pointer-events:none;
     opacity:0; transition: opacity 1.2s ease;
     mix-blend-mode:soft-light;
   }
 
-  .ad-topbar {
+  .promo-topbar {
     position:relative; z-index:20;
     display:flex; align-items:center; justify-content:space-between;
     padding:2.4vh 2.4vw;
     flex-shrink:0;
   }
 
-  .ad-logo {
+  .promo-logo {
     height:5vh; width:auto; object-fit:contain;
     filter: brightness(1.05) drop-shadow(0 2px 16px rgba(0,0,0,0.8));
   }
 
-  .ad-dots { display:flex; align-items:center; gap:0.7vw; }
-  .adot {
+  .promo-dots { display:flex; align-items:center; gap:0.7vw; }
+  .pdot {
     height:0.5vh; border-radius:100px;
     background:rgba(255,255,255,0.18);
     transition: all 0.7s ease;
     width:0.5vh;
   }
-  .adot.active {
+  .pdot.active {
     width:2.2vw;
     background:#fff;
     box-shadow: 0 0 12px rgba(255,255,255,0.4);
   }
 
-  .ad-showcase {
+  .promo-showcase {
     position:relative; z-index:20;
     flex:1; display:flex; align-items:flex-end;
     padding:0 3.2vw 0 3.6vw;
     overflow:hidden;
   }
 
-  .ad-product-wrap {
+  .promo-product-wrap {
     position:absolute;
     right:0; top:3%;
     height:92%; width:55%;
@@ -285,12 +285,12 @@
     transform: translateX(60px) scale(0.93);
     transition: all 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
   }
-  .ad-product-wrap.visible {
+  .promo-product-wrap.visible {
     opacity:1;
     transform: translateX(0) scale(1);
   }
 
-  .ad-product-glow {
+  .promo-product-glow {
     position:absolute;
     width:65%; height:65%;
     border-radius:50%;
@@ -298,19 +298,19 @@
     opacity:0.3;
   }
 
-  .ad-product-img {
+  .promo-product-img {
     max-height:88%; max-width:88%;
     object-fit:contain;
     position:relative; z-index:2;
   }
 
-  .ad-text-block {
+  .promo-text-block {
     position:relative; z-index:30;
     max-width:50%;
     padding-bottom:6vh;
   }
 
-  .ad-badge {
+  .promo-badge {
     display:inline-block;
     padding:1.2vh 1.6vw;
     font-family:'Barlow Condensed',sans-serif;
@@ -322,9 +322,9 @@
     transform: translateX(-30px);
     transition: all 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.1s;
   }
-  .ad-badge.visible { opacity:1; transform:translateX(0); }
+  .promo-badge.visible { opacity:1; transform:translateX(0); }
 
-  .ad-name-line {
+  .promo-name-line {
     display:block;
     font-family:'Bebas Neue',sans-serif;
     font-size: clamp(5rem, 12vw, 11rem);
@@ -336,18 +336,18 @@
     transform:translateY(28px);
     transition: all 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
   }
-  .ad-name-line.visible { opacity:1; transform:translateY(0); }
+  .promo-name-line.visible { opacity:1; transform:translateY(0); }
 
-  .ad-price-row {
+  .promo-price-row {
     display:flex; align-items:center; gap:2vw;
     margin-top:3vh;
     opacity:0;
     transform:translateY(20px);
     transition: all 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.5s;
   }
-  .ad-price-row.visible { opacity:1; transform:translateY(0); }
+  .promo-price-row.visible { opacity:1; transform:translateY(0); }
 
-  .ad-price {
+  .promo-price {
     font-family:'Bebas Neue',sans-serif;
     font-size: clamp(5rem, 10vw, 9rem);
     line-height:1; color:#fff;
@@ -355,13 +355,13 @@
     text-shadow: 0 4px 40px rgba(0,0,0,0.7);
   }
 
-  .ad-price-divider {
+  .promo-price-divider {
     width:1px; height:6.5vh;
     background:rgba(255,255,255,0.2);
     border-radius:1px;
   }
 
-  .ad-descriptor {
+  .promo-descriptor {
     font-family:'Barlow Condensed',sans-serif;
     font-size:2.2vh; font-weight:600;
     letter-spacing:0.2em; text-transform:uppercase;
@@ -379,7 +379,7 @@
     border-top:1px solid rgba(255,255,255,0.08);
     transition: background 0.9s ease;
   }
-  .marquee-bar.ad-mode { background:#00e57a; }
+  .marquee-bar.promo-mode { background:#00e57a; }
 
   .marquee-track { display:inline-block; white-space:nowrap; animation:marquee 32s linear infinite; }
   .marquee-text  {
@@ -488,31 +488,31 @@
   </div>
 
   <!-- ════════ AD LAYER ════════ -->
-  <div class="ad-layer" id="adLayer">
-    <div class="ad-bg" id="adBg">
-      <div class="ad-bg-image" id="adBgImage"></div>
-      <div class="ad-bg-overlay"></div>
+  <div class="promo-layer" id="promoLayer">
+    <div class="promo-bg" id="promoBg">
+      <div class="promo-bg-image" id="promoBgImage"></div>
+      <div class="promo-bg-overlay"></div>
     </div>
-    <div class="ad-grain"></div>
-    <div class="ad-glow" id="adGlow"></div>
+    <div class="promo-grain"></div>
+    <div class="promo-glow" id="promoGlow"></div>
 
-    <div class="ad-topbar">
-      <img class="ad-logo" src="images/logo.png" alt="Green Room" />
-      <div class="ad-dots" id="adDots"></div>
+    <div class="promo-topbar">
+      <img class="promo-logo" src="images/logo.png" alt="Green Room" />
+      <div class="promo-dots" id="promoDots"></div>
     </div>
 
-    <div class="ad-showcase">
-      <div class="ad-product-wrap" id="adImgWrap">
-        <div class="ad-product-glow" id="adProductGlow"></div>
-        <img class="ad-product-img" id="adProductImg" src="" alt="" />
+    <div class="promo-showcase">
+      <div class="promo-product-wrap" id="promoImgWrap">
+        <div class="promo-product-glow" id="promoProductGlow"></div>
+        <img class="promo-product-img" id="promoProductImg" src="" alt="" />
       </div>
-      <div class="ad-text-block">
-        <div class="ad-badge" id="adBadge"></div>
-        <div id="adNameBlock"></div>
-        <div class="ad-price-row" id="adPriceRow">
-          <div class="ad-price" id="adPrice"></div>
-          <div class="ad-price-divider"></div>
-          <div class="ad-descriptor" id="adDescriptor"></div>
+      <div class="promo-text-block">
+        <div class="promo-badge" id="promoBadge"></div>
+        <div id="promoNameBlock"></div>
+        <div class="promo-price-row" id="promoPriceRow">
+          <div class="promo-price" id="promoPrice"></div>
+          <div class="promo-price-divider"></div>
+          <div class="promo-descriptor" id="promoDescriptor"></div>
         </div>
       </div>
     </div>
@@ -540,7 +540,7 @@ const CART_PRODUCTS = [
   { name:"Gas Gang", detail:"HTFSE", price:"$40", img:"images/ProductPics/ggcart.jpg" },
 ];
 
-const AD_PRODUCTS = [
+const PROMO_PRODUCTS = [
   {
     name: "Vice Lady",
     price: "$65",
@@ -625,27 +625,27 @@ function showCartSlide(idx) {
    AD SHOWCASE SETUP
    ═══════════════════════════════════════ */
 const menuLayer     = document.getElementById('menuLayer');
-const adLayer       = document.getElementById('adLayer');
+const promoLayer       = document.getElementById('promoLayer');
 const marqueeBar    = document.getElementById('marqueeBar');
-const adBg          = document.getElementById('adBg');
-const adBgImage     = document.getElementById('adBgImage');
-const adGlow        = document.getElementById('adGlow');
-const adImgWrap     = document.getElementById('adImgWrap');
-const adProductImg  = document.getElementById('adProductImg');
-const adProductGlow = document.getElementById('adProductGlow');
-const adBadge       = document.getElementById('adBadge');
-const adNameBlock   = document.getElementById('adNameBlock');
-const adPriceRow    = document.getElementById('adPriceRow');
-const adPrice       = document.getElementById('adPrice');
-const adDescriptor  = document.getElementById('adDescriptor');
-const adDotsWrap    = document.getElementById('adDots');
+const promoBg          = document.getElementById('promoBg');
+const promoBgImage     = document.getElementById('promoBgImage');
+const promoGlow        = document.getElementById('promoGlow');
+const promoImgWrap     = document.getElementById('promoImgWrap');
+const promoProductImg  = document.getElementById('promoProductImg');
+const promoProductGlow = document.getElementById('promoProductGlow');
+const promoBadge       = document.getElementById('promoBadge');
+const promoNameBlock   = document.getElementById('promoNameBlock');
+const promoPriceRow    = document.getElementById('promoPriceRow');
+const promoPrice       = document.getElementById('promoPrice');
+const promoDescriptor  = document.getElementById('promoDescriptor');
+const promoDotsWrap    = document.getElementById('promoDots');
 
-AD_PRODUCTS.forEach((_, i) => {
+PROMO_PRODUCTS.forEach((_, i) => {
   const d = document.createElement('div');
-  d.className = 'adot';
-  adDotsWrap.appendChild(d);
+  d.className = 'pdot';
+  promoDotsWrap.appendChild(d);
 });
-const adDots = adDotsWrap.querySelectorAll('.adot');
+const promoDots = promoDotsWrap.querySelectorAll('.pdot');
 
 function vis(el, on) {
   if (on) el.classList.add('visible');
@@ -653,54 +653,54 @@ function vis(el, on) {
 }
 
 function hideAdContent() {
-  vis(adBg, false);
-  vis(adImgWrap, false);
-  vis(adBadge, false);
-  vis(adPriceRow, false);
-  adGlow.style.opacity = '0';
-  adNameBlock.querySelectorAll('.ad-name-line').forEach(l => vis(l, false));
+  vis(promoBg, false);
+  vis(promoImgWrap, false);
+  vis(promoBadge, false);
+  vis(promoPriceRow, false);
+  promoGlow.style.opacity = '0';
+  promoNameBlock.querySelectorAll('.promo-name-line').forEach(l => vis(l, false));
 }
 
-function showAdContent(idx) {
-  const p = AD_PRODUCTS[idx];
-  adDots.forEach((d, i) => d.className = i === idx ? 'adot active' : 'adot');
+function showPromoContent(idx) {
+  const p = PROMO_PRODUCTS[idx];
+  promoDots.forEach((d, i) => d.className = i === idx ? 'pdot active' : 'pdot');
 
-  adBgImage.style.backgroundImage = `url('${p.backgroundImage}')`;
-  adBgImage.style.animation = 'none';
-  void adBgImage.offsetWidth;
-  adBgImage.style.animation = 'slowZoom 13s ease-in-out forwards';
+  promoBgImage.style.backgroundImage = `url('${p.backgroundImage}')`;
+  promoBgImage.style.animation = 'none';
+  void promoBgImage.offsetWidth;
+  promoBgImage.style.animation = 'slowZoom 13s ease-in-out forwards';
 
-  adGlow.style.background = `radial-gradient(ellipse at 55% 45%, rgba(${p.glowRGB},0.5), transparent 65%)`;
+  promoGlow.style.background = `radial-gradient(ellipse at 55% 45%, rgba(${p.glowRGB},0.5), transparent 65%)`;
 
-  adProductImg.src = p.productImage;
-  adProductImg.alt = p.name;
-  adProductGlow.style.background = `rgba(${p.glowRGB},0.4)`;
-  adProductImg.style.filter = `drop-shadow(0 0 80px rgba(${p.glowRGB},0.3))`;
+  promoProductImg.src = p.productImage;
+  promoProductImg.alt = p.name;
+  promoProductGlow.style.background = `rgba(${p.glowRGB},0.4)`;
+  promoProductImg.style.filter = `drop-shadow(0 0 80px rgba(${p.glowRGB},0.3))`;
 
-  adBadge.setAttribute('style', p.badgeStyle);
-  adBadge.textContent = p.badge;
+  promoBadge.setAttribute('style', p.badgeStyle);
+  promoBadge.textContent = p.badge;
 
-  adNameBlock.innerHTML = '';
+  promoNameBlock.innerHTML = '';
   p.name.split(' ').forEach((word, wi) => {
     const span = document.createElement('span');
-    span.className = 'ad-name-line';
+    span.className = 'promo-name-line';
     span.style.backgroundImage = p.gradient;
     span.style.transitionDelay = `${0.25 + wi * 0.08}s`;
     span.textContent = word;
-    adNameBlock.appendChild(span);
+    promoNameBlock.appendChild(span);
   });
 
-  adPrice.textContent = p.price;
-  adDescriptor.textContent = p.description;
+  promoPrice.textContent = p.price;
+  promoDescriptor.textContent = p.description;
 
   setTimeout(() => {
-    vis(adBg, true);
-    adGlow.style.opacity = '1';
+    vis(promoBg, true);
+    promoGlow.style.opacity = '1';
     setTimeout(() => {
-      vis(adImgWrap, true);
-      vis(adBadge, true);
-      adNameBlock.querySelectorAll('.ad-name-line').forEach(l => vis(l, true));
-      setTimeout(() => vis(adPriceRow, true), 200);
+      vis(promoImgWrap, true);
+      vis(promoBadge, true);
+      promoNameBlock.querySelectorAll('.promo-name-line').forEach(l => vis(l, true));
+      setTimeout(() => vis(promoPriceRow, true), 200);
     }, 80);
   }, 60);
 }
@@ -710,25 +710,25 @@ function showAdContent(idx) {
    Cart[0..5] → Ad[n] → Cart[0..5] → Ad[n+1] → ...
    ═══════════════════════════════════════ */
 const CART_HOLD = 4000;
-const AD_HOLD   = 15000;
+const PROMO_HOLD   = 15000;
 const FADE_MS   = 900;
 
-let adIdx = 0;
+let promoIdx = 0;
 
 function enterAd(cb) {
   menuLayer.classList.add('hidden');
-  marqueeBar.classList.add('ad-mode');
+  marqueeBar.classList.add('promo-mode');
   setTimeout(() => {
-    adLayer.classList.add('visible');
-    showAdContent(adIdx);
-    setTimeout(cb, AD_HOLD);
+    promoLayer.classList.add('visible');
+    showPromoContent(promoIdx);
+    setTimeout(cb, PROMO_HOLD);
   }, FADE_MS);
 }
 
 function exitAd(cb) {
   hideAdContent();
-  adLayer.classList.remove('visible');
-  marqueeBar.classList.remove('ad-mode');
+  promoLayer.classList.remove('visible');
+  marqueeBar.classList.remove('promo-mode');
   setTimeout(() => {
     menuLayer.classList.remove('hidden');
     showCartSlide(0);
@@ -748,7 +748,7 @@ function runCartCycle() {
       // All 6 shown, go to ad
       setTimeout(() => {
         enterAd(() => {
-          adIdx = (adIdx + 1) % AD_PRODUCTS.length;
+          promoIdx = (promoIdx + 1) % PROMO_PRODUCTS.length;
           exitAd(() => {
             runCartCycle();
           });

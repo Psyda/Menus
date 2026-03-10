@@ -53,7 +53,7 @@
   /* ─── MAIN LAYOUT: 30% | 30% | 40% ─── */
   .columns {
     flex:1; display:grid;
-    grid-template-columns: 30fr 30fr 40fr;
+    grid-template-columns: 35fr 35fr 30fr;
     overflow:hidden;
   }
 
@@ -167,16 +167,14 @@
   .slide-img-wrap {
     width:100%; max-width:65vh;
     aspect-ratio:1;
-    border-radius:1.5vh;
-    background:rgba(255,255,255,0.03);
-    border:1px solid rgba(255,255,255,0.06);
+    <!-- border-radius:1.5vh; -->
+    <!-- background:rgba(255,255,255,0.03); -->
+    <!-- border:1px solid rgba(255,255,255,0.06); -->
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
-    box-shadow: 0 0 60px rgba(0,232,124,0.06), 0 0 120px rgba(176,110,243,0.04);
+    <!-- box-shadow: 0 0 60px rgba(0,232,124,0.06), 0 0 120px rgba(176,110,243,0.04); -->
   }
-  .slide-img-wrap img {
-    width:90%; height:90%; object-fit:contain;
-  }
+  .slide-img-wrap img { width:90%; height:90%; object-fit:contain; filter: drop-shadow(rgba(59, 130, 246, 0.3) 0px 8px 9px);}
 
   .slide-name {
     font-family:'Bebas Neue',sans-serif;
@@ -255,7 +253,7 @@
       <div class="product-list">
 
         <div class="prow">
-          <div class="thumb"><img src="images/ProductPics/1g drizzle glowpod vapes.jpg" alt="Drizzle" /></div>
+          <div class="thumb"><img src="images/ProductPics/1g drizzle glowpod vapes.png" alt="Drizzle" /></div>
           <div class="prow-info">
             <span class="prow-name">Drizzle</span>
             <span class="prow-detail">Glo Pods · Distillate</span>
@@ -264,7 +262,7 @@
         </div>
 
         <div class="prow">
-          <div class="thumb"><img src="images/ProductPics/800-Gas-gang-vape-pen-600x600.jpg" alt="Gas Gang" /></div>
+          <div class="thumb"><img src="images/ProductPics/1g vol3-gasgang.png" alt="Gas Gang" /></div>
           <div class="prow-info">
             <span class="prow-name">Gas Gang</span>
             <span class="prow-detail">Distillate</span>
@@ -357,8 +355,8 @@
 
 <script>
 const products = [
-  { name:"Drizzle", detail:"Glo Pods · Distillate", price:"$30", color:"green", img:"images/ProductPics/1g drizzle glowpod vapes.jpg" },
-  { name:"Gas Gang", detail:"Distillate", price:"$30", color:"green", img:"images/ProductPics/800-Gas-gang-vape-pen-600x600.jpg" },
+  { name:"Drizzle", detail:"Glo Pods · Distillate", price:"$30", color:"green", img:"images/ProductPics/1g drizzle glowpod vapes.png" },
+  { name:"Gas Gang", detail:"Distillate", price:"$30", color:"green", img:"images/ProductPics/1g vol3-gasgang.png" },
   { name:"Vikingz", detail:"Black Widow · Indica", price:"$30", color:"green", img:"images/ProductPics/Vikingz-BlackWidow-Indica.png" },
   { name:"IB-High", detail:"Rainbow Pop · Distillate", price:"$30", color:"green", img:"images/ProductPics/IB-HIGH-RainbowPop.png" },
   { name:"Drizzle", detail:"Live Resin", price:"$50", color:"purple", img:"images/ProductPics/drizzle_liveset.png" },

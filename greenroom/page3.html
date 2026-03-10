@@ -54,7 +54,7 @@
   /* ─── MAIN LAYOUT: two list cols + slider ─── */
   .columns {
     flex:1; display:grid;
-    grid-template-columns: 30fr 30fr 40fr;
+    grid-template-columns: 35fr 35fr 30fr;
     overflow:hidden;
   }
 
@@ -171,14 +171,14 @@
   .slide-img-wrap {
     width:100%; max-width:65vh;
     aspect-ratio:1;
-    border-radius:1.5vh;
-    background:rgba(255,255,255,0.03);
-    border:1px solid rgba(255,255,255,0.06);
+    <!-- border-radius:1.5vh; -->
+    <!-- background:rgba(255,255,255,0.03); -->
+    <!-- border:1px solid rgba(255,255,255,0.06); -->
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
-    box-shadow: 0 0 60px rgba(176,110,243,0.06), 0 0 120px rgba(248,168,0,0.04);
+    <!-- box-shadow: 0 0 60px rgba(176,110,243,0.06), 0 0 120px rgba(248,168,0,0.04); -->
   }
-  .slide-img-wrap img { width:90%; height:90%; object-fit:contain; }
+  .slide-img-wrap img { width:90%; height:90%; object-fit:contain; filter: drop-shadow(rgba(59, 130, 246, 0.3) 0px 8px 9px);}
 
   .slide-name {
     font-family:'Bebas Neue',sans-serif;
@@ -285,7 +285,7 @@
           </div>
 
           <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/drizzleswitch.avif" alt="Drizzle Switch" /></div>
+            <div class="thumb"><img src="images/ProductPics/drizzleswitcha.png" alt="Drizzle Switch" /></div>
             <div class="prow-info">
               <span class="prow-name">Drizzle Switch</span>
               <span class="prow-detail">Indica · Sativa · Hybrid</span>
@@ -339,7 +339,7 @@
           </div>
 
           <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/3g-heisenswitch.webp" alt="Heisenberg" /></div>
+            <div class="thumb"><img src="images/ProductPics/3g-heisenswitch.png" alt="Heisenberg" /></div>
             <div class="prow-info">
               <span class="prow-name">Heisenberg</span>
               <span class="prow-detail">3g Switch</span>
@@ -361,7 +361,7 @@
         <div class="product-list">
 
           <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/6g-heisenberg-vapes.jpg" alt="Heisenberg" /></div>
+            <div class="thumb"><img src="images/ProductPics/6g-heisenberg-vapes.png" alt="Heisenberg" /></div>
             <div class="prow-info">
               <span class="prow-name">Heisenberg</span>
               <span class="prow-detail">6g Switch</span>
@@ -397,11 +397,11 @@
 const products = [
   { name:"Gas Gang", detail:"Vape Pens", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/GAS-GANG-2g-copy-600x595.jpg" },
   { name:"Vikingz", detail:"Platinum Cake · Indica", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/vikings-platinum-cake-2.2g-indica.png" },
-  { name:"Drizzle Switch", detail:"Indica · Sativa · Hybrid", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/drizzleswitch.avif" },
+  { name:"Drizzle Switch", detail:"Indica · Sativa · Hybrid", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/drizzleswitcha.png" },
   { name:"Golden Stream", detail:"Flavoured · Organic", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/goldenstream.jpg" },
   { name:"Panda", detail:"Hybrid", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/panda_tempimage.png" },
   { name:"Drizzle", detail:"Blueberry Yogurt · Sativa", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/Drizzle-BlueBerryYogurt-Sativa.png" },
-  { name:"Heisenberg", detail:"Switch", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/3g-heisenswitch.webp" },
+  { name:"Heisenberg", detail:"Switch", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/3g-heisenswitch.png" },
   { name:"Heisenberg", detail:"The One", size:"6g", price:"$100", color:"gold", img:"images/ProductPics/heisenberg-flavour.png" },
 ];
 

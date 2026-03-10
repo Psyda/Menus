@@ -67,7 +67,7 @@
 
   .columns {
     flex:1; display:grid;
-    grid-template-columns: 30fr 30fr 40fr;
+    grid-template-columns: 35fr 35fr 30fr;
     overflow:hidden; position:relative; z-index:2;
   }
 
@@ -162,14 +162,14 @@
   .slide-img-wrap {
     width:100%; max-width:65vh;
     aspect-ratio:1;
-    border-radius:1.5vh;
-    background:rgba(255,255,255,0.03);
-    border:1px solid rgba(255,255,255,0.06);
+    <!-- border-radius:1.5vh; -->
+    <!-- background:rgba(255,255,255,0.03); -->
+    <!-- border:1px solid rgba(255,255,255,0.06); -->
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
-    box-shadow: 0 0 60px rgba(56,196,245,0.08), 0 0 120px rgba(45,232,200,0.04);
+    <!-- box-shadow: 0 0 60px rgba(56,196,245,0.08), 0 0 120px rgba(45,232,200,0.04); -->
   }
-  .slide-img-wrap img { width:90%; height:90%; object-fit:contain; }
+  .slide-img-wrap img { width:90%; height:90%; object-fit:contain; filter: drop-shadow(rgba(59, 130, 246, 0.3) 0px 8px 9px);}
 
   .slide-name {
     font-family:'Bebas Neue',sans-serif;
@@ -459,7 +459,7 @@
             <div class="prow-price">$35</div>
           </div>
           <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/drip.jpg" alt="Drip" /></div>
+            <div class="thumb"><img src="images/ProductPics/drip.png" alt="Drip" /></div>
             <div class="prow-info">
               <span class="prow-name">Drip</span>
               <span class="prow-detail">Diamond</span>
@@ -467,7 +467,7 @@
             <div class="prow-price">$45</div>
           </div>
           <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/ggcart.jpg" alt="Gas Gang" /></div>
+            <div class="thumb"><img src="images/ProductPics/ggcart.png" alt="Gas Gang" /></div>
             <div class="prow-info">
               <span class="prow-name">Gas Gang</span>
               <span class="prow-detail">HTFSE</span>
@@ -536,8 +536,8 @@ const CART_PRODUCTS = [
   { name:"Drizzle", detail:"Dragonfly · Distillate", price:"$30", img:"images/ProductPics/drizzle-dragonfly.png" },
   { name:"Gold Stream", detail:"CO2 Oil", price:"$35", img:"images/ProductPics/GoldStream Refills.png" },
   { name:"Wonka", detail:"Full Spectrum", price:"$35", img:"images/ProductPics/wonka.avif" },
-  { name:"Drip", detail:"Diamond", price:"$45", img:"images/ProductPics/drip.jpg" },
-  { name:"Gas Gang", detail:"HTFSE", price:"$40", img:"images/ProductPics/ggcart.jpg" },
+  { name:"Drip", detail:"Diamond", price:"$45", img:"images/ProductPics/drip.png" },
+  { name:"Gas Gang", detail:"HTFSE", price:"$40", img:"images/ProductPics/ggcart.png" },
 ];
 
 const PROMO_PRODUCTS = [

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Green Room — XL Vapes &amp; Refills</title>
+<title>Green Room — XL Vapes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
 <style>
@@ -15,9 +15,9 @@
     --line:   rgba(255,255,255,0.06);
     --purple: #b06ef3;
     --amber:  #f8a800;
-    --blue:   #38c4f5;
+    --gold:   #d4a843;
     --text:   #eef0f4;
-    --sub:    rgba(238,240,244,0.42);
+    --sub:    rgba(238,240,244,0.50);
   }
 
   html, body { width:100%; height:100%; overflow:hidden; background:var(--bg); color:var(--text); }
@@ -33,29 +33,28 @@
 
   /* ─── HEADER ─── */
   .header {
-    flex-shrink:0; height:68px;
+    flex-shrink:0; height:5.5vh;
     display:flex; align-items:center; justify-content:space-between;
-    padding:0 28px;
+    padding:0 2vw;
     background:rgba(8,7,12,0.92); backdrop-filter:blur(16px);
     border-bottom:1px solid var(--line);
   }
-  .header-left { display:flex; align-items:center; gap:18px; }
-  .logo        { height:44px; width:auto; object-fit:contain; }
-  .vr          { width:1px; height:32px; background:linear-gradient(to bottom, transparent, rgba(255,255,255,0.12), transparent); }
-  .page-title  { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:.1em; line-height:1; }
-  .page-sub    { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--sub); margin-top:3px; }
-  .header-right { display:flex; gap:8px; }
+  .header-left { display:flex; align-items:center; gap:1.2vw; }
+  .logo        { height:3.8vh; width:auto; object-fit:contain; }
+  .vr          { width:1px; height:3vh; background:linear-gradient(to bottom, transparent, rgba(255,255,255,0.12), transparent); }
+  .page-title  { font-family:'Bebas Neue',sans-serif; font-size:2.4vh; letter-spacing:.1em; line-height:1; }
+  .page-sub    { font-size:1.1vh; letter-spacing:.22em; text-transform:uppercase; color:var(--sub); margin-top:0.2vh; }
+  .header-right { display:flex; gap:0.6vw; }
   .pill {
-    padding:4px 13px; border-radius:100px; border:1px solid;
-    font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    padding:0.3vh 1vw; border-radius:100px; border:1px solid;
+    font-size:1.1vh; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
     color:var(--purple); border-color:rgba(176,110,243,0.28); background:rgba(176,110,243,0.06);
   }
 
-  /* ─── 2-COLUMN LAYOUT ─── */
-  /* Left ~42% = Vapes (3g + 6g), Right ~58% = Refills (6 items) */
+  /* ─── MAIN LAYOUT: two list cols + slider ─── */
   .columns {
     flex:1; display:grid;
-    grid-template-columns: 42fr 58fr;
+    grid-template-columns: 30fr 30fr 40fr;
     overflow:hidden;
   }
 
@@ -66,98 +65,170 @@
   }
   .col:last-child { border-right:none; }
 
-  /* ─── SECTION (within a column) ─── */
+  /* ─── SECTION ─── */
   .section { display:flex; flex-direction:column; }
   .section + .section { border-top: 2px solid rgba(255,255,255,0.04); }
 
   /* ─── SECTION HEADER ─── */
   .sec-header {
-    flex-shrink:0; padding:18px 24px 14px;
+    flex-shrink:0; padding:1.6vh 1.5vw 1.2vh;
     border-bottom:1px solid var(--line);
   }
-  .sec-header.purple { border-top:3px solid var(--purple); background:linear-gradient(160deg, rgba(176,110,243,0.07) 0%, transparent 70%); }
   .sec-header.amber  { border-top:3px solid var(--amber);  background:linear-gradient(160deg, rgba(248,168,0,0.07) 0%, transparent 70%); }
-  .sec-header.blue   { border-top:3px solid var(--blue);   background:linear-gradient(160deg, rgba(56,196,245,0.07) 0%, transparent 70%); }
+  .sec-header.purple { border-top:3px solid var(--purple); background:linear-gradient(160deg, rgba(176,110,243,0.07) 0%, transparent 70%); }
+  .sec-header.gold   { border-top:3px solid var(--gold);   background:linear-gradient(160deg, rgba(212,168,67,0.07) 0%, transparent 70%); }
 
-  .sec-title { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:.1em; line-height:1; }
-  .sec-title.purple { color:var(--purple); }
+  .sec-title { font-family:'Bebas Neue',sans-serif; font-size:3.4vh; letter-spacing:.1em; line-height:1; }
   .sec-title.amber  { color:var(--amber); }
-  .sec-title.blue   { color:var(--blue); }
+  .sec-title.purple { color:var(--purple); }
+  .sec-title.gold   { color:var(--gold); }
 
-  .deals { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .deals { display:flex; flex-wrap:wrap; gap:0.5vh; margin-top:0.8vh; }
   .deal {
     font-family:'Barlow Condensed',sans-serif;
-    font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-    padding:4px 12px; border-radius:5px; border:1px solid; white-space:nowrap;
+    font-size:1.8vh; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    padding:0.3vh 0.8vw; border-radius:5px; border:1px solid; white-space:nowrap;
   }
-  .deal.purple { color:var(--purple); border-color:rgba(176,110,243,0.3); background:rgba(176,110,243,0.08); }
   .deal.amber  { color:var(--amber);  border-color:rgba(248,168,0,0.3);   background:rgba(248,168,0,0.08); }
-  .deal.blue   { color:var(--blue);   border-color:rgba(56,196,245,0.3);  background:rgba(56,196,245,0.08); }
+  .deal.purple { color:var(--purple); border-color:rgba(176,110,243,0.3); background:rgba(176,110,243,0.08); }
+  .deal.gold   { color:var(--gold);   border-color:rgba(212,168,67,0.3);  background:rgba(212,168,67,0.08); }
 
   /* ─── PRODUCT LIST ─── */
-  .product-list { flex:1; display:flex; flex-direction:column; padding:6px 0 6px; }
+  .product-list { flex:1; display:flex; flex-direction:column; padding:0.4vh 0; }
 
   /* ─── PRODUCT ROW ─── */
   .prow {
     flex:1; min-height:0;
     display:flex; align-items:center;
-    padding:0 22px 0 14px;
+    padding:0.6vh 1.2vw;
     border-bottom:1px solid var(--line);
-    gap:14px;
+    gap:1vw;
   }
   .prow:last-child { border-bottom:none; }
 
   .thumb {
-    flex-shrink:0; width:72px; height:72px;
-    border-radius:8px;
+    flex-shrink:0; width:22vh; height:16vh;
+    border-radius:0.8vh;
     background:rgba(255,255,255,0.025);
     border:1px solid rgba(255,255,255,0.06);
     display:flex; align-items:center; justify-content:center; overflow:hidden;
   }
-  .thumb img { width:100%; height:100%; object-fit:contain; padding:7px; }
+  .thumb img { width:100%; height:100%; object-fit:contain; padding:0vh; }
 
-  .prow-mid {
-    flex:1; min-width:0;
-    display:flex; align-items:baseline; overflow:hidden;
-  }
+  .prow-info { flex:1; min-width:0; display:flex; flex-direction:column; gap:0.3vh; }
 
   .prow-name {
     font-family:'Bebas Neue',sans-serif;
-    font-size:30px; letter-spacing:.06em; line-height:1;
-    color:var(--text); white-space:nowrap; flex-shrink:0;
+    font-size:3.6vh; letter-spacing:.06em; line-height:1;
+    color:var(--text); white-space:nowrap;
   }
 
   .prow-detail {
     font-family:'Barlow Condensed',sans-serif;
-    font-size:13px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--sub); margin-left:10px; white-space:nowrap; flex-shrink:0;
-    align-self:center;
-  }
-
-  .leader {
-    flex:1; min-width:16px;
-    border-bottom:2px dotted rgba(255,255,255,0.07);
-    margin:0 12px; margin-bottom:5px;
+    font-size:1.8vh; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--sub); white-space:nowrap;
   }
 
   .prow-price {
     font-family:'Bebas Neue',sans-serif;
-    font-size:42px; letter-spacing:.02em; line-height:1; flex-shrink:0;
+    font-size:5vh; letter-spacing:.02em; line-height:1; flex-shrink:0;
   }
-  .prow-price.purple { color:var(--purple); }
   .prow-price.amber  { color:var(--amber); }
-  .prow-price.blue   { color:var(--blue); }
+  .prow-price.purple { color:var(--purple); }
+  .prow-price.gold   { color:var(--gold); }
+
+  /* ─── SLIDER COLUMN ─── */
+  .slider-col {
+    display:flex; flex-direction:column;
+    overflow:hidden; position:relative;
+    background: linear-gradient(180deg, rgba(176,110,243,0.03) 0%, rgba(248,168,0,0.03) 100%);
+  }
+
+  .slider-label {
+    flex-shrink:0; padding:1.8vh 1.5vw 1.2vh;
+    border-bottom:1px solid var(--line);
+    font-family:'Bebas Neue',sans-serif;
+    font-size:2.6vh; letter-spacing:.15em;
+    color:var(--sub); text-transform:uppercase;
+  }
+
+  .slider-viewport { flex:1; position:relative; overflow:hidden; }
+
+  .slider-track { position:absolute; inset:0; }
+
+  .slide {
+    width:100%; height:100%;
+    flex-shrink:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:2vh 2vw;
+    opacity:0;
+    position:absolute; inset:0;
+    transition: opacity 0.8s ease;
+  }
+  .slide.active { opacity:1; }
+
+  .slide-img-wrap {
+    width:100%; max-width:65vh;
+    aspect-ratio:1;
+    border-radius:1.5vh;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+    box-shadow: 0 0 60px rgba(176,110,243,0.06), 0 0 120px rgba(248,168,0,0.04);
+  }
+  .slide-img-wrap img { width:90%; height:90%; object-fit:contain; }
+
+  .slide-name {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:5.5vh; letter-spacing:.08em; line-height:1;
+    color:var(--text); margin-top:2vh; text-align:center;
+  }
+  .slide-detail {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:2.2vh; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--sub); margin-top:0.6vh; text-align:center;
+  }
+  .slide-size {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:1.8vh; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+    margin-top:0.8vh; padding:0.3vh 1.2vw; border-radius:100px; border:1px solid;
+  }
+  .slide-size.amber  { color:var(--amber);  border-color:rgba(248,168,0,0.3);  background:rgba(248,168,0,0.08); }
+  .slide-size.purple { color:var(--purple); border-color:rgba(176,110,243,0.3); background:rgba(176,110,243,0.08); }
+  .slide-size.gold   { color:var(--gold);   border-color:rgba(212,168,67,0.3);  background:rgba(212,168,67,0.08); }
+
+  .slide-price {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:8vh; letter-spacing:.04em; line-height:1;
+    margin-top:1.2vh; text-align:center;
+  }
+  .slide-price.amber  { color:var(--amber); }
+  .slide-price.purple { color:var(--purple); }
+  .slide-price.gold   { color:var(--gold); }
+
+  .slider-dots {
+    flex-shrink:0; display:flex; justify-content:center; gap:0.8vw;
+    padding:1.5vh 0;
+  }
+  .dot {
+    width:1vh; height:1vh; border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    transition: background 0.4s, transform 0.4s;
+  }
+  .dot.active { background:var(--purple); transform:scale(1.3); }
 
   /* ─── MARQUEE ─── */
   .marquee-bar {
-    flex-shrink:0; height:34px; background:var(--purple);
+    flex-shrink:0; height:3.2vh; background:var(--purple);
     display:flex; align-items:center; overflow:hidden;
     border-top:1px solid rgba(255,255,255,0.08);
   }
   .marquee-track { display:inline-block; white-space:nowrap; animation:marquee 32s linear infinite; }
   .marquee-text  {
-    font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:.18em;
-    text-transform:uppercase; color:rgba(255,255,255,0.75); padding:0 28px;
+    font-family:'Bebas Neue',sans-serif; font-size:1.6vh; letter-spacing:.18em;
+    text-transform:uppercase; color:rgba(255,255,255,0.75); padding:0 2vw;
   }
   @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
   ::-webkit-scrollbar { display:none; }
@@ -171,8 +242,8 @@
       <img class="logo" src="images/logo.png" alt="Green Room" />
       <div class="vr"></div>
       <div>
-        <div class="page-title">XL Vapes &amp; Cart Refills</div>
-        <div class="page-sub">3g · 6g Cartridges &amp; Refill Options</div>
+        <div class="page-title">XL Vapes</div>
+        <div class="page-sub">2g · 3g · 6g Vapes and Switches</div>
       </div>
     </div>
     <div class="header-right">
@@ -183,7 +254,59 @@
 
   <div class="columns">
 
-    <!-- LEFT COL: 3g + 6g stacked -->
+    <!-- COL 1: 2g Vapes -->
+    <div class="col">
+      <div class="section" style="flex:1;">
+        <div class="sec-header amber">
+          <div class="sec-title amber">2 Gram Vapes</div>
+          <div class="deals">
+            <span class="deal amber">1 for $50</span>
+            <span class="deal amber">2 or more for $35 each</span>
+          </div>
+        </div>
+        <div class="product-list">
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/GAS-GANG-2g-copy-600x595.jpg" alt="Gas Gang" /></div>
+            <div class="prow-info">
+              <span class="prow-name">Gas Gang</span>
+              <span class="prow-detail">2g Vape Pens</span>
+            </div>
+            <div class="prow-price amber">$50</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/vikings-platinum-cake-2.2g-indica.png" alt="Vikingz" /></div>
+            <div class="prow-info">
+              <span class="prow-name">Vikingz</span>
+              <span class="prow-detail">Platinum Cake · Indica</span>
+            </div>
+            <div class="prow-price amber">$50</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/DrizzleSwitch.avif" alt="Drizzle Switch" /></div>
+            <div class="prow-info">
+              <span class="prow-name">Drizzle Switch</span>
+              <span class="prow-detail">Indica · Sativa · Hybrid</span>
+            </div>
+            <div class="prow-price amber">$50</div>
+          </div>
+
+          <div class="prow">
+            <div class="thumb"><img src="images/ProductPics/goldenstream.jpg" alt="Golden Stream" /></div>
+            <div class="prow-info">
+              <span class="prow-name">Golden Stream</span>
+              <span class="prow-detail">Flavoured · Organic</span>
+            </div>
+            <div class="prow-price amber">$50</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- COL 2: 3g + 6g stacked -->
     <div class="col">
 
       <!-- 3 Gram -->
@@ -192,38 +315,34 @@
           <div class="sec-title purple">3 Gram Vapes</div>
           <div class="deals">
             <span class="deal purple">1 for $60</span>
-            <span class="deal purple">2 for $110</span>
-            <span class="deal purple">3+ @ $55 ea</span>
+            <span class="deal purple">2 or more for $55 each</span>
           </div>
         </div>
         <div class="product-list">
 
           <div class="prow">
             <div class="thumb"><img src="images/ProductPics/panda_tempimage.png" alt="Panda" /></div>
-            <div class="prow-mid">
-              <span class="prow-name">Panda</span>
+            <div class="prow-info">
+              <span class="prow-name">PandaSquad</span>
               <span class="prow-detail">Hybrid</span>
-              <div class="leader"></div>
             </div>
             <div class="prow-price purple">$60</div>
           </div>
 
           <div class="prow">
             <div class="thumb"><img src="images/ProductPics/Drizzle-BlueBerryYogurt-Sativa.png" alt="Drizzle" /></div>
-            <div class="prow-mid">
+            <div class="prow-info">
               <span class="prow-name">Drizzle</span>
               <span class="prow-detail">Blueberry Yogurt · Sativa</span>
-              <div class="leader"></div>
             </div>
             <div class="prow-price purple">$60</div>
           </div>
 
           <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/heisenberg-extreme-blueberry.png" alt="Heisenberg" /></div>
-            <div class="prow-mid">
+            <div class="thumb"><img src="images/ProductPics/3g-heisenswitch.webp" alt="Heisenberg" /></div>
+            <div class="prow-info">
               <span class="prow-name">Heisenberg</span>
-              <span class="prow-detail">Blue Sky</span>
-              <div class="leader"></div>
+              <span class="prow-detail">3g Switch</span>
             </div>
             <div class="prow-price purple">$60</div>
           </div>
@@ -233,22 +352,21 @@
 
       <!-- 6 Gram -->
       <div class="section" style="flex:1;">
-        <div class="sec-header amber">
-          <div class="sec-title amber">6 Gram Vapes</div>
+        <div class="sec-header gold">
+          <div class="sec-title gold">6 Gram Vapes</div>
           <div class="deals">
-            <span class="deal amber">1 for $100</span>
+            <span class="deal gold">$100 each</span>
           </div>
         </div>
         <div class="product-list">
 
           <div class="prow">
-            <div class="thumb"><img src="images/productPics/heisenberg-flavour.png" alt="Heisenberg" /></div>
-            <div class="prow-mid">
+            <div class="thumb"><img src="images/productPics/6g-heisenberg-vapes.jpg" alt="Heisenberg" /></div>
+            <div class="prow-info">
               <span class="prow-name">Heisenberg</span>
-              <span class="prow-detail">The One</span>
-              <div class="leader"></div>
+              <span class="prow-detail">6g Switch</span>
             </div>
-            <div class="prow-price amber">$100</div>
+            <div class="prow-price gold">$100</div>
           </div>
 
         </div>
@@ -256,76 +374,13 @@
 
     </div>
 
-    <!-- RIGHT COL: All 6 Cart Refills in one block -->
-    <div class="col">
-      <div class="section" style="flex:1; display:flex; flex-direction:column;">
-        <div class="sec-header blue">
-          <div class="sec-title blue">Cart Refills</div>
-        </div>
-        <div class="product-list">
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/Cart-HighVoltage.png" alt="High Voltage" /></div>
-            <div class="prow-mid">
-              <span class="prow-name">High Voltage</span>
-              <span class="prow-detail">Sauce</span>
-              <div class="leader"></div>
-            </div>
-            <div class="prow-price blue">$40</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/drizzle-dragonfly.png" alt="Drizzle" /></div>
-            <div class="prow-mid">
-              <span class="prow-name">Drizzle</span>
-              <span class="prow-detail">Dragonfly · Distillate</span>
-              <div class="leader"></div>
-            </div>
-            <div class="prow-price blue">$30</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/GoldStream Refills.png" alt="Gold Stream" /></div>
-            <div class="prow-mid">
-              <span class="prow-name">Gold Stream</span>
-              <span class="prow-detail">CO2 Oil</span>
-              <div class="leader"></div>
-            </div>
-            <div class="prow-price blue">$35</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/wonka.avif" alt="Wonka" /></div>
-            <div class="prow-mid">
-              <span class="prow-name">Wonka</span>
-              <span class="prow-detail">Full Spectrum</span>
-              <div class="leader"></div>
-            </div>
-            <div class="prow-price blue">$35</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/drip.jpg" alt="Drip" /></div>
-            <div class="prow-mid">
-              <span class="prow-name">Drip</span>
-              <span class="prow-detail">Diamond</span>
-              <div class="leader"></div>
-            </div>
-            <div class="prow-price blue">$45</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/ggcart.jpg" alt="Gas Gang" /></div>
-            <div class="prow-mid">
-              <span class="prow-name">Gas Gang</span>
-              <span class="prow-detail">HTPSE</span>
-              <div class="leader"></div>
-            </div>
-            <div class="prow-price blue">$40</div>
-          </div>
-
-        </div>
+    <!-- COL 3: SLIDER (40%) -->
+    <div class="col slider-col">
+      <div class="slider-label">Featured Products</div>
+      <div class="slider-viewport">
+        <div class="slider-track" id="sliderTrack"></div>
       </div>
+      <div class="slider-dots" id="sliderDots"></div>
     </div>
 
   </div>
@@ -337,5 +392,52 @@
   </div>
 
 </div>
+
+<script>
+const products = [
+  { name:"Gas Gang", detail:"Vape Pens", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/GAS-GANG-2g-copy-600x595.jpg" },
+  { name:"Vikingz", detail:"Platinum Cake · Indica", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/vikings-platinum-cake-2.2g-indica.png" },
+  { name:"Drizzle Switch", detail:"Indica · Sativa · Hybrid", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/DrizzleSwitch.avif" },
+  { name:"Golden Stream", detail:"Flavoured · Organic", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/goldenstream.jpg" },
+  { name:"Panda", detail:"Hybrid", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/panda_tempimage.png" },
+  { name:"Drizzle", detail:"Blueberry Yogurt · Sativa", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/Drizzle-BlueBerryYogurt-Sativa.png" },
+  { name:"Heisenberg", detail:"Switch", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/3g-heisenswitch.webp" },
+  { name:"Heisenberg", detail:"The One", size:"6g", price:"$100", color:"gold", img:"images/productPics/heisenberg-flavour.png" },
+];
+
+const track = document.getElementById('sliderTrack');
+const dotsWrap = document.getElementById('sliderDots');
+
+products.forEach((p, i) => {
+  const slide = document.createElement('div');
+  slide.className = 'slide' + (i === 0 ? ' active' : '');
+  slide.innerHTML = `
+    <div class="slide-img-wrap"><img src="${p.img}" alt="${p.name}" /></div>
+    <div class="slide-name">${p.name}</div>
+    <div class="slide-detail">${p.detail}</div>
+    <div class="slide-size ${p.color}">${p.size}</div>
+    <div class="slide-price ${p.color}">${p.price}</div>
+  `;
+  track.appendChild(slide);
+
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dotsWrap.appendChild(dot);
+});
+
+let current = 0;
+const slides = track.querySelectorAll('.slide');
+const dots = dotsWrap.querySelectorAll('.dot');
+
+function goTo(idx) {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = idx % products.length;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+}
+
+setInterval(() => goTo(current + 1), 5000);
+</script>
 </body>
 </html>

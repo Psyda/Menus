@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Menu Router</title>
+<script>
+  // ── ROUTE MAP ──────────────────────────────────────────────────
+  // ?page=KEY  →  relative path to load
+  const ROUTES = {
+    // Pine Cone
+    "pinecone1": "pinecone/page1.html",
+    "pinecone2": "pinecone/page2.html",
+    "pinecone3": "pinecone/page3.html",
+    // Green Room
+    "greenroom1": "greenroom/page1.html",
+    "greenroom2": "greenroom/page2.html",
+    "greenroom3": "greenroom/page3.html",
+  };
+
+  const param = new URLSearchParams(window.location.search).get("page");
+
+  if (param && ROUTES[param]) {
+    // Hard navigate — no history entry, TV gets the real file URL
+    window.location.replace(ROUTES[param]);
+  }
+  // else: fall through and render the launcher below
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%; height: 100%;
+    background: #08090c; color: #eef0f4;
+    font-family: 'Barlow', sans-serif;
+    overflow: hidden;
+  }
+
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 45% at 10% 15%, rgba(0,232,124,0.05) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 40% at 90% 85%, rgba(176,110,243,0.04) 0%, transparent 65%);
+  }
+
+  .screen {
+    position: relative; z-index: 1;
+    width: 100vw; height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 40px; padding: 40px;
+  }
+
+  .heading {
+    text-align: center;
+  }
+
+  .heading-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: .3em; text-transform: uppercase;
+    color: rgba(238,240,244,0.3);
+    margin-bottom: 8px;
+  }
+
+  .heading-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; letter-spacing: .1em;
+    color: #eef0f4; line-height: 1;
+  }
+
+  /* ── CLIENT GROUPS ── */
+  .clients {
+    display: flex; flex-direction: column; gap: 28px;
+    width: 100%; max-width: 820px;
+  }
+
+  .client-block {}
+
+  .client-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: .28em; text-transform: uppercase;
+    color: rgba(238,240,244,0.28);
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  .client-pages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .page-btn {
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 16px 20px;
+    background: #0f1116;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color .2s, background .2s;
+    border-top: 2px solid;
+  }
+
+  .page-btn:hover {
+    background: #141720;
+    border-color: currentColor;
+  }
+
+  /* per-client accent colours */
+  .pinecone .page-btn  { border-top-color: #f8a800; color: #f8a800; }
+  .greenroom .page-btn { border-top-color: #00e87c; color: #00e87c; }
+
+  .btn-page {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: .1em; line-height: 1;
+  }
+
+  .btn-desc {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(238,240,244,0.38);
+  }
+
+  .btn-url {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: .1em;
+    color: rgba(238,240,244,0.18);
+    margin-top: 4px;
+  }
+
+  /* ── ERROR STATE ── */
+  .error-box {
+    display: none;
+    background: #1a0f0f;
+    border: 1px solid rgba(248,113,113,0.25);
+    border-left: 4px solid #f87171;
+    border-radius: 8px;
+    padding: 16px 22px;
+    max-width: 820px; width: 100%;
+    text-align: center;
+  }
+
+  .error-box.visible { display: block; }
+
+  .error-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+    color: #f87171; margin-bottom: 6px;
+  }
+
+  .error-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px; font-weight: 600;
+    color: #fbbf24; word-break: break-all;
+  }
+</style>
+</head>
+<body>
+<div class="screen">
+
+  <div class="heading">
+    <div class="heading-label">Digital Signage — Menu Router</div>
+    <div class="heading-title">Select a Display</div>
+  </div>
+
+  <!-- Unknown ?page= error banner -->
+  <div class="error-box" id="errorBox">
+    <div class="error-label">Unknown page key</div>
+    <div class="error-val" id="errorVal"></div>
+  </div>
+
+  <div class="clients">
+
+    <!-- Pine Cone -->
+    <div class="client-block pinecone">
+      <div class="client-label">The Pine Cone</div>
+      <div class="client-pages">
+        <a class="page-btn" href="?page=pinecone1">
+          <div class="btn-page">Page 1</div>
+          <div class="btn-desc">Breakfast Menu</div>
+          <div class="btn-url">?page=pinecone1</div>
+        </a>
+        <a class="page-btn" href="?page=pinecone2">
+          <div class="btn-page">Page 2</div>
+          <div class="btn-desc">Burgers &amp; Mains</div>
+          <div class="btn-url">?page=pinecone2</div>
+        </a>
+        <a class="page-btn" href="?page=pinecone3">
+          <div class="btn-page">Page 3</div>
+          <div class="btn-desc">Sides &amp; Snacks</div>
+          <div class="btn-url">?page=pinecone3</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Green Room -->
+    <div class="client-block greenroom">
+      <div class="client-label">The Green Room</div>
+      <div class="client-pages">
+        <a class="page-btn" href="?page=greenroom1">
+          <div class="btn-page">Page 1</div>
+          <div class="btn-desc">Vape Pens</div>
+          <div class="btn-url">?page=greenroom1</div>
+        </a>
+        <a class="page-btn" href="?page=greenroom2">
+          <div class="btn-page">Page 2</div>
+          <div class="btn-desc">Featured Showcase</div>
+          <div class="btn-url">?page=greenroom2</div>
+        </a>
+        <a class="page-btn" href="?page=greenroom3">
+          <div class="btn-page">Page 3</div>
+          <div class="btn-desc">XL Vapes &amp; Refills</div>
+          <div class="btn-url">?page=greenroom3</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  // If a ?page= was given but didn't match any route, show the error banner
+  const p = new URLSearchParams(window.location.search).get("page");
+  if (p && !{"pinecone1":1,"pinecone2":1,"pinecone3":1,"greenroom1":1,"greenroom2":1,"greenroom3":1}[p]) {
+    const box = document.getElementById('errorBox');
+    document.getElementById('errorVal').textContent = '?page=' + p + ' — no matching route';
+    box.classList.add('visible');
+  }
+</script>
+</body>
+</html>

@@ -1,14 +1,14 @@
 {
-  "version": 3,
+  "version": 4,
 
   "screen1": {
     "col1_title": "1 Gram Vapes",
-    "col1_deals": ["1 for $30", "2 or more for $25 each"],
+    "col1_deals": ["1 for $30", "2 for $50","3 or more for $25 each"],
     "col1_products": [
-      { "name": "Drizzle",    "detail": "Glo Pods · Distillate",    "price": "$30",  "img": "images/ProductPics/1g drizzle glowpod vapes.png" },
-      { "name": "Gas Gang",   "detail": "Distillate",               "price": "$30",  "img": "images/ProductPics/1g vol3-gasgang.png" },
-      { "name": "Vikingz",    "detail": "Black Widow · Indica",     "price": "$30",  "img": "images/ProductPics/Vikingz-BlackWidow-Indica.png" },
-      { "name": "IB-High",    "detail": "Rainbow Pop · Distillate", "price": "$30",  "img": "images/ProductPics/IB-HIGH-RainbowPop.png" }
+      { "name": "Drizzle",    "detail": "Glo Pods · Distillate",    "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/1g drizzle glowpod vapes.png" },
+      { "name": "Gas Gang",   "detail": "Distillate",               "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/1g vol3-gasgang.png" },
+      { "name": "Vikingz",    "detail": "Black Widow · Indica",     "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/Vikingz-BlackWidow-Indica.png" },
+      { "name": "IB-High",    "detail": "Rainbow Pop · Distillate", "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/IB-HIGH-RainbowPop.png" }
     ],
 
     "col2_title": "1g HTFSE / Live Resin",

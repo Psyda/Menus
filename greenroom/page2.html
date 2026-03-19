@@ -21,20 +21,13 @@
 
   html, body { width:100%; height:100%; overflow:hidden; background:var(--bg); color:var(--text); font-family:'Barlow',sans-serif; }
 
-  /* ═══════════════════════════════════════
-     WRAPPER
-     ═══════════════════════════════════════ */
   .page-wrap { position:relative; width:100vw; height:100vh; overflow:hidden; }
 
-  /* ═══════════════════════════════════════
-     MENU LAYER
-     ═══════════════════════════════════════ */
   .menu-layer {
     position:absolute; inset:0; z-index:10;
     display:flex; flex-direction:column;
-    padding-bottom:3.2vh; /* space for marquee */
-    opacity:1;
-    transition: opacity 0.9s ease;
+    padding-bottom:3.2vh;
+    opacity:1; transition: opacity 0.9s ease;
   }
   .menu-layer.hidden { opacity:0; pointer-events:none; }
 
@@ -130,7 +123,6 @@
     color:var(--blue);
   }
 
-  /* slider col */
   .slider-col {
     display:flex; flex-direction:column;
     overflow:hidden; position:relative;
@@ -162,12 +154,8 @@
   .slide-img-wrap {
     width:100%; max-width:65vh;
     aspect-ratio:1;
-    <!-- border-radius:1.5vh; -->
-    <!-- background:rgba(255,255,255,0.03); -->
-    <!-- border:1px solid rgba(255,255,255,0.06); -->
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
-    <!-- box-shadow: 0 0 60px rgba(56,196,245,0.08), 0 0 120px rgba(45,232,200,0.04); -->
   }
   .slide-img-wrap img { width:90%; height:90%; object-fit:contain; filter: drop-shadow(rgba(59, 130, 246, 0.3) 0px 8px 9px);}
 
@@ -199,13 +187,11 @@
   }
   .sdot.active { background:var(--blue); transform:scale(1.3); }
 
-  /* ═══════════════════════════════════════
-     AD LAYER
-     ═══════════════════════════════════════ */
+  /* ═══ AD LAYER ═══ */
   .promo-layer {
     position:absolute; inset:0; z-index:20;
     display:flex; flex-direction:column;
-    padding-bottom:3.2vh; /* marquee space */
+    padding-bottom:3.2vh;
     overflow:hidden;
     opacity:0; pointer-events:none;
     transition: opacity 0.9s ease;
@@ -369,9 +355,6 @@
     max-width:20vw; line-height:1.4;
   }
 
-  /* ═══════════════════════════════════════
-     MARQUEE (always on bottom, above both)
-     ═══════════════════════════════════════ */
   .marquee-bar {
     position:absolute; bottom:0; left:0; right:0; z-index:50;
     height:3.2vh; background:var(--blue);
@@ -415,68 +398,16 @@
         <div class="pill">Premium Quality</div>
       </div>
     </header>
-	
-	<div class="col-header"><div class="col-title">Cart Refills</div></div>
+
+    <div class="col-header"><div class="col-title">Cart Refills</div></div>
 
     <div class="columns">
       <div class="col">
-        <div class="product-list">
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/Cart-HighVoltage.png" alt="High Voltage" /></div>
-            <div class="prow-info">
-              <span class="prow-name">High Voltage</span>
-              <span class="prow-detail">Sauce</span>
-            </div>
-            <div class="prow-price">$40</div>
-          </div>
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/drizzle-dragonfly.png" alt="Drizzle" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Drizzle</span>
-              <span class="prow-detail"> Distillate</span>
-            </div>
-            <div class="prow-price">$30</div>
-          </div>
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/goldenstream.jpg" alt="Golden Stream" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Golden Stream</span>
-              <span class="prow-detail">Flavoured · Organic</span>
-            </div>
-            <div class="prow-price">$35</div>
-          </div>
-        </div>
+        <div class="product-list" id="listCol1"></div>
       </div>
-
       <div class="col">
-        <div class="product-list">
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/wonka.png" alt="Wonka" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Wonka</span>
-              <span class="prow-detail">Full Spectrum</span>
-            </div>
-            <div class="prow-price">$35</div>
-          </div>
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/drip.png" alt="Drip" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Drip</span>
-              <span class="prow-detail">Diamond</span>
-            </div>
-            <div class="prow-price">$45</div>
-          </div>
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/ggcart.png" alt="Gas Gang" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Gas Gang</span>
-              <span class="prow-detail">HTFSE</span>
-            </div>
-            <div class="prow-price">$40</div>
-          </div>
-        </div>
+        <div class="product-list" id="listCol2"></div>
       </div>
-
       <div class="col slider-col">
         <div class="slider-label">Featured Refills</div>
         <div class="slider-viewport">
@@ -528,124 +459,66 @@
 </div>
 
 <script>
-/* ═══════════════════════════════════════
-   DATA
-   ═══════════════════════════════════════ */
-const CART_PRODUCTS = [
-  { name:"High Voltage", detail:"Sauce", price:"$40", img:"images/ProductPics/Cart-HighVoltage.png" },
-  { name:"Drizzle", detail:"Dragonfly · Distillate", price:"$30", img:"images/ProductPics/drizzle-dragonfly.png" },
-  { name:"Gold Stream", detail:"CO2 Oil", price:"$35", img:"images/ProductPics/GoldStream Refills.png" },
-  { name:"Wonka", detail:"Full Spectrum", price:"$35", img:"images/ProductPics/wonka.png" },
-  { name:"Drip", detail:"Diamond", price:"$45", img:"images/ProductPics/drip.png" },
-  { name:"Gas Gang", detail:"HTFSE", price:"$40", img:"images/ProductPics/ggcart.png" },
-];
+/* ═══════════════════════════════════════════════════════════════
+   RENDER HELPERS
+   ═══════════════════════════════════════════════════════════════ */
+function priceHTML(price) {
+  if (Array.isArray(price)) return '<div class="prow-price">'+price.map(function(p){return '<div>'+p+'</div>';}).join('')+'</div>';
+  return '<div class="prow-price">'+price+'</div>';
+}
+function slidePrice(price) { return Array.isArray(price) ? price[0] : price; }
 
-const PROMO_PRODUCTS = [
-  {
-    name: "Vice Lady",
-    price: "$65",
-    badge: "New Arrival!",
-    description: "Premium Distillate · INDIV · 96% THC",
-    productImage: "https://i.imgur.com/B7laCtK.png",
-    backgroundImage: "images/ProductPics/vicebackg.png",
-    badgeStyle: "background:#2563eb; color:#fff;",
-    gradient: "linear-gradient(90deg, #67e8f9, #3b82f6, #a855f7)",
-    glowRGB: "59,130,246",
-  },
-  {
-    name: "Gas Gang HTPSE",
-    price: "$45",
-    badge: "High Terpene",
-    description: "Full Spectrum · 1g Cart · Lab Tested",
-    productImage: "images/ProductPics/GasGang.png",
-    backgroundImage: "https://images.unsplash.com/photo-1547070451-e3857a8ea62a?q=80&w=1200&auto=format&fit=crop",
-    badgeStyle: "background:#d97706; color:#000;",
-    gradient: "linear-gradient(90deg, #fde68a, #fb923c, #ef4444)",
-    glowRGB: "234,179,8",
-  },
-  {
-    name: "High Voltage",
-    price: "$35",
-    badge: "Premium Refill",
-    description: "Sauce Cart · 98% THC · Solventless",
-    productImage: "images/ProductPics/Cart-HighVoltage.png",
-    backgroundImage: "https://i.imgur.com/KB74Vl1.jpeg",
-    badgeStyle: "background:#9333ea; color:#fff;",
-    gradient: "linear-gradient(90deg, #c084fc, #e879f9, #818cf8)",
-    glowRGB: "168,85,247",
-  },
-    {
-    name: "Drizzle Switch",
-    price: "$35",
-    badge: "Live Resin",
-    description: "Indica · Sativa · Hybrid",
-    productImage: "images/ProductPics/drizzle_liveset.png",
-    backgroundImage: "images/ProductPics/tiedye.jpg",
-    badgeStyle: "background:#9333ea; color:#fff;",
-    gradient: "linear-gradient(90deg, #c084fc, #e879f9, #818cf8)",
-    glowRGB: "234,179,8",
-  },
-];
-
-/* ═══════════════════════════════════════
-   CART SLIDER SETUP
-   ═══════════════════════════════════════ */
-const sliderTrack   = document.getElementById('sliderTrack');
-const sliderDotsW   = document.getElementById('sliderDots');
-
-CART_PRODUCTS.forEach((p, i) => {
-  const s = document.createElement('div');
-  s.className = 'slide' + (i === 0 ? ' active' : '');
-  s.innerHTML = `
-    <div class="slide-img-wrap"><img src="${p.img}" alt="${p.name}" /></div>
-    <div class="slide-name">${p.name}</div>
-    <div class="slide-detail">${p.detail}</div>
-    <div class="slide-price">${p.price}</div>
-  `;
-  sliderTrack.appendChild(s);
-
-  const d = document.createElement('div');
-  d.className = 'sdot' + (i === 0 ? ' active' : '');
-  sliderDotsW.appendChild(d);
-});
-
-const cartSlides = sliderTrack.querySelectorAll('.slide');
-const cartDots   = sliderDotsW.querySelectorAll('.sdot');
-let cartIdx = 0;
-
-function showCartSlide(idx) {
-  cartSlides[cartIdx].classList.remove('active');
-  cartDots[cartIdx].classList.remove('active');
-  cartIdx = idx % CART_PRODUCTS.length;
-  cartSlides[cartIdx].classList.add('active');
-  cartDots[cartIdx].classList.add('active');
+function renderList(id, products) {
+  document.getElementById(id).innerHTML = products.map(function(p){
+    return '<div class="prow">'
+      + '<div class="thumb"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
+      + '<div class="prow-info">'
+      +   '<span class="prow-name">'+p.name+'</span>'
+      +   '<span class="prow-detail">'+p.detail+'</span>'
+      + '</div>'
+      + priceHTML(p.price)
+      + '</div>';
+  }).join('');
 }
 
-/* ═══════════════════════════════════════
-   AD SHOWCASE SETUP
-   ═══════════════════════════════════════ */
-const menuLayer     = document.getElementById('menuLayer');
-const promoLayer       = document.getElementById('promoLayer');
-const marqueeBar    = document.getElementById('marqueeBar');
-const promoBg          = document.getElementById('promoBg');
-const promoBgImage     = document.getElementById('promoBgImage');
-const promoGlow        = document.getElementById('promoGlow');
-const promoImgWrap     = document.getElementById('promoImgWrap');
-const promoProductImg  = document.getElementById('promoProductImg');
-const promoProductGlow = document.getElementById('promoProductGlow');
-const promoBadge       = document.getElementById('promoBadge');
-const promoNameBlock   = document.getElementById('promoNameBlock');
-const promoPriceRow    = document.getElementById('promoPriceRow');
-const promoPrice       = document.getElementById('promoPrice');
-const promoDescriptor  = document.getElementById('promoDescriptor');
-const promoDotsWrap    = document.getElementById('promoDots');
+/* ═══════════════════════════════════════════════════════════════
+   SLIDER
+   ═══════════════════════════════════════════════════════════════ */
+var sliderInterval = null;
+var sliderCur = 0;
 
-PROMO_PRODUCTS.forEach((_, i) => {
-  const d = document.createElement('div');
-  d.className = 'pdot';
-  promoDotsWrap.appendChild(d);
-});
-const promoDots = promoDotsWrap.querySelectorAll('.pdot');
+function buildSlider(allCart) {
+  if (sliderInterval) clearInterval(sliderInterval);
+  var track = document.getElementById('sliderTrack');
+  var dotsW = document.getElementById('sliderDots');
+  track.innerHTML = '';
+  dotsW.innerHTML = '';
+  sliderCur = 0;
+
+  allCart.forEach(function(p, i) {
+    var s = document.createElement('div');
+    s.className = 'slide' + (i===0?' active':'');
+    s.innerHTML = '<div class="slide-img-wrap"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
+      + '<div class="slide-name">'+p.name+'</div>'
+      + '<div class="slide-detail">'+p.detail+'</div>'
+      + '<div class="slide-price">'+slidePrice(p.price)+'</div>';
+    track.appendChild(s);
+    var d = document.createElement('div');
+    d.className = 'sdot' + (i===0?' active':'');
+    dotsW.appendChild(d);
+  });
+
+  return {
+    slides: track.querySelectorAll('.slide'),
+    dots: dotsW.querySelectorAll('.sdot'),
+    count: allCart.length
+  };
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROMO AD LAYER
+   ═══════════════════════════════════════════════════════════════ */
+var PROMO_DATA = [];
 
 function vis(el, on) {
   if (on) el.classList.add('visible');
@@ -653,116 +526,179 @@ function vis(el, on) {
 }
 
 function hideAdContent() {
-  vis(promoBg, false);
-  vis(promoImgWrap, false);
-  vis(promoBadge, false);
-  vis(promoPriceRow, false);
-  promoGlow.style.opacity = '0';
-  promoNameBlock.querySelectorAll('.promo-name-line').forEach(l => vis(l, false));
+  vis(document.getElementById('promoBg'), false);
+  vis(document.getElementById('promoImgWrap'), false);
+  vis(document.getElementById('promoBadge'), false);
+  vis(document.getElementById('promoPriceRow'), false);
+  document.getElementById('promoGlow').style.opacity = '0';
+  document.getElementById('promoNameBlock').querySelectorAll('.promo-name-line').forEach(function(l){vis(l, false);});
 }
 
 function showPromoContent(idx) {
-  const p = PROMO_PRODUCTS[idx];
-  promoDots.forEach((d, i) => d.className = i === idx ? 'pdot active' : 'pdot');
+  var p = PROMO_DATA[idx];
+  var promoDots = document.getElementById('promoDots').querySelectorAll('.pdot');
+  promoDots.forEach(function(d, i){ d.className = i === idx ? 'pdot active' : 'pdot'; });
 
-  promoBgImage.style.backgroundImage = `url('${p.backgroundImage}')`;
-  promoBgImage.style.animation = 'none';
-  void promoBgImage.offsetWidth;
-  promoBgImage.style.animation = 'slowZoom 13s ease-in-out forwards';
+  var bgImg = document.getElementById('promoBgImage');
+  bgImg.style.backgroundImage = "url('"+p.backgroundImage+"')";
+  bgImg.style.animation = 'none';
+  void bgImg.offsetWidth;
+  bgImg.style.animation = 'slowZoom 13s ease-in-out forwards';
 
-  promoGlow.style.background = `radial-gradient(ellipse at 55% 45%, rgba(${p.glowRGB},0.5), transparent 65%)`;
+  document.getElementById('promoGlow').style.background = 'radial-gradient(ellipse at 55% 45%, rgba('+p.glowRGB+',0.5), transparent 65%)';
 
-  promoProductImg.src = p.productImage;
-  promoProductImg.alt = p.name;
-  promoProductGlow.style.background = `rgba(${p.glowRGB},0.4)`;
-  promoProductImg.style.filter = `drop-shadow(0 0 80px rgba(${p.glowRGB},0.3))`;
+  var pImg = document.getElementById('promoProductImg');
+  pImg.src = p.productImage;
+  pImg.alt = p.name;
+  document.getElementById('promoProductGlow').style.background = 'rgba('+p.glowRGB+',0.4)';
+  pImg.style.filter = 'drop-shadow(0 0 80px rgba('+p.glowRGB+',0.3))';
 
-  promoBadge.setAttribute('style', p.badgeStyle);
-  promoBadge.textContent = p.badge;
+  var badge = document.getElementById('promoBadge');
+  badge.setAttribute('style', p.badgeStyle);
+  badge.textContent = p.badge;
 
-  promoNameBlock.innerHTML = '';
-  p.name.split(' ').forEach((word, wi) => {
-    const span = document.createElement('span');
+  var nameBlock = document.getElementById('promoNameBlock');
+  nameBlock.innerHTML = '';
+  p.name.split(' ').forEach(function(word, wi){
+    var span = document.createElement('span');
     span.className = 'promo-name-line';
     span.style.backgroundImage = p.gradient;
-    span.style.transitionDelay = `${0.25 + wi * 0.08}s`;
+    span.style.transitionDelay = (0.25 + wi * 0.08)+'s';
     span.textContent = word;
-    promoNameBlock.appendChild(span);
+    nameBlock.appendChild(span);
   });
 
-  promoPrice.textContent = p.price;
-  promoDescriptor.textContent = p.description;
+  document.getElementById('promoPrice').textContent = p.price;
+  document.getElementById('promoDescriptor').textContent = p.description;
 
-  setTimeout(() => {
-    vis(promoBg, true);
-    promoGlow.style.opacity = '1';
-    setTimeout(() => {
-      vis(promoImgWrap, true);
-      vis(promoBadge, true);
-      promoNameBlock.querySelectorAll('.promo-name-line').forEach(l => vis(l, true));
-      setTimeout(() => vis(promoPriceRow, true), 200);
+  setTimeout(function(){
+    vis(document.getElementById('promoBg'), true);
+    document.getElementById('promoGlow').style.opacity = '1';
+    setTimeout(function(){
+      vis(document.getElementById('promoImgWrap'), true);
+      vis(badge, true);
+      nameBlock.querySelectorAll('.promo-name-line').forEach(function(l){vis(l, true);});
+      setTimeout(function(){ vis(document.getElementById('promoPriceRow'), true); }, 200);
     }, 80);
   }, 60);
 }
 
-/* ═══════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
    SEQUENCER
-   Cart[0..5] → Ad[n] → Cart[0..5] → Ad[n+1] → ...
-   ═══════════════════════════════════════ */
-const CART_HOLD = 4000;
-const PROMO_HOLD   = 15000;
-const FADE_MS   = 900;
+   ═══════════════════════════════════════════════════════════════ */
+var CART_HOLD = 4000;
+var PROMO_HOLD = 15000;
+var FADE_MS = 900;
+var promoIdx = 0;
+var sequencerRunning = false;
 
-let promoIdx = 0;
+function startSequencer(slider) {
+  if (sequencerRunning) return;
+  sequencerRunning = true;
+  var menuLayer = document.getElementById('menuLayer');
+  var promoLayer = document.getElementById('promoLayer');
+  var marqueeBar = document.getElementById('marqueeBar');
 
-function enterAd(cb) {
-  menuLayer.classList.add('hidden');
-  marqueeBar.classList.add('promo-mode');
-  setTimeout(() => {
-    promoLayer.classList.add('visible');
-    showPromoContent(promoIdx);
-    setTimeout(cb, PROMO_HOLD);
-  }, FADE_MS);
-}
-
-function exitAd(cb) {
-  hideAdContent();
-  promoLayer.classList.remove('visible');
-  marqueeBar.classList.remove('promo-mode');
-  setTimeout(() => {
-    menuLayer.classList.remove('hidden');
-    showCartSlide(0);
-    setTimeout(cb, 400);
-  }, FADE_MS);
-}
-
-function runCartCycle() {
-  let step = 0;
-
-  function tick() {
-    step++;
-    if (step < CART_PRODUCTS.length) {
-      showCartSlide(step);
-      setTimeout(tick, CART_HOLD);
-    } else {
-      // All 6 shown, go to ad
-      setTimeout(() => {
-        enterAd(() => {
-          promoIdx = (promoIdx + 1) % PROMO_PRODUCTS.length;
-          exitAd(() => {
-            runCartCycle();
-          });
-        });
-      }, CART_HOLD);
-    }
+  function showCartSlide(idx) {
+    slider.slides[sliderCur].classList.remove('active');
+    slider.dots[sliderCur].classList.remove('active');
+    sliderCur = idx % slider.count;
+    slider.slides[sliderCur].classList.add('active');
+    slider.dots[sliderCur].classList.add('active');
   }
 
-  setTimeout(tick, CART_HOLD);
+  function enterAd(cb) {
+    menuLayer.classList.add('hidden');
+    marqueeBar.classList.add('promo-mode');
+    setTimeout(function(){
+      promoLayer.classList.add('visible');
+      showPromoContent(promoIdx);
+      setTimeout(cb, PROMO_HOLD);
+    }, FADE_MS);
+  }
+
+  function exitAd(cb) {
+    hideAdContent();
+    promoLayer.classList.remove('visible');
+    marqueeBar.classList.remove('promo-mode');
+    setTimeout(function(){
+      menuLayer.classList.remove('hidden');
+      showCartSlide(0);
+      setTimeout(cb, 400);
+    }, FADE_MS);
+  }
+
+  function runCartCycle() {
+    var step = 0;
+    function tick() {
+      step++;
+      if (step < slider.count) {
+        showCartSlide(step);
+        setTimeout(tick, CART_HOLD);
+      } else {
+        setTimeout(function(){
+          enterAd(function(){
+            promoIdx = (promoIdx + 1) % PROMO_DATA.length;
+            exitAd(function(){ runCartCycle(); });
+          });
+        }, CART_HOLD);
+      }
+    }
+    setTimeout(tick, CART_HOLD);
+  }
+
+  showCartSlide(0);
+  runCartCycle();
 }
 
-// ── INIT ──
-showCartSlide(0);
-runCartCycle();
+/* ═══════════════════════════════════════════════════════════════
+   FULL RENDER
+   ═══════════════════════════════════════════════════════════════ */
+function renderPage(data) {
+  var s = data.screen2;
+
+  renderList('listCol1', s.col1_products);
+  renderList('listCol2', s.col2_products);
+
+  PROMO_DATA = s.promos;
+
+  // Build promo dots
+  var promoDotsWrap = document.getElementById('promoDots');
+  promoDotsWrap.innerHTML = '';
+  PROMO_DATA.forEach(function(){
+    var d = document.createElement('div');
+    d.className = 'pdot';
+    promoDotsWrap.appendChild(d);
+  });
+
+  var allCart = s.col1_products.concat(s.col2_products);
+  var slider = buildSlider(allCart);
+  startSequencer(slider);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SMART REFRESH
+   ═══════════════════════════════════════════════════════════════ */
+var currentVersion = null;
+
+function fetchAndRender() {
+  fetch('products.json?t=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      if (currentVersion === null) {
+        currentVersion = data.version;
+        renderPage(data);
+      } else if (data.version !== currentVersion) {
+        location.reload();
+      }
+    })
+    .catch(function(err) {
+      console.warn('Product fetch failed, will retry:', err);
+    });
+}
+
+fetchAndRender();
+setInterval(fetchAndRender, 60000);
 </script>
 </body>
 </html>

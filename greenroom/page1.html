@@ -30,7 +30,6 @@
 
   .screen { width:100vw; height:100vh; display:flex; flex-direction:column; position:relative; z-index:1; }
 
-  /* ─── HEADER ─── */
   .header {
     flex-shrink:0; height:5.5vh;
     display:flex; align-items:center; justify-content:space-between;
@@ -50,7 +49,6 @@
     color:var(--green); border-color:rgba(0,232,124,0.28); background:rgba(0,232,124,0.06);
   }
 
-  /* ─── MAIN LAYOUT: 30% | 30% | 40% ─── */
   .columns {
     flex:1; display:grid;
     grid-template-columns: 35fr 35fr 30fr;
@@ -64,7 +62,6 @@
   }
   .col:last-child { border-right:none; }
 
-  /* ─── COLUMN HEADER ─── */
   .col-header {
     flex-shrink:0; padding:1.8vh 1.5vw 1.4vh;
     border-bottom:1px solid var(--line);
@@ -85,10 +82,8 @@
   .deal.green  { color:var(--green);  border-color:rgba(0,232,124,0.3);   background:rgba(0,232,124,0.08); }
   .deal.purple { color:var(--purple); border-color:rgba(176,110,243,0.3); background:rgba(176,110,243,0.08); }
 
-  /* ─── PRODUCT LIST ─── */
   .product-list { flex:1; display:flex; flex-direction:column; padding:0.5vh 0; }
 
-  /* ─── PRODUCT ROW ─── */
   .prow {
     flex:1; min-height:0;
     display:flex; align-items:center;
@@ -128,7 +123,6 @@
   .prow-price.green  { color:var(--green); }
   .prow-price.purple { color:var(--purple); }
 
-  /* ─── SLIDER COLUMN ─── */
   .slider-col {
     display:flex; flex-direction:column;
     overflow:hidden; position:relative;
@@ -143,9 +137,7 @@
     color:var(--sub); text-transform:uppercase;
   }
 
-  .slider-viewport {
-    flex:1; position:relative; overflow:hidden;
-  }
+  .slider-viewport { flex:1; position:relative; overflow:hidden; }
 
   .slider-track {
     position:absolute; inset:0;
@@ -167,12 +159,8 @@
   .slide-img-wrap {
     width:100%; max-width:65vh;
     aspect-ratio:1;
-    <!-- border-radius:1.5vh; -->
-    <!-- background:rgba(255,255,255,0.03); -->
-    <!-- border:1px solid rgba(255,255,255,0.06); -->
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
-    <!-- box-shadow: 0 0 60px rgba(0,232,124,0.06), 0 0 120px rgba(176,110,243,0.04); -->
   }
   .slide-img-wrap img { width:90%; height:90%; object-fit:contain; filter: drop-shadow(rgba(59, 130, 246, 0.3) 0px 8px 9px);}
 
@@ -194,7 +182,6 @@
   .slide-price.green  { color:var(--green); }
   .slide-price.purple { color:var(--purple); }
 
-  /* dots */
   .slider-dots {
     flex-shrink:0; display:flex; justify-content:center; gap:0.8vw;
     padding:1.5vh 0;
@@ -206,7 +193,6 @@
   }
   .dot.active { background:var(--green); transform:scale(1.3); }
 
-  /* ─── MARQUEE ─── */
   .marquee-bar {
     flex-shrink:0; height:3.2vh; background:var(--green);
     display:flex; align-items:center; overflow:hidden;
@@ -240,109 +226,29 @@
   </header>
 
   <div class="columns">
-
-    <!-- COL 1: 1g Vapes (30%) -->
     <div class="col">
       <div class="col-header green">
-        <div class="col-title green">1 Gram Vapes</div>
-        <div class="deals">
-          <span class="deal green">1 for $30</span>
-          <span class="deal green">2 or more for $25 each</span>
-        </div>
+        <div class="col-title green" id="col1Title"></div>
+        <div class="deals" id="dealsCol1"></div>
       </div>
-      <div class="product-list">
-
-        <div class="prow">
-          <div class="thumb"><img src="images/ProductPics/1g drizzle glowpod vapes.png" alt="Drizzle" /></div>
-          <div class="prow-info">
-            <span class="prow-name">Drizzle</span>
-            <span class="prow-detail">Glo Pods · Distillate</span>
-          </div>
-          <div class="prow-price green">$30</div>
-        </div>
-
-        <div class="prow">
-          <div class="thumb"><img src="images/ProductPics/1g vol3-gasgang.png" alt="Gas Gang" /></div>
-          <div class="prow-info">
-            <span class="prow-name">Gas Gang</span>
-            <span class="prow-detail">Distillate</span>
-          </div>
-          <div class="prow-price green">$30</div>
-        </div>
-
-        <div class="prow">
-          <div class="thumb"><img src="images/ProductPics/Vikingz-BlackWidow-Indica.png" alt="Vikingz" /></div>
-          <div class="prow-info">
-            <span class="prow-name">Vikingz</span>
-            <span class="prow-detail">Black Widow · Indica</span>
-          </div>
-          <div class="prow-price green">$30</div>
-        </div>
-
-        <div class="prow">
-          <div class="thumb"><img src="images/ProductPics/IB-HIGH-RainbowPop.png" alt="IB-High" /></div>
-          <div class="prow-info">
-            <span class="prow-name">IB-High</span>
-            <span class="prow-detail">Rainbow Pop · Distillate</span>
-          </div>
-          <div class="prow-price green">$30</div>
-        </div>
-
-      </div>
+      <div class="product-list" id="listCol1"></div>
     </div>
 
-    <!-- COL 2: HTFSE / Live Resin (30%) -->
     <div class="col">
       <div class="col-header purple">
-        <div class="col-title purple">1g HTFSE / Live Resin</div>
-        <div class="deals">
-          <span class="deal purple">1 for $50</span>
-          <span class="deal purple">2 or more for $35 each</span>
-        </div>
+        <div class="col-title purple" id="col2Title"></div>
+        <div class="deals" id="dealsCol2"></div>
       </div>
-      <div class="product-list">
-
-        <div class="prow">
-          <div class="thumb"><img src="images/ProductPics/drizzle_liveset.png" alt="Drizzle" /></div>
-          <div class="prow-info">
-            <span class="prow-name">Drizzle</span>
-            <span class="prow-detail">1g · Live Resin</span>
-          </div>
-          <div class="prow-price purple">$50</div>
-        </div>
-
-        <div class="prow">
-          <div class="thumb"><img src="images/ProductPics/gasgang-sour-tsunami-hybrid-box.png" alt="Gas Gang" /></div>
-          <div class="prow-info">
-            <span class="prow-name">Gas Gang</span>
-            <span class="prow-detail">HTFSE</span>
-          </div>
-          <div class="prow-price purple">$50</div>
-        </div>
-
-        <div class="prow">
-          <div class="thumb"><img src="images/ProductPics/Cart-HighVoltage.png" alt="High Voltage" /></div>
-          <div class="prow-info">
-            <span class="prow-name">High Voltage</span>
-            <span class="prow-detail">Sauce</span>
-          </div>
-          <div class="prow-price purple">$50</div>
-        </div>
-
-      </div>
+      <div class="product-list" id="listCol2"></div>
     </div>
 
-    <!-- COL 3: SLIDER (40%) -->
     <div class="col slider-col">
       <div class="slider-label">Featured Products</div>
       <div class="slider-viewport">
-        <div class="slider-track" id="sliderTrack">
-          <!-- Slides populated by JS from both columns -->
-        </div>
+        <div class="slider-track" id="sliderTrack"></div>
       </div>
       <div class="slider-dots" id="sliderDots"></div>
     </div>
-
   </div>
 
   <div class="marquee-bar">
@@ -354,48 +260,116 @@
 </div>
 
 <script>
-const products = [
-  { name:"Drizzle", detail:"Glo Pods · Distillate", price:"$30", color:"green", img:"images/ProductPics/1g drizzle glowpod vapes.png" },
-  { name:"Gas Gang", detail:"Distillate", price:"$30", color:"green", img:"images/ProductPics/1g vol3-gasgang.png" },
-  { name:"Vikingz", detail:"Black Widow · Indica", price:"$30", color:"green", img:"images/ProductPics/Vikingz-BlackWidow-Indica.png" },
-  { name:"IB-High", detail:"Rainbow Pop · Distillate", price:"$30", color:"green", img:"images/ProductPics/IB-HIGH-RainbowPop.png" },
-  { name:"Drizzle", detail:"Live Resin", price:"$50", color:"purple", img:"images/ProductPics/drizzle_liveset.png" },
-  { name:"Gas Gang", detail:"HTFSE", price:"$50", color:"purple", img:"images/ProductPics/gasgang-sour-tsunami-hybrid-box.png" },
-  { name:"High Voltage", detail:"Sauce", price:"$50", color:"purple", img:"images/ProductPics/Cart-HighVoltage.png" },
-];
+/* ═══════════════════════════════════════════════════════════════
+   RENDER HELPERS
+   ═══════════════════════════════════════════════════════════════ */
+function priceHTML(price, cls) {
+  if (Array.isArray(price)) return '<div class="prow-price '+cls+'">'+price.map(function(p){return '<div>'+p+'</div>';}).join('')+'</div>';
+  return '<div class="prow-price '+cls+'">'+price+'</div>';
+}
+function slidePrice(price) { return Array.isArray(price) ? price[0] : price; }
 
-const track = document.getElementById('sliderTrack');
-const dotsWrap = document.getElementById('sliderDots');
-
-products.forEach((p, i) => {
-  const slide = document.createElement('div');
-  slide.className = 'slide' + (i === 0 ? ' active' : '');
-  slide.innerHTML = `
-    <div class="slide-img-wrap"><img src="${p.img}" alt="${p.name}" /></div>
-    <div class="slide-name">${p.name}</div>
-    <div class="slide-detail">${p.detail}</div>
-    <div class="slide-price ${p.color}">${p.price}</div>
-  `;
-  track.appendChild(slide);
-
-  const dot = document.createElement('div');
-  dot.className = 'dot' + (i === 0 ? ' active' : '');
-  dotsWrap.appendChild(dot);
-});
-
-let current = 0;
-const slides = track.querySelectorAll('.slide');
-const dots = dotsWrap.querySelectorAll('.dot');
-
-function goTo(idx) {
-  slides[current].classList.remove('active');
-  dots[current].classList.remove('active');
-  current = idx % products.length;
-  slides[current].classList.add('active');
-  dots[current].classList.add('active');
+function renderDeals(id, deals, cls) {
+  document.getElementById(id).innerHTML = deals.map(function(d){return '<span class="deal '+cls+'">'+d+'</span>';}).join('');
 }
 
-setInterval(() => goTo(current + 1), 5000);
+function renderList(id, products, cls) {
+  document.getElementById(id).innerHTML = products.map(function(p){
+    return '<div class="prow">'
+      + '<div class="thumb"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
+      + '<div class="prow-info">'
+      +   '<span class="prow-name">'+p.name+'</span>'
+      +   '<span class="prow-detail">'+p.detail+'</span>'
+      + '</div>'
+      + priceHTML(p.price, cls)
+      + '</div>';
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SLIDER STATE
+   ═══════════════════════════════════════════════════════════════ */
+var sliderInterval = null;
+var sliderCur = 0;
+
+function buildSlider(allProducts) {
+  if (sliderInterval) clearInterval(sliderInterval);
+  var track = document.getElementById('sliderTrack');
+  var dotsWrap = document.getElementById('sliderDots');
+  track.innerHTML = '';
+  dotsWrap.innerHTML = '';
+  sliderCur = 0;
+
+  allProducts.forEach(function(p, i) {
+    var s = document.createElement('div');
+    s.className = 'slide' + (i===0?' active':'');
+    s.innerHTML = '<div class="slide-img-wrap"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
+      + '<div class="slide-name">'+p.name+'</div>'
+      + '<div class="slide-detail">'+p.detail+'</div>'
+      + '<div class="slide-price '+p.color+'">'+slidePrice(p.price)+'</div>';
+    track.appendChild(s);
+    var d = document.createElement('div');
+    d.className = 'dot' + (i===0?' active':'');
+    dotsWrap.appendChild(d);
+  });
+
+  var slides = track.querySelectorAll('.slide');
+  var dots = dotsWrap.querySelectorAll('.dot');
+
+  sliderInterval = setInterval(function() {
+    slides[sliderCur].classList.remove('active');
+    dots[sliderCur].classList.remove('active');
+    sliderCur = (sliderCur + 1) % allProducts.length;
+    slides[sliderCur].classList.add('active');
+    dots[sliderCur].classList.add('active');
+  }, 5000);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FULL RENDER FROM DATA
+   ═══════════════════════════════════════════════════════════════ */
+function renderPage(data) {
+  var s = data.screen1;
+
+  document.getElementById('col1Title').textContent = s.col1_title;
+  document.getElementById('col2Title').textContent = s.col2_title;
+  renderDeals('dealsCol1', s.col1_deals, 'green');
+  renderDeals('dealsCol2', s.col2_deals, 'purple');
+  renderList('listCol1', s.col1_products, 'green');
+  renderList('listCol2', s.col2_products, 'purple');
+
+  var all = s.col1_products.map(function(p){return Object.assign({}, p, {color:'green'});})
+    .concat(s.col2_products.map(function(p){return Object.assign({}, p, {color:'purple'});}));
+  buildSlider(all);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SMART REFRESH — polls every 60s, only re-renders on version change
+   Full page reload on version change so images refresh cleanly.
+   ═══════════════════════════════════════════════════════════════ */
+var currentVersion = null;
+
+function fetchAndRender() {
+  fetch('products.json?t=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      if (currentVersion === null) {
+        // First load
+        currentVersion = data.version;
+        renderPage(data);
+      } else if (data.version !== currentVersion) {
+        // Version changed, full reload to cleanly refresh everything
+        location.reload();
+      }
+      // Same version — do nothing, keep current state
+    })
+    .catch(function(err) {
+      console.warn('Product fetch failed, will retry:', err);
+    });
+}
+
+fetchAndRender();
+setInterval(fetchAndRender, 60000);
 </script>
 </body>
 </html>

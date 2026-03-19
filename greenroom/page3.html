@@ -31,7 +31,6 @@
 
   .screen { width:100vw; height:100vh; display:flex; flex-direction:column; position:relative; z-index:1; }
 
-  /* ─── HEADER ─── */
   .header {
     flex-shrink:0; height:5.5vh;
     display:flex; align-items:center; justify-content:space-between;
@@ -51,7 +50,6 @@
     color:var(--purple); border-color:rgba(176,110,243,0.28); background:rgba(176,110,243,0.06);
   }
 
-  /* ─── MAIN LAYOUT: two list cols + slider ─── */
   .columns {
     flex:1; display:grid;
     grid-template-columns: 35fr 35fr 30fr;
@@ -65,11 +63,9 @@
   }
   .col:last-child { border-right:none; }
 
-  /* ─── SECTION ─── */
   .section { display:flex; flex-direction:column; }
   .section + .section { border-top: 2px solid rgba(255,255,255,0.04); }
 
-  /* ─── SECTION HEADER ─── */
   .sec-header {
     flex-shrink:0; padding:1.6vh 1.5vw 1.2vh;
     border-bottom:1px solid var(--line);
@@ -93,10 +89,8 @@
   .deal.purple { color:var(--purple); border-color:rgba(176,110,243,0.3); background:rgba(176,110,243,0.08); }
   .deal.gold   { color:var(--gold);   border-color:rgba(212,168,67,0.3);  background:rgba(212,168,67,0.08); }
 
-  /* ─── PRODUCT LIST ─── */
   .product-list { flex:1; display:flex; flex-direction:column; padding:0.4vh 0; }
 
-  /* ─── PRODUCT ROW ─── */
   .prow {
     flex:1; min-height:0;
     display:flex; align-items:center;
@@ -137,7 +131,6 @@
   .prow-price.purple { color:var(--purple); }
   .prow-price.gold   { color:var(--gold); }
 
-  /* ─── SLIDER COLUMN ─── */
   .slider-col {
     display:flex; flex-direction:column;
     overflow:hidden; position:relative;
@@ -153,7 +146,6 @@
   }
 
   .slider-viewport { flex:1; position:relative; overflow:hidden; }
-
   .slider-track { position:absolute; inset:0; }
 
   .slide {
@@ -171,12 +163,8 @@
   .slide-img-wrap {
     width:100%; max-width:65vh;
     aspect-ratio:1;
-    <!-- border-radius:1.5vh; -->
-    <!-- background:rgba(255,255,255,0.03); -->
-    <!-- border:1px solid rgba(255,255,255,0.06); -->
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
-    <!-- box-shadow: 0 0 60px rgba(176,110,243,0.06), 0 0 120px rgba(248,168,0,0.04); -->
   }
   .slide-img-wrap img { width:90%; height:90%; object-fit:contain; filter: drop-shadow(rgba(59, 130, 246, 0.3) 0px 8px 9px);}
 
@@ -219,7 +207,6 @@
   }
   .dot.active { background:var(--purple); transform:scale(1.3); }
 
-  /* ─── MARQUEE ─── */
   .marquee-bar {
     flex-shrink:0; height:3.2vh; background:var(--purple);
     display:flex; align-items:center; overflow:hidden;
@@ -259,122 +246,31 @@
       <div class="section" style="flex:1;">
         <div class="sec-header amber">
           <div class="sec-title amber">2 Gram Vapes</div>
-          <div class="deals">
-            <span class="deal amber">1 for $50</span>
-            <span class="deal amber">2 or more for $35 each</span>
-          </div>
+          <div class="deals" id="deals2g"></div>
         </div>
-        <div class="product-list">
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/GAS-GANG-2g-copy-600x595.jpg" alt="Gas Gang" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Gas Gang</span>
-              <span class="prow-detail">2g Vape Pens</span>
-            </div>
-            <div class="prow-price amber">$50</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/vikings-platinum-cake-2.2g-indica.png" alt="Vikingz" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Vikingz</span>
-              <span class="prow-detail">Platinum Cake · Indica</span>
-            </div>
-            <div class="prow-price amber">$50</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/drizzleswitcha.png" alt="Drizzle Switch" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Drizzle Switch</span>
-              <span class="prow-detail">Indica · Sativa · Hybrid</span>
-            </div>
-            <div class="prow-price amber">$50</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/goldenstream.jpg" alt="Golden Stream" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Golden Stream</span>
-              <span class="prow-detail">Flavoured · Organic</span>
-            </div>
-            <div class="prow-price amber">$50</div>
-          </div>
-
-        </div>
+        <div class="product-list" id="list2g"></div>
       </div>
     </div>
 
     <!-- COL 2: 3g + 6g stacked -->
     <div class="col">
-
-      <!-- 3 Gram -->
       <div class="section" style="flex:3;">
         <div class="sec-header purple">
           <div class="sec-title purple">3 Gram Vapes</div>
-          <div class="deals">
-            <span class="deal purple">1 for $60</span>
-            <span class="deal purple">2 or more for $55 each</span>
-          </div>
+          <div class="deals" id="deals3g"></div>
         </div>
-        <div class="product-list">
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/panda_tempimage.png" alt="Panda" /></div>
-            <div class="prow-info">
-              <span class="prow-name">PandaSquad</span>
-              <span class="prow-detail">Hybrid</span>
-            </div>
-            <div class="prow-price purple">$60</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/Drizzle-BlueBerryYogurt-Sativa.png" alt="Drizzle" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Drizzle</span>
-              <span class="prow-detail">Blueberry Yogurt · Sativa</span>
-            </div>
-            <div class="prow-price purple">$60</div>
-          </div>
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/3g-heisenswitch.png" alt="Heisenberg" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Heisenberg</span>
-              <span class="prow-detail">3g Switch</span>
-            </div>
-            <div class="prow-price purple">$60</div>
-          </div>
-
-        </div>
+        <div class="product-list" id="list3g"></div>
       </div>
-
-      <!-- 6 Gram -->
       <div class="section" style="flex:1;">
         <div class="sec-header gold">
           <div class="sec-title gold">6 Gram Vapes</div>
-          <div class="deals">
-            <span class="deal gold">$100 each</span>
-          </div>
+          <div class="deals" id="deals6g"></div>
         </div>
-        <div class="product-list">
-
-          <div class="prow">
-            <div class="thumb"><img src="images/ProductPics/6g-heisenberg-vapes.png" alt="Heisenberg" /></div>
-            <div class="prow-info">
-              <span class="prow-name">Heisenberg</span>
-              <span class="prow-detail">6g Switch</span>
-            </div>
-            <div class="prow-price gold">$100</div>
-          </div>
-
-        </div>
+        <div class="product-list" id="list6g"></div>
       </div>
-
     </div>
 
-    <!-- COL 3: SLIDER (40%) -->
+    <!-- COL 3: SLIDER -->
     <div class="col slider-col">
       <div class="slider-label">Featured Products</div>
       <div class="slider-viewport">
@@ -394,50 +290,114 @@
 </div>
 
 <script>
-const products = [
-  { name:"Gas Gang", detail:"Vape Pens", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/GAS-GANG-2g-copy-600x595.jpg" },
-  { name:"Vikingz", detail:"Platinum Cake · Indica", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/vikings-platinum-cake-2.2g-indica.png" },
-  { name:"Drizzle Switch", detail:"Indica · Sativa · Hybrid", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/drizzleswitcha.png" },
-  { name:"Golden Stream", detail:"Flavoured · Organic", size:"2g", price:"$50", color:"amber", img:"images/ProductPics/goldenstream.jpg" },
-  { name:"Panda", detail:"Hybrid", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/panda_tempimage.png" },
-  { name:"Drizzle", detail:"Blueberry Yogurt · Sativa", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/Drizzle-BlueBerryYogurt-Sativa.png" },
-  { name:"Heisenberg", detail:"Switch", size:"3g", price:"$60", color:"purple", img:"images/ProductPics/3g-heisenswitch.png" },
-  { name:"Heisenberg", detail:"The One", size:"6g", price:"$100", color:"gold", img:"images/ProductPics/heisenberg-flavour.png" },
-];
+/* ═══════════════════════════════════════════════════════════════
+   RENDER HELPERS
+   ═══════════════════════════════════════════════════════════════ */
+function priceHTML(price, cls) {
+  if (Array.isArray(price)) return '<div class="prow-price '+cls+'">'+price.map(function(p){return '<div>'+p+'</div>';}).join('')+'</div>';
+  return '<div class="prow-price '+cls+'">'+price+'</div>';
+}
+function slidePrice(price) { return Array.isArray(price) ? price[0] : price; }
 
-const track = document.getElementById('sliderTrack');
-const dotsWrap = document.getElementById('sliderDots');
-
-products.forEach((p, i) => {
-  const slide = document.createElement('div');
-  slide.className = 'slide' + (i === 0 ? ' active' : '');
-  slide.innerHTML = `
-    <div class="slide-img-wrap"><img src="${p.img}" alt="${p.name}" /></div>
-    <div class="slide-name">${p.name}</div>
-    <div class="slide-detail">${p.detail}</div>
-    <div class="slide-size ${p.color}">${p.size}</div>
-    <div class="slide-price ${p.color}">${p.price}</div>
-  `;
-  track.appendChild(slide);
-
-  const dot = document.createElement('div');
-  dot.className = 'dot' + (i === 0 ? ' active' : '');
-  dotsWrap.appendChild(dot);
-});
-
-let current = 0;
-const slides = track.querySelectorAll('.slide');
-const dots = dotsWrap.querySelectorAll('.dot');
-
-function goTo(idx) {
-  slides[current].classList.remove('active');
-  dots[current].classList.remove('active');
-  current = idx % products.length;
-  slides[current].classList.add('active');
-  dots[current].classList.add('active');
+function renderDeals(id, deals, cls) {
+  document.getElementById(id).innerHTML = deals.map(function(d){return '<span class="deal '+cls+'">'+d+'</span>';}).join('');
 }
 
-setInterval(() => goTo(current + 1), 5000);
+function renderList(id, products, cls) {
+  document.getElementById(id).innerHTML = products.map(function(p){
+    return '<div class="prow">'
+      + '<div class="thumb"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
+      + '<div class="prow-info">'
+      +   '<span class="prow-name">'+p.name+'</span>'
+      +   '<span class="prow-detail">'+p.detail+'</span>'
+      + '</div>'
+      + priceHTML(p.price, cls)
+      + '</div>';
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SLIDER
+   ═══════════════════════════════════════════════════════════════ */
+var sliderInterval = null;
+var sliderCur = 0;
+
+function buildSlider(allProducts) {
+  if (sliderInterval) clearInterval(sliderInterval);
+  var track = document.getElementById('sliderTrack');
+  var dotsWrap = document.getElementById('sliderDots');
+  track.innerHTML = '';
+  dotsWrap.innerHTML = '';
+  sliderCur = 0;
+
+  allProducts.forEach(function(p, i) {
+    var s = document.createElement('div');
+    s.className = 'slide' + (i===0?' active':'');
+    s.innerHTML = '<div class="slide-img-wrap"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
+      + '<div class="slide-name">'+p.name+'</div>'
+      + '<div class="slide-detail">'+p.detail+'</div>'
+      + '<div class="slide-size '+p.color+'">'+(p.size||'')+'</div>'
+      + '<div class="slide-price '+p.color+'">'+slidePrice(p.price)+'</div>';
+    track.appendChild(s);
+    var d = document.createElement('div');
+    d.className = 'dot' + (i===0?' active':'');
+    dotsWrap.appendChild(d);
+  });
+
+  var slides = track.querySelectorAll('.slide');
+  var dots = dotsWrap.querySelectorAll('.dot');
+
+  sliderInterval = setInterval(function() {
+    slides[sliderCur].classList.remove('active');
+    dots[sliderCur].classList.remove('active');
+    sliderCur = (sliderCur + 1) % allProducts.length;
+    slides[sliderCur].classList.add('active');
+    dots[sliderCur].classList.add('active');
+  }, 5000);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FULL RENDER
+   ═══════════════════════════════════════════════════════════════ */
+function renderPage(data) {
+  var s = data.screen3;
+
+  renderDeals('deals2g', s.deals_2g, 'amber');
+  renderDeals('deals3g', s.deals_3g, 'purple');
+  renderDeals('deals6g', s.deals_6g, 'gold');
+  renderList('list2g', s.products_2g, 'amber');
+  renderList('list3g', s.products_3g, 'purple');
+  renderList('list6g', s.products_6g, 'gold');
+
+  var all = s.products_2g.map(function(p){return Object.assign({}, p, {color:'amber'});})
+    .concat(s.products_3g.map(function(p){return Object.assign({}, p, {color:'purple'});}))
+    .concat(s.products_6g.map(function(p){return Object.assign({}, p, {color:'gold'});}));
+  buildSlider(all);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SMART REFRESH
+   ═══════════════════════════════════════════════════════════════ */
+var currentVersion = null;
+
+function fetchAndRender() {
+  fetch('products.json?t=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      if (currentVersion === null) {
+        currentVersion = data.version;
+        renderPage(data);
+      } else if (data.version !== currentVersion) {
+        location.reload();
+      }
+    })
+    .catch(function(err) {
+      console.warn('Product fetch failed, will retry:', err);
+    });
+}
+
+fetchAndRender();
+setInterval(fetchAndRender, 60000);
 </script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 {
-  "version": 5,
+  "version": 6,
 
   "screen1": {
     "col1_title": "1 Gram Vapes",
-    "col1_deals": ["1 for $30", "2 for $50","3 or more for $25 each"],
+    "col1_deals": [" "],
     "col1_products": [
       { "name": "Drizzle",    "detail": "Glo Pods · Distillate",    "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/1g drizzle glowpod vapes.png" },
       { "name": "Gas Gang",   "detail": "Distillate",               "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/1g vol3-gasgang.png" },
@@ -12,7 +12,7 @@
     ],
 
     "col2_title": "1g HTFSE / Live Resin",
-    "col2_deals": ["1 for $50", "2 or more for $35 each"],
+    "col2_deals": [" "],
     "col2_products": [
       { "name": "Drizzle",      "detail": "1g · Live Resin", "price": ["1/$30", "2/$50", "3+/$25 each"], "img": "images/ProductPics/drizzle_liveset.png" },
       { "name": "Gas Gang",     "detail": "HTFSE",           "price": "$50",                             "img": "images/ProductPics/gasgang-sour-tsunami-hybrid-box.png" },
@@ -90,7 +90,7 @@
       { "name": "Gold Stream",  "detail": "Flavoured · Organic",      "price": ["1/$50", "2/$70"], "size": "2g", "img": "images/ProductPics/goldenstream.jpg" }
     ],
 
-    "deals_3g": ["1 for $60", "2 for $110", "2 or more for $55 each"],
+    "deals_3g": ["1 for $60", "2 for $110", "3 or more for $55 each"],
     "products_3g": [
       { "name": "PandaSquad", "detail": "Hybrid",                    "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/panda_tempimage.png" },
       { "name": "Drizzle",    "detail": "Blueberry Yogurt · Sativa", "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/Drizzle-BlueBerryYogurt-Sativa.png" },

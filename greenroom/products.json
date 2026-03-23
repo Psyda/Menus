@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
 
   "screen1": {
     "col1_title": "1 Gram Vapes",
@@ -15,7 +15,7 @@
     "col2_deals": [" "],
     "col2_products": [
       { "name": "Drizzle",      "detail": "1g · Live Resin", "price": ["1/$30", "2/$50", "3+/$25 each"], "img": "images/ProductPics/drizzle_liveset.png" },
-      { "name": "Gas Gang",     "detail": "HTFSE",           "price": "$50",                             "img": "images/ProductPics/gasgang-sour-tsunami-hybrid-box.png" },
+      { "name": "Gas Gang",     "detail": "HTFSE",           "price": ["1/$50", "2/$70"],                            "img": "images/ProductPics/gasgang-sour-tsunami-hybrid-box.png" },
       { "name": "High Voltage", "detail": "Sauce",           "price": ["1/$60", "2/$100"],               "img": "images/ProductPics/Cart-HighVoltage.png" }
     ]
   },
@@ -93,7 +93,7 @@
     "deals_3g": ["1 for $60", "2 for $110", "3 or more for $55 each"],
     "products_3g": [
       { "name": "PandaSquad", "detail": "Hybrid",                    "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/panda_tempimage.png" },
-      { "name": "Drizzle",    "detail": "Blueberry Yogurt · Sativa", "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/Drizzle-BlueBerryYogurt-Sativa.png" },
+      { "name": "Drizzle",    "detail": "Blueberry Yogurt · Sativa", "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/drizzle-dragonfly.png" },
       { "name": "Heisenberg", "detail": "3g Switch",                 "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/3g-heisenswitch.png" }
     ],
 

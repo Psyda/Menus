@@ -292,7 +292,7 @@
 
   .promo-text-block {
     position:relative; z-index:30;
-    max-width:50%;
+    max-width:70%;
     padding-bottom:6vh;
   }
 
@@ -559,16 +559,22 @@ function showPromoContent(idx) {
 
   var nameBlock = document.getElementById('promoNameBlock');
   nameBlock.innerHTML = '';
-  p.name.split(' ').forEach(function(word, wi){
+  var nameLines = p.name.indexOf('\n') !== -1 ? p.name.split('\n') : [p.name];
+  nameLines.forEach(function(line, wi){
     var span = document.createElement('span');
     span.className = 'promo-name-line';
     span.style.backgroundImage = p.gradient;
     span.style.transitionDelay = (0.25 + wi * 0.08)+'s';
-    span.textContent = word;
+    span.textContent = line;
     nameBlock.appendChild(span);
   });
 
-  document.getElementById('promoPrice').textContent = p.price;
+  var priceEl = document.getElementById('promoPrice');
+  if (Array.isArray(p.price)) {
+    priceEl.innerHTML = p.price.map(function(pr){ return '<div>'+pr+'</div>'; }).join('');
+  } else {
+    priceEl.textContent = p.price;
+  }
   document.getElementById('promoDescriptor').textContent = p.description;
 
   setTimeout(function(){
@@ -699,6 +705,33 @@ function fetchAndRender() {
 
 fetchAndRender();
 setInterval(fetchAndRender, 60000);
+
+/* ═══════════════════════════════════════════════════════════════
+   DEBUG: Tab key cycles through promo ads instantly
+   ═══════════════════════════════════════════════════════════════ */
+var debugPromoIdx = 0;
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Tab' || !PROMO_DATA.length) return;
+  e.preventDefault();
+
+  var menuLayer = document.getElementById('menuLayer');
+  var promoLayer = document.getElementById('promoLayer');
+  var marqueeBar = document.getElementById('marqueeBar');
+
+  // Force promo layer on
+  menuLayer.classList.add('hidden');
+  marqueeBar.classList.add('promo-mode');
+  promoLayer.classList.add('visible');
+
+  // Reset animations before showing next
+  hideAdContent();
+
+  setTimeout(function() {
+    showPromoContent(debugPromoIdx);
+    console.log('[DEBUG] Promo ' + (debugPromoIdx + 1) + '/' + PROMO_DATA.length + ': ' + PROMO_DATA[debugPromoIdx].name);
+    debugPromoIdx = (debugPromoIdx + 1) % PROMO_DATA.length;
+  }, 100);
+});
 </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
 
   "screen1": {
     "col1_title": "1 Gram Vapes",
@@ -22,21 +22,21 @@
 
   "screen2": {
     "col1_products": [
-      { "name": "High Voltage",  "detail": "Sauce",              "price": ["1/$50", "2/$70"], "img": "images/ProductPics/Cart-HighVoltage.png" },
-      { "name": "Drizzle",       "detail": "Distillate",         "price": ["1/$50", "2/$70"], "img": "images/ProductPics/drizzle-dragonfly.png" },
-      { "name": "Golden Stream", "detail": "Flavoured · Organic","price": ["1/$50", "2/$70"], "img": "images/ProductPics/goldenstream.jpg" }
+      { "name": "High Voltage",  "detail": "Sauce",              "price": ["1/$60", "2/$100"], "img": "images/ProductPics/Cart-HighVoltage.png" },
+      { "name": "Drizzle",       "detail": "Distillate",         "price": ["1/$60", "2/$110"], "img": "images/ProductPics/drizzle-dragonfly.png" },
+      { "name": "Gold Stream", "detail": "Flavoured · Organic","price": ["1/$50", "2/$70"], "img": "images/ProductPics/goldenstream.jpg" }
     ],
 
     "col2_products": [
-      { "name": "Wonka",    "detail": "Full Spectrum", "price": ["1/$50", "2/$70"], "img": "images/ProductPics/wonka.png" },
-      { "name": "Drip",     "detail": "Diamond",       "price": ["1/$50", "2/$70"], "img": "images/ProductPics/drip.png" },
-      { "name": "Gas Gang", "detail": "HTFSE",         "price": ["1/$50", "2/$70"], "img": "images/ProductPics/ggcart.png" }
+      { "name": "Wonka",    "detail": "Full Spectrum", "price": ["1/$30", "2/$50"], "img": "images/ProductPics/wonka.png" },
+      { "name": "Drip",     "detail": "Diamond",       "price": ["1/$30", "2/$50"], "img": "images/ProductPics/drip.png" },
+      { "name": "Gas Gang", "detail": "HTFSE",         "price": ["1/$30", "2/$50"], "img": "images/ProductPics/ggcart.png" }
     ],
 
     "promos": [
       {
-        "name": "Vice Lady",
-        "price": "$65",
+        "name": "Vice\n Lady",
+        "price": ["1/$30", "2/$50"],
         "badge": "New Arrival!",
         "description": "Premium Distillate · INDIV · 96% THC",
         "productImage": "https://i.imgur.com/B7laCtK.png",
@@ -46,8 +46,8 @@
         "glowRGB": "59,130,246"
       },
       {
-        "name": "Gas Gang HTPSE",
-        "price": "$45",
+        "name": "Gas Gang\n HTFSE",
+        "price": ["1/$30", "2/$50"],
         "badge": "High Terpene",
         "description": "Full Spectrum · 1g Cart · Lab Tested",
         "productImage": "images/ProductPics/GasGang.png",
@@ -58,7 +58,7 @@
       },
       {
         "name": "High Voltage",
-        "price": "$35",
+        "price": ["1/$60", "2/$100"],
         "badge": "Premium Refill",
         "description": "Sauce Cart · 98% THC · Solventless",
         "productImage": "images/ProductPics/Cart-HighVoltage.png",
@@ -69,7 +69,7 @@
       },
       {
         "name": "Drizzle Switch",
-        "price": "$35",
+        "price": ["1/$30", "2/$50", "3+/$25 each"],
         "badge": "Live Resin",
         "description": "Indica · Sativa · Hybrid",
         "productImage": "images/ProductPics/drizzle_liveset.png",
@@ -87,7 +87,7 @@
       { "name": "Gas Gang",       "detail": "2g Vape Pens",             "price": ["1/$50", "2/$70"], "size": "2g", "img": "images/ProductPics/GAS-GANG-2g-copy-600x595.jpg" },
       { "name": "Vikingz",        "detail": "Platinum Cake · Indica",   "price": ["1/$50", "2/$70"], "size": "2g", "img": "images/ProductPics/vikings-platinum-cake-2.2g-indica.png" },
       { "name": "Drizzle Switch", "detail": "Indica · Sativa · Hybrid", "price": ["1/$50", "2/$70"], "size": "2g", "img": "images/ProductPics/drizzleswitcha.png" },
-      { "name": "Golden Stream",  "detail": "Flavoured · Organic",      "price": ["1/$50", "2/$70"], "size": "2g", "img": "images/ProductPics/goldenstream.jpg" }
+      { "name": "Gold Stream",  "detail": "Flavoured · Organic",      "price": ["1/$50", "2/$70"], "size": "2g", "img": "images/ProductPics/goldenstream.jpg" }
     ],
 
     "deals_3g": ["1 for $60", "2 for $110", "2 or more for $55 each"],

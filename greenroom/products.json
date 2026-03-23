@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
 
   "screen1": {
     "col1_title": "1 Gram Vapes",
@@ -93,8 +93,8 @@
     "deals_3g": ["1 for $60", "2 for $110", "3 or more for $55 each"],
     "products_3g": [
       { "name": "PandaSquad", "detail": "Hybrid",                    "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/panda_tempimage.png" },
-      { "name": "Drizzle",    "detail": "Blueberry Yogurt · Sativa", "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/drizzle-dragonfly.png" },
-      { "name": "Heisenberg", "detail": "3g Switch",                 "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/3g-heisenswitch.png" }
+      { "name": "Drizzle - God Pod",    "detail": "Sativa", "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/drizzle-dragonfly.png" },
+      { "name": "Heisenberg", "detail": "Multi Flavor Switch",                 "price": ["1/$60", "2/$110"], "size": "3g", "img": "images/ProductPics/3g-heisenswitch.png" }
     ],
 
     "deals_6g": ["$100 each"],

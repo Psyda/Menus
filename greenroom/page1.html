@@ -268,6 +268,7 @@ function priceHTML(price, cls) {
   return '<div class="prow-price '+cls+'">'+price+'</div>';
 }
 function slidePrice(price) { return Array.isArray(price) ? price[0] : price; }
+function nl2br(s) { return s.replace(/\n/g, '<br>'); }
 
 function renderDeals(id, deals, cls) {
   document.getElementById(id).innerHTML = deals.map(function(d){return '<span class="deal '+cls+'">'+d+'</span>';}).join('');
@@ -278,8 +279,8 @@ function renderList(id, products, cls) {
     return '<div class="prow">'
       + '<div class="thumb"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
       + '<div class="prow-info">'
-      +   '<span class="prow-name">'+p.name+'</span>'
-      +   '<span class="prow-detail">'+p.detail+'</span>'
+      +   '<span class="prow-name">'+nl2br(p.name)+'</span>'
+      +   '<span class="prow-detail">'+nl2br(p.detail)+'</span>'
       + '</div>'
       + priceHTML(p.price, cls)
       + '</div>';
@@ -304,8 +305,8 @@ function buildSlider(allProducts) {
     var s = document.createElement('div');
     s.className = 'slide' + (i===0?' active':'');
     s.innerHTML = '<div class="slide-img-wrap"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
-      + '<div class="slide-name">'+p.name+'</div>'
-      + '<div class="slide-detail">'+p.detail+'</div>'
+      + '<div class="slide-name">'+nl2br(p.name)+'</div>'
+      + '<div class="slide-detail">'+nl2br(p.detail)+'</div>'
       + '<div class="slide-price '+p.color+'">'+slidePrice(p.price)+'</div>';
     track.appendChild(s);
     var d = document.createElement('div');

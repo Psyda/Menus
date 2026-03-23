@@ -1,18 +1,18 @@
 {
-  "version": 8,
+  "version": 9,
 
   "screen1": {
     "col1_title": "1 Gram Vapes",
-    "col1_deals": [" "],
+    "col1_deals": ["1 for $30", "2 for $50", "3+ for $25 each"],
     "col1_products": [
       { "name": "Drizzle",    "detail": "Glo Pods · Distillate",    "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/1g drizzle glowpod vapes.png" },
       { "name": "Gas Gang",   "detail": "Distillate",               "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/1g vol3-gasgang.png" },
       { "name": "Vikingz",    "detail": "Black Widow · Indica",     "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/Vikingz-BlackWidow-Indica.png" },
-      { "name": "IB-High",    "detail": "Rainbow Pop · Distillate", "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/IB-HIGH-RainbowPop.png" }
+      { "name": "IB-High",    "detail": "Rainbow Pop\n · Distillate", "price": ["1/$30", "2/$50", "3+/$25 each"],  "img": "images/ProductPics/IB-HIGH-RainbowPop.png" }
     ],
 
     "col2_title": "1g HTFSE / Live Resin",
-    "col2_deals": [" "],
+    "col2_deals": [""],
     "col2_products": [
       { "name": "Drizzle",      "detail": "1g · Live Resin", "price": ["1/$30", "2/$50", "3+/$25 each"], "img": "images/ProductPics/drizzle_liveset.png" },
       { "name": "Gas Gang",     "detail": "HTFSE",           "price": ["1/$50", "2/$70"],                            "img": "images/ProductPics/gasgang-sour-tsunami-hybrid-box.png" },

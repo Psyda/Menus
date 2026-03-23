@@ -467,14 +467,15 @@ function priceHTML(price) {
   return '<div class="prow-price">'+price+'</div>';
 }
 function slidePrice(price) { return Array.isArray(price) ? price[0] : price; }
+function nl2br(s) { return s.replace(/\n/g, '<br>'); }
 
 function renderList(id, products) {
   document.getElementById(id).innerHTML = products.map(function(p){
     return '<div class="prow">'
       + '<div class="thumb"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
       + '<div class="prow-info">'
-      +   '<span class="prow-name">'+p.name+'</span>'
-      +   '<span class="prow-detail">'+p.detail+'</span>'
+      +   '<span class="prow-name">'+nl2br(p.name)+'</span>'
+      +   '<span class="prow-detail">'+nl2br(p.detail)+'</span>'
       + '</div>'
       + priceHTML(p.price)
       + '</div>';
@@ -499,8 +500,8 @@ function buildSlider(allCart) {
     var s = document.createElement('div');
     s.className = 'slide' + (i===0?' active':'');
     s.innerHTML = '<div class="slide-img-wrap"><img src="'+p.img+'" alt="'+p.name+'" /></div>'
-      + '<div class="slide-name">'+p.name+'</div>'
-      + '<div class="slide-detail">'+p.detail+'</div>'
+      + '<div class="slide-name">'+nl2br(p.name)+'</div>'
+      + '<div class="slide-detail">'+nl2br(p.detail)+'</div>'
       + '<div class="slide-price">'+slidePrice(p.price)+'</div>';
     track.appendChild(s);
     var d = document.createElement('div');
@@ -565,7 +566,7 @@ function showPromoContent(idx) {
     span.className = 'promo-name-line';
     span.style.backgroundImage = p.gradient;
     span.style.transitionDelay = (0.25 + wi * 0.08)+'s';
-    span.textContent = line;
+    span.textContent = line.trim();
     nameBlock.appendChild(span);
   });
 

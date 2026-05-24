@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Pine Cone — Breakfast</title>
+<title>The Pine Cone — Smokehouse</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -14,7 +14,7 @@
     --warm-gray: #3A3632;
     --cream: #F5F0E8;
     --white: #FFFFFF;
-    --accent-red: #C0392B;
+    --ember: #B0461D;
     --wood: #5C4033;
   }
 
@@ -39,14 +39,14 @@
     left: 0;
   }
 
-  /* ===== SHARED TYPOGRAPHY (viewport-scaled) ===== */
+  /* ===== SHARED TYPOGRAPHY ===== */
   .menu-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(36px, 3.5vw, 80px);
     letter-spacing: 0.3vw;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 1.2vh;
+    margin-bottom: 1vh;
     position: relative;
   }
   .menu-title::after {
@@ -55,42 +55,26 @@
     width: clamp(40px, 4vw, 80px);
     height: 3px;
     background: var(--gold);
-    margin-top: 0.8vh;
+    margin-top: 0.6vh;
   }
 
-  .item-name {
+  .section-tag {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(18px, 1.7vw, 38px);
+    font-size: clamp(11px, 0.95vw, 18px);
+    letter-spacing: 0.35vw;
     text-transform: uppercase;
-    letter-spacing: 0.05vw;
-    color: var(--white);
+    color: rgba(212,168,67,0.5);
+    margin-bottom: 0.6vh;
   }
 
-  .item-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(20px, 1.9vw, 42px);
-    color: var(--gold);
-    white-space: nowrap;
-    margin-left: 0.8vw;
-  }
-
-  .item-desc {
-    font-size: clamp(11px, 1vw, 22px);
-    color: rgba(255,255,255,0.55);
-    font-weight: 400;
-    margin-top: 0.3vh;
-    line-height: 1.35;
-  }
-
-  /* ===== GRAY BLOCK ===== */
   .gray-block {
     background: linear-gradient(180deg, #2C2C2C 0%, #232323 100%);
   }
 
-  /* ===== LEFT PANEL ===== */
+  /* ===== LEFT BRAND PANEL ===== */
   .p1-left {
-    width: 38%;
+    width: 36%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -101,26 +85,23 @@
     background: var(--dark);
   }
 
-  /* Animated radial gradient backdrop */
   .p1-left::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 60% 50% at 50% 30%, rgba(212,168,67,0.07) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 30% 80%, rgba(92,64,51,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 50% 30%, rgba(212,168,67,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 30% 80%, rgba(176,70,29,0.08) 0%, transparent 60%),
       radial-gradient(ellipse 50% 40% at 80% 60%, rgba(212,168,67,0.04) 0%, transparent 50%);
     animation: ambientShift 12s ease-in-out infinite alternate;
     z-index: 0;
   }
-
   @keyframes ambientShift {
     0% { opacity: 0.8; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.05); }
     100% { opacity: 0.7; transform: scale(0.97); }
   }
 
-  /* Subtle vertical pinstripe texture */
   .p1-left::after {
     content: '';
     position: absolute;
@@ -136,7 +117,6 @@
     pointer-events: none;
   }
 
-  /* Inner content wrapper */
   .p1-brand-inner {
     position: relative;
     z-index: 2;
@@ -144,32 +124,38 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3vh;
+    gap: 2.6vh;
     height: 100%;
-    padding: 4vh 2vw;
+    padding: 3.5vh 2vw;
   }
 
-  /* Decorative top rule */
-  .brand-rule-top {
+  .brand-rule-top, .brand-rule-bottom {
     width: 60%;
     display: flex;
     align-items: center;
     gap: 0.8vw;
   }
-  .brand-rule-top .rule-line {
+  .brand-rule-top .rule-line,
+  .brand-rule-bottom .rule-line {
     flex: 1;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
-  .brand-rule-top .rule-diamond {
+  .brand-rule-top .rule-diamond,
+  .brand-rule-bottom .rule-diamond {
     width: clamp(6px, 0.5vw, 10px);
     height: clamp(6px, 0.5vw, 10px);
     background: var(--gold);
     transform: rotate(45deg);
     flex-shrink: 0;
   }
+  .brand-rule-bottom .rule-line {
+    background: linear-gradient(90deg, transparent, rgba(212,168,67,0.4), transparent);
+  }
+  .brand-rule-bottom .rule-diamond {
+    background: rgba(212,168,67,0.4);
+  }
 
-  /* Logo area */
   .p1-logo-block {
     display: flex;
     align-items: center;
@@ -183,7 +169,7 @@
     width: clamp(200px, 20vw, 400px);
     height: clamp(200px, 20vw, 400px);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212,168,67,0.1) 0%, transparent 70%);
     animation: logoBreath 6s ease-in-out infinite;
     pointer-events: none;
   }
@@ -206,9 +192,8 @@
     object-fit: contain;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 0 20px rgba(212,168,67,0.15));
+    filter: drop-shadow(0 0 20px rgba(212,168,67,0.18));
   }
-  /* Spinning ring */
   .logo-ring {
     position: absolute;
     inset: -6px;
@@ -231,7 +216,6 @@
     animation: logoSpin 30s linear infinite reverse;
   }
 
-  /* Restaurant name text */
   .brand-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(28px, 2.8vw, 56px);
@@ -252,27 +236,26 @@
     margin-top: 0.6vh;
   }
 
-  /* Now Serving badge */
   .now-serving {
     display: flex;
     align-items: center;
     gap: 0.6vw;
     padding: 0.8vh 1.4vw;
-    background: rgba(212,168,67,0.08);
-    border: 1px solid rgba(212,168,67,0.2);
+    background: rgba(176,70,29,0.1);
+    border: 1px solid rgba(176,70,29,0.3);
     border-radius: 40px;
   }
   .now-serving .pulse-dot {
     width: clamp(6px, 0.5vw, 10px);
     height: clamp(6px, 0.5vw, 10px);
-    background: #4CAF50;
+    background: var(--ember);
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
     flex-shrink: 0;
   }
   @keyframes pulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(76,175,80,0.4); }
-    50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(76,175,80,0); }
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(176,70,29,0.5); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(176,70,29,0); }
   }
   .now-serving .serving-text {
     font-family: 'Barlow Condensed', sans-serif;
@@ -289,10 +272,7 @@
     letter-spacing: 0.1vw;
   }
 
-  /* Hours block */
-  .brand-hours {
-    text-align: center;
-  }
+  .brand-hours { text-align: center; }
   .brand-hours .hours-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 600;
@@ -309,11 +289,11 @@
     letter-spacing: 0.15vw;
   }
 
-  /* Social icons row */
   .social-row {
     display: flex;
     gap: 1.2vw;
     align-items: center;
+    justify-content: center;
   }
   .social-icon {
     width: clamp(32px, 2.8vw, 52px);
@@ -323,26 +303,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--gold);
-    font-size: clamp(14px, 1.2vw, 24px);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .social-icon::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle, rgba(212,168,67,0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s;
   }
   .social-icon svg {
     width: clamp(14px, 1.2vw, 24px);
     height: clamp(14px, 1.2vw, 24px);
     fill: var(--gold);
-    position: relative;
-    z-index: 1;
   }
   .social-handle {
     font-family: 'Barlow', sans-serif;
@@ -353,7 +318,6 @@
     text-align: center;
   }
 
-  /* WiFi block */
   .wifi-block {
     display: flex;
     align-items: center;
@@ -382,44 +346,9 @@
     color: rgba(255,255,255,0.55);
   }
 
-  /* Bottom decorative rule */
-  .brand-rule-bottom {
-    width: 60%;
-    display: flex;
-    align-items: center;
-    gap: 0.8vw;
-  }
-  .brand-rule-bottom .rule-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212,168,67,0.4), transparent);
-  }
-  .brand-rule-bottom .rule-diamond {
-    width: clamp(6px, 0.5vw, 10px);
-    height: clamp(6px, 0.5vw, 10px);
-    background: rgba(212,168,67,0.4);
-    transform: rotate(45deg);
-    flex-shrink: 0;
-  }
-
-  /* Stagger animations for left panel elements */
-  .p1-brand-inner > * {
-    animation: fadeInUp 0.6s ease both;
-  }
-  .p1-brand-inner > *:nth-child(1) { animation-delay: 0.05s; }
-  .p1-brand-inner > *:nth-child(2) { animation-delay: 0.12s; }
-  .p1-brand-inner > *:nth-child(3) { animation-delay: 0.18s; }
-  .p1-brand-inner > *:nth-child(4) { animation-delay: 0.24s; }
-  .p1-brand-inner > *:nth-child(5) { animation-delay: 0.30s; }
-  .p1-brand-inner > *:nth-child(6) { animation-delay: 0.36s; }
-  .p1-brand-inner > *:nth-child(7) { animation-delay: 0.42s; }
-  .p1-brand-inner > *:nth-child(8) { animation-delay: 0.48s; }
-  .p1-brand-inner > *:nth-child(9) { animation-delay: 0.54s; }
-  .p1-brand-inner > *:nth-child(10) { animation-delay: 0.60s; }
-
-  /* ===== RIGHT PANEL ===== */
+  /* ===== RIGHT PANEL: SMOKEHOUSE MENU ===== */
   .p1-right {
-    width: 62%;
+    width: 64%;
     height: 100%;
     padding: 3.5vh 3vw 2.5vh 3vw;
     overflow: hidden;
@@ -436,117 +365,214 @@
     background: linear-gradient(180deg, var(--gold) 0%, transparent 40%, transparent 60%, var(--gold) 100%);
   }
 
-  /* ===== BREAKFAST GRID ===== */
-  .breakfast-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.4vh 2vw;
-    margin-top: 1.2vh;
+  /* Smoke wisp ambient backdrop */
+  .smoke-wisp {
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(ellipse at 50% 100%, rgba(212,168,67,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .smokehouse-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
     flex: 1;
   }
 
-  .breakfast-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    padding: 1.6vh 1.2vw;
-    position: relative;
-    overflow: hidden;
+  /* Title block */
+  .title-block {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1vw;
+    margin-bottom: 1vh;
   }
-  .breakfast-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--gold);
+  .title-block .includes-banner {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(12px, 1.05vw, 22px);
+    text-transform: uppercase;
+    letter-spacing: 0.18vw;
+    color: rgba(255,255,255,0.55);
+    padding: 0.6vh 1vw;
+    border: 1px solid rgba(212,168,67,0.25);
+    border-radius: 4px;
+    background: rgba(212,168,67,0.04);
+    white-space: nowrap;
+    margin-bottom: 0.6vh;
+  }
+  .title-block .includes-banner b {
+    color: var(--gold);
+    font-weight: 700;
   }
 
-  .breakfast-card.featured {
-    grid-column: span 2;
+  /* Section card grid */
+  .smoke-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.5vh 1.8vw;
+    flex: 1;
+    margin-top: 0.8vh;
+  }
+
+  .smoke-section {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 3px solid var(--gold);
+    padding: 1.6vh 1.4vw 1.4vh;
     display: flex;
-    flex-direction: row;
-    gap: 1.5vw;
-    align-items: center;
-    background: linear-gradient(135deg, rgba(212,168,67,0.08) 0%, rgba(255,255,255,0.02) 100%);
-    border-color: rgba(212,168,67,0.2);
-  }
-  .featured-img {
-    width: clamp(120px, 12vw, 260px);
-    height: clamp(80px, 10vh, 180px);
-    border-radius: 4px;
+    flex-direction: column;
+    position: relative;
     overflow: hidden;
-    flex-shrink: 0;
   }
-  .featured-img img {
+  .smoke-section::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: clamp(40px, 4vw, 70px);
+    height: clamp(40px, 4vw, 70px);
+    background: radial-gradient(circle at top right, rgba(212,168,67,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .smoke-section.featured {
+    grid-row: span 2;
+    background: linear-gradient(135deg, rgba(212,168,67,0.07) 0%, rgba(176,70,29,0.04) 100%);
+    border-color: rgba(212,168,67,0.25);
+  }
+
+  .smoke-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 2.1vw, 46px);
+    color: var(--white);
+    letter-spacing: 0.2vw;
+    line-height: 1;
+  }
+  .smoke-section-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1vw, 20px);
+    text-transform: uppercase;
+    letter-spacing: 0.18vw;
+    color: rgba(212,168,67,0.75);
+    margin-top: 0.3vh;
+    margin-bottom: 1vh;
+  }
+
+  .smoke-section-header {
+    margin-bottom: 1vh;
+  }
+
+  /* Featured image strip */
+  .smoke-hero-img {
+    flex: 1;
+    min-height: 12vh;
+    overflow: hidden;
+    border-radius: 4px;
+    position: relative;
+    margin: 1vh 0;
+  }
+  .smoke-hero-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    animation: heroBreath 12s ease-in-out infinite alternate;
+  }
+  @keyframes heroBreath {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+  }
+  .smoke-hero-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.4) 100%);
+  }
+  .smoke-hero-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(212,168,67,0.2);
+    border-radius: 4px;
+    z-index: 2;
   }
 
-  /* ===== ADD-ONS ===== */
-  .addons-bar {
-    margin-top: 1.8vh;
-    padding: 1.4vh 1.5vw;
-    background: rgba(212,168,67,0.06);
-    border-left: 3px solid var(--gold);
-    border-radius: 0 4px 4px 0;
-  }
-  .addons-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(16px, 1.4vw, 30px);
-    color: var(--gold);
-    letter-spacing: 0.2vw;
-    margin-bottom: 0.8vh;
-  }
-  .addons-list {
+  /* Price rows inside each section */
+  .price-rows {
     display: flex;
-    gap: 2vw;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.6vh;
   }
-  .addon-item {
+  .price-row {
     display: flex;
     align-items: baseline;
-    gap: 0.5vw;
+    gap: 0.6vw;
+    padding: 0.5vh 0;
   }
-  .addon-item .label {
+  .price-row + .price-row {
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .price-row .size {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    font-size: clamp(14px, 1.2vw, 26px);
-    color: rgba(255,255,255,0.75);
+    font-weight: 700;
+    font-size: clamp(16px, 1.5vw, 32px);
     text-transform: uppercase;
-    letter-spacing: 0.03vw;
+    color: var(--white);
+    letter-spacing: 0.04vw;
   }
-  .addon-item .price {
+  .price-row .weight {
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(11px, 0.9vw, 18px);
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05vw;
+    text-transform: uppercase;
+  }
+  .price-row .dots {
+    flex: 1;
+    min-width: 0.5vw;
+    border-bottom: 2px dotted rgba(255,255,255,0.12);
+    margin-bottom: 0.4vh;
+  }
+  .price-row .price {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(16px, 1.4vw, 30px);
-    color: var(--gold-light);
+    font-size: clamp(20px, 1.9vw, 42px);
+    color: var(--gold);
+    letter-spacing: 0.04vw;
+    white-space: nowrap;
   }
 
-  /* ===== DIVIDER ===== */
-  .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 1vw;
-    margin: 1.5vh 0 0.8vh;
+  /* Includes badge inside each card */
+  .card-includes {
+    margin-top: auto;
+    padding-top: 1vh;
+    border-top: 1px dashed rgba(212,168,67,0.18);
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(11px, 0.85vw, 17px);
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04vw;
+    line-height: 1.35;
   }
-  .section-divider .line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
-  }
-  .section-divider .divider-label {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(14px, 1.2vw, 26px);
-    color: rgba(212,168,67,0.6);
-    letter-spacing: 0.4vw;
+  .card-includes .inc-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.15vw;
+    font-size: clamp(10px, 0.85vw, 17px);
+    margin-right: 0.4vw;
   }
 
   /* ===== CORNER ACCENTS ===== */
-  .corner-accent { position: absolute; width: clamp(30px, 3vw, 50px); height: clamp(30px, 3vw, 50px); }
+  .corner-accent { position: absolute; width: clamp(30px, 3vw, 50px); height: clamp(30px, 3vw, 50px); z-index: 5; }
   .corner-accent.tr { top: 2vh; right: 1.5vw; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+  .corner-accent.bl { bottom: 4vh; left: 1.5vw; border-bottom: 2px solid rgba(212,168,67,0.4); border-left: 2px solid rgba(212,168,67,0.4); }
 
   /* ===== PAGE INDICATOR ===== */
   .page-indicator {
@@ -570,191 +596,7 @@
     border-radius: 3px;
   }
 
-  /* ===== SIDES SLIDESHOW (overlays the RIGHT panel outside breakfast) ===== */
-  .sides-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1.2s ease;
-    background: linear-gradient(180deg, #2C2C2C 0%, #232323 100%);
-  }
-  .sides-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Image carousel area */
-  .sides-carousel {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-  }
-  .sides-carousel .slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 1.5s ease;
-  }
-  .sides-carousel .slide.active {
-    opacity: 1;
-  }
-  .sides-carousel .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .sides-carousel .slide::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(to bottom, rgba(26,26,26,0.5) 0%, transparent 25%, transparent 55%, rgba(26,26,26,0.85) 100%),
-      linear-gradient(to right, rgba(26,26,26,0.3) 0%, transparent 40%);
-  }
-
-  /* Slide item label overlay */
-  .slide-label {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    padding: 2.5vh 2vw 2vh;
-  }
-  .slide-label .slide-item-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(24px, 2.4vw, 50px);
-    color: var(--white);
-    letter-spacing: 0.15vw;
-    line-height: 1.1;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-  }
-  .slide-label .slide-item-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(20px, 2vw, 42px);
-    color: var(--gold);
-    margin-top: 0.3vh;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  }
-  .slide-label .slide-item-desc {
-    font-family: 'Barlow', sans-serif;
-    font-size: clamp(10px, 0.85vw, 17px);
-    color: rgba(255,255,255,0.5);
-    margin-top: 0.3vh;
-  }
-
-  /* Section header pinned at top of the overlay */
-  .sides-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 3;
-    padding: 2.5vh 2vw 1.5vh;
-    background: linear-gradient(to bottom, rgba(26,26,26,0.8) 0%, transparent 100%);
-  }
-  .sides-header .sides-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(18px, 1.6vw, 34px);
-    color: var(--gold);
-    letter-spacing: 0.4vw;
-  }
-
-  /* Progress pips */
-  .slide-pips {
-    position: absolute;
-    bottom: 1.2vh;
-    right: 1.5vw;
-    display: flex;
-    gap: 0.4vw;
-    z-index: 4;
-  }
-  .slide-pips .slide-pip {
-    width: clamp(4px, 0.35vw, 7px);
-    height: clamp(4px, 0.35vw, 7px);
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transition: all 0.4s ease;
-  }
-  .slide-pips .slide-pip.active {
-    background: var(--gold);
-    width: clamp(14px, 1.2vw, 24px);
-    border-radius: 3px;
-  }
-
-  /* Breakfast content fades when sides overlay is active */
-  .breakfast-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    transition: opacity 1.2s ease;
-  }
-  .p1-right.showing-sides .breakfast-content {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* ===== DEV TOGGLE ===== */
-  .dev-toggle {
-    position: fixed;
-    top: 1vh;
-    left: 1vw;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    gap: 0.5vw;
-    background: rgba(0,0,0,0.7);
-    border: 1px solid rgba(212,168,67,0.3);
-    border-radius: 6px;
-    padding: 0.5vh 0.8vw;
-    cursor: pointer;
-    user-select: none;
-    backdrop-filter: blur(8px);
-    transition: opacity 0.3s;
-  }
-  .dev-toggle:hover { border-color: var(--gold); }
-  .dev-toggle .toggle-track {
-    width: clamp(28px, 2.4vw, 44px);
-    height: clamp(14px, 1.2vw, 22px);
-    border-radius: 20px;
-    background: rgba(255,255,255,0.15);
-    position: relative;
-    transition: background 0.3s;
-  }
-  .dev-toggle.on .toggle-track { background: var(--gold); }
-  .dev-toggle .toggle-thumb {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: clamp(10px, 0.9vw, 18px);
-    height: clamp(10px, 0.9vw, 18px);
-    border-radius: 50%;
-    background: var(--white);
-    transition: transform 0.3s;
-  }
-  .dev-toggle.on .toggle-thumb {
-    transform: translateX(clamp(14px, 1.2vw, 22px));
-  }
-  .dev-toggle .toggle-label {
-    font-family: 'Barlow', sans-serif;
-    font-size: clamp(9px, 0.75vw, 14px);
-    color: rgba(255,255,255,0.5);
-    text-transform: uppercase;
-    letter-spacing: 0.08vw;
-  }
-  .dev-toggle .toggle-state {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(11px, 0.9vw, 18px);
-    color: var(--gold);
-    letter-spacing: 0.05vw;
-    min-width: 5vw;
-  }
-
-  /* ===== NOISE OVERLAY ===== */
+  /* ===== NOISE ===== */
   .noise {
     position: fixed;
     inset: 0;
@@ -771,15 +613,19 @@
     to { opacity: 1; transform: translateY(0); }
   }
   .menu-title { animation: fadeInUp 0.6s ease both; }
-  .breakfast-card { animation: fadeInUp 0.5s ease both; }
-  .breakfast-card:nth-child(1) { animation-delay: 0.1s; }
-  .breakfast-card:nth-child(2) { animation-delay: 0.15s; }
-  .breakfast-card:nth-child(3) { animation-delay: 0.2s; }
-  .breakfast-card:nth-child(4) { animation-delay: 0.25s; }
-  .breakfast-card:nth-child(5) { animation-delay: 0.3s; }
-  .breakfast-card:nth-child(6) { animation-delay: 0.35s; }
-  .breakfast-card:nth-child(7) { animation-delay: 0.4s; }
-  .addons-bar { animation: fadeInUp 0.5s ease 0.45s both; }
+  .smoke-section { animation: fadeInUp 0.5s ease both; }
+  .smoke-section:nth-child(1) { animation-delay: 0.1s; }
+  .smoke-section:nth-child(2) { animation-delay: 0.2s; }
+  .smoke-section:nth-child(3) { animation-delay: 0.3s; }
+  .p1-brand-inner > * { animation: fadeInUp 0.6s ease both; }
+  .p1-brand-inner > *:nth-child(1) { animation-delay: 0.05s; }
+  .p1-brand-inner > *:nth-child(2) { animation-delay: 0.12s; }
+  .p1-brand-inner > *:nth-child(3) { animation-delay: 0.18s; }
+  .p1-brand-inner > *:nth-child(4) { animation-delay: 0.24s; }
+  .p1-brand-inner > *:nth-child(5) { animation-delay: 0.30s; }
+  .p1-brand-inner > *:nth-child(6) { animation-delay: 0.36s; }
+  .p1-brand-inner > *:nth-child(7) { animation-delay: 0.42s; }
+  .p1-brand-inner > *:nth-child(8) { animation-delay: 0.48s; }
 </style>
 </head>
 <body>
@@ -807,18 +653,18 @@
 
     <div>
       <div class="brand-name">The Pine Cone</div>
-      <div class="brand-tagline">Restaurant &amp; Bar</div>
+      <div class="brand-tagline">Smokehouse &amp; Kitchen</div>
     </div>
 
     <div class="now-serving">
       <div class="pulse-dot"></div>
-      <span class="serving-text">Now Serving</span>
-      <span class="serving-meal">Breakfast</span>
+      <span class="serving-text">Now Smoking</span>
+      <span class="serving-meal">Low &amp; Slow</span>
     </div>
 
     <div class="brand-hours">
-      <div class="hours-label">Breakfast Hours</div>
-      <div class="hours-time">7:00 AM — 11:30 AM</div>
+      <div class="hours-label">Kitchen Hours</div>
+      <div class="hours-time">11:00 AM — 9:00 PM</div>
     </div>
 
     <div>
@@ -853,119 +699,113 @@
   </div>
 </div>
 
-<!-- Dev toggle for demo -->
-<div class="dev-toggle" id="devToggle" title="Toggle breakfast/lunch mode for demo">
-  <div class="toggle-track"><div class="toggle-thumb"></div></div>
-  <div>
-    <div class="toggle-label">Display Mode</div>
-    <div class="toggle-state" id="toggleState">Breakfast</div>
-  </div>
-</div>
-
-<div class="p1-right gray-block" id="rightPanel">
+<div class="p1-right gray-block">
   <div class="corner-accent tr"></div>
+  <div class="corner-accent bl"></div>
+  <div class="smoke-wisp"></div>
 
-  <!-- Breakfast content (fades out at lunch) -->
-  <div class="breakfast-content">
-    <div class="menu-title">Breakfast</div>
+  <div class="smokehouse-content">
 
-    <div class="breakfast-grid">
-      <!-- Featured: Full Breakfast -->
-      <div class="breakfast-card featured">
-        <div class="featured-img">
-          <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&q=80" alt="Full Breakfast">
+    <div class="title-block">
+      <div>
+        <div class="section-tag">From The Pit</div>
+        <div class="menu-title">Smokehouse</div>
+      </div>
+    </div>
+
+    <div class="smoke-grid">
+
+      <!-- BEEF BRISKET (featured, spans 2 rows) -->
+      <div class="smoke-section featured">
+        <div class="smoke-section-header">
+          <div class="smoke-section-title">Beef Brisket</div>
+          <div class="smoke-section-sub">Slow-smoked, hand-cut</div>
         </div>
-        <div style="flex:1;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;">
-            <span class="item-name">Full Breakfast</span>
-            <span class="item-price">$16.00</span>
+
+        <div class="price-rows">
+          <div class="price-row">
+            <span class="size">Quarter Pound</span>
+            <span class="weight">4&nbsp;oz</span>
+            <span class="dots"></span>
+            <span class="price">$13.99</span>
           </div>
-          <div class="item-desc">2 eggs, bacon or sausage, potatoes, beans, toast</div>
+          <div class="price-row">
+            <span class="size">Half Pound</span>
+            <span class="weight">8&nbsp;oz</span>
+            <span class="dots"></span>
+            <span class="price">$20.99</span>
+          </div>
+          <div class="price-row">
+            <span class="size">Full Pound</span>
+            <span class="weight">16&nbsp;oz</span>
+            <span class="dots"></span>
+            <span class="price">$32.99</span>
+          </div>
+        </div>
+
+        <div class="smoke-hero-img">
+          <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=900&q=80" alt="Smoked Brisket">
+        </div>
+
+        <div class="card-includes">
+          <span class="inc-label">Includes</span> Fries, B.B.Q sauce &amp; Drink
         </div>
       </div>
 
-      <!-- Breakfast Wrap -->
-      <div class="breakfast-card">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;">
-          <span class="item-name">Breakfast Wrap</span>
-          <span class="item-price">$14.00</span>
+      <!-- RIBS -->
+      <div class="smoke-section">
+        <div class="smoke-section-header">
+          <div class="smoke-section-title">Ribs <span style="color:rgba(212,168,67,0.6);font-size:0.55em;letter-spacing:0.2vw;">SMOKED</span></div>
         </div>
-        <div class="item-desc">Egg, cheese, bacon, sausage, mushroom, green pepper, onions, mayo or salsa</div>
-      </div>
 
-      <!-- 3 Egg Omelette -->
-      <div class="breakfast-card">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;">
-          <span class="item-name">3 Egg Omelette</span>
-          <span class="item-price">$12.00</span>
+        <div class="price-rows">
+          <div class="price-row">
+            <span class="size">Half Rack</span>
+            <span class="dots"></span>
+            <span class="price">$19.99</span>
+          </div>
+          <div class="price-row">
+            <span class="size">Full Rack</span>
+            <span class="dots"></span>
+            <span class="price">$27.99</span>
+          </div>
         </div>
-        <div class="item-desc">Served with home fries &amp; toast</div>
-      </div>
 
-      <!-- French Toast -->
-      <div class="breakfast-card">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;">
-          <span class="item-name">French Toast (3)</span>
-          <span class="item-price">$10.00</span>
+        <div class="card-includes">
+          <span class="inc-label">Includes</span> Fries, B.B.Q sauce &amp; Drink
         </div>
       </div>
 
-      <!-- Breakfast Sandwich -->
-      <div class="breakfast-card">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;">
-          <span class="item-name">Breakfast Sandwich</span>
-          <span class="item-price">$8.50</span>
+      <!-- SMOKED CHICKEN -->
+      <div class="smoke-section">
+        <div class="smoke-section-header">
+          <div class="smoke-section-title">Smoked Chicken</div>
         </div>
-        <div class="item-desc">Egg, bacon or sausage, lettuce, tomato, cheese</div>
+
+        <div class="price-rows">
+          <div class="price-row">
+            <span class="size">Leg</span>
+            <span class="dots"></span>
+            <span class="price">$17.50</span>
+          </div>
+          <div class="price-row">
+            <span class="size">Breast</span>
+            <span class="dots"></span>
+            <span class="price">$19.99</span>
+          </div>
+          <div class="price-row">
+            <span class="size">Half Chicken</span>
+            <span class="dots"></span>
+            <span class="price">$27.99</span>
+          </div>
+        </div>
+
+        <div class="card-includes">
+          <span class="inc-label">Includes</span> Fries &amp; Drink
+        </div>
       </div>
 
-      <!-- BLT -->
-      <div class="breakfast-card">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;">
-          <span class="item-name">BLT</span>
-          <span class="item-price">$7.00</span>
-        </div>
-        <div class="item-desc">Served on white bread, brown bread, bagel, or English muffin</div>
-      </div>
     </div>
-
-    <!-- Add-ons -->
-    <div class="addons-bar">
-      <div class="addons-title">Omelette Add-Ons</div>
-      <div class="addons-list">
-        <div class="addon-item">
-          <span class="label">Cheese</span>
-          <span class="price">$2.50</span>
-        </div>
-        <div class="addon-item">
-          <span class="label">Protein</span>
-          <span class="price">$3.00</span>
-        </div>
-        <div class="addon-item">
-          <span class="label">Veggies</span>
-          <span class="price">$2.00</span>
-        </div>
-        <div class="addon-item">
-          <span class="label">Extra Egg</span>
-          <span class="price">$2.00</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-divider">
-      <div class="line"></div>
-      <div class="divider-label">Fresh Daily</div>
-      <div class="line" style="background:linear-gradient(270deg, var(--gold) 0%, transparent 100%);"></div>
-    </div>
-  </div>
-
-  <!-- Sides & Snacks slideshow overlay (covers right panel at lunch) -->
-  <div class="sides-overlay" id="sidesOverlay">
-    <div class="sides-header">
-      <div class="sides-title">Sides &amp; Snacks</div>
-    </div>
-    <div class="sides-carousel" id="sidesCarousel"></div>
-    <div class="slide-pips" id="slidePips"></div>
   </div>
 
   <div class="page-indicator">
@@ -975,168 +815,6 @@
   </div>
 </div>
 </div>
-<script>
-(function() {
-  /* ============================================================
-     CONFIGURATION
-     ============================================================ */
-  const BREAKFAST_START = 7;    // 7:00 AM
-  const BREAKFAST_END   = 11.5; // 11:30 AM (decimal hours)
-  const SLIDE_INTERVAL  = 5000; // ms per slide
 
-  const SIDES = [
-    { name: 'Poutine',             price: 'SM $10 | LG $16', desc: 'Classic Québécois comfort',   img: 'images/poutine.png' },
-    { name: 'Chicken Wings (8)',   price: '$16.00',           desc: 'Choice of BBQ or Buffalo',    img: 'https://images.unsplash.com/photo-1624153064067-566cae78993d?q=80' },
-    { name: 'Chicken Tenders (5)', price: '$12.00',           desc: '',                            img: 'https://images.unsplash.com/photo-1605291581926-df4bf7ee3e89?q=80' },
-    { name: 'Popcorn Chicken',     price: '$10.00',           desc: '',                            img: 'images/popcornchicken.png' },
-    { name: 'Onion Rings',         price: '$9.00',            desc: '',                            img: 'images/onionrings.png' },
-    { name: 'Fries',               price: 'SM $5 | LG $8.50',desc: '',                            img: 'https://images.unsplash.com/photo-1606755456206-b25206cde27e?q=80' },
-    { name: 'Cheese Sticks (4)',   price: '$8.00',            desc: '',                            img: 'https://images.unsplash.com/photo-1548340748-6d2b7d7da280?q=80' },
-    { name: 'Pizza Slice',         price: '$5.00',            desc: '',                            img: 'https://images.unsplash.com/photo-1544982503-9f984c14501a?q=80' },
-    { name: 'Hot Dog',             price: '$3.75',            desc: '',                            img: 'https://images.unsplash.com/photo-1612392062798-4117917fcc50?q=80' }
-  ];
-
-  /* ============================================================
-     DOM REFS
-     ============================================================ */
-  const rightPanel  = document.getElementById('rightPanel');
-  const overlay     = document.getElementById('sidesOverlay');
-  const carousel    = document.getElementById('sidesCarousel');
-  const pipsWrap    = document.getElementById('slidePips');
-  const toggle      = document.getElementById('devToggle');
-  const toggleState = document.getElementById('toggleState');
-  const servingMeal = document.querySelector('.serving-meal');
-  const hoursLabel  = document.querySelector('.brand-hours .hours-label');
-  const hoursTime   = document.querySelector('.brand-hours .hours-time');
-
-  let currentSlide  = 0;
-  let slideTimer    = null;
-  let forceMode     = null;  // null = auto, 'breakfast', 'lunch'
-
-  /* ============================================================
-     BUILD SLIDES + PIPS
-     ============================================================ */
-  SIDES.forEach(function(item, i) {
-    var slide = document.createElement('div');
-    slide.className = 'slide' + (i === 0 ? ' active' : '');
-    slide.innerHTML =
-      '<img src="' + item.img + '" alt="' + item.name + '" loading="lazy">' +
-      '<div class="slide-label">' +
-        '<div class="slide-item-name">' + item.name + '</div>' +
-        '<div class="slide-item-price">' + item.price + '</div>' +
-        (item.desc ? '<div class="slide-item-desc">' + item.desc + '</div>' : '') +
-      '</div>';
-    carousel.appendChild(slide);
-
-    var pip = document.createElement('div');
-    pip.className = 'slide-pip' + (i === 0 ? ' active' : '');
-    pipsWrap.appendChild(pip);
-  });
-
-  var slides = carousel.querySelectorAll('.slide');
-  var pips   = pipsWrap.querySelectorAll('.slide-pip');
-
-  /* ============================================================
-     SLIDESHOW CONTROL
-     ============================================================ */
-  function goToSlide(index) {
-    slides[currentSlide].classList.remove('active');
-    pips[currentSlide].classList.remove('active');
-    currentSlide = index % slides.length;
-    slides[currentSlide].classList.add('active');
-    pips[currentSlide].classList.add('active');
-  }
-
-  function startSlideshow() {
-    if (slideTimer) return;
-    slideTimer = setInterval(function() {
-      goToSlide(currentSlide + 1);
-    }, SLIDE_INTERVAL);
-  }
-
-  function stopSlideshow() {
-    if (slideTimer) {
-      clearInterval(slideTimer);
-      slideTimer = null;
-    }
-  }
-
-  /* ============================================================
-     MODE SWITCHING
-     ============================================================ */
-  function showSides() {
-    rightPanel.classList.add('showing-sides');
-    overlay.classList.add('active');
-    servingMeal.textContent = 'Lunch';
-    hoursLabel.textContent = 'Lunch Hours';
-    hoursTime.textContent = '11:30 AM — 4:00 PM';
-    goToSlide(0);
-    startSlideshow();
-  }
-
-  function showBreakfast() {
-    stopSlideshow();
-    rightPanel.classList.remove('showing-sides');
-    overlay.classList.remove('active');
-    servingMeal.textContent = 'Breakfast';
-    hoursLabel.textContent = 'Breakfast Hours';
-    hoursTime.textContent = '7:00 AM — 11:30 AM';
-  }
-
-  function isBreakfastTime() {
-    var now = new Date();
-    var h = now.getHours() + now.getMinutes() / 60;
-    return h >= BREAKFAST_START && h < BREAKFAST_END;
-  }
-
-  function updateMode() {
-    var wantBreakfast;
-    if (forceMode === 'breakfast') {
-      wantBreakfast = true;
-    } else if (forceMode === 'lunch') {
-      wantBreakfast = false;
-    } else {
-      wantBreakfast = isBreakfastTime();
-    }
-
-    if (wantBreakfast) {
-      showBreakfast();
-      toggleState.textContent = 'Breakfast';
-      toggle.classList.remove('on');
-    } else {
-      showSides();
-      toggleState.textContent = 'Lunch';
-      toggle.classList.add('on');
-    }
-  }
-
-  /* ============================================================
-     DEV TOGGLE
-     ============================================================ */
-  toggle.addEventListener('click', function() {
-    if (forceMode === 'lunch') {
-      forceMode = 'breakfast';
-    } else {
-      forceMode = 'lunch';
-    }
-    updateMode();
-  });
-
-  // Double click resets to auto/clock mode
-  toggle.addEventListener('dblclick', function() {
-    forceMode = null;
-    updateMode();
-  });
-
-  /* ============================================================
-     INIT
-     ============================================================ */
-  updateMode();
-  // Re-check every minute in auto mode
-  setInterval(function() {
-    if (forceMode === null) updateMode();
-  }, 60000);
-})();
-</script>
 </body>
 </html>

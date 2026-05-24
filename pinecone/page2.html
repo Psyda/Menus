@@ -12,6 +12,7 @@
     --dark: #1A1A1A;
     --charcoal: #2C2C2C;
     --white: #FFFFFF;
+    --ember: #B0461D;
     --wood: #5C4033;
   }
 
@@ -38,7 +39,7 @@
 
   /* ===== LEFT: HERO SHOWCASE ===== */
   .p2-left {
-    width: 36%;
+    width: 34%;
     height: 100%;
     position: relative;
     overflow: hidden;
@@ -54,7 +55,7 @@
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: opacity 0.9s ease;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -70,7 +71,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    animation: slowZoom 8s ease-in-out infinite alternate;
+    animation: slowZoom 9s ease-in-out infinite alternate;
   }
   @keyframes slowZoom {
     0% { transform: scale(1); }
@@ -80,40 +81,74 @@
   .showcase-slide .overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.5) 100%);
     z-index: 1;
   }
 
   .showcase-info {
     position: relative;
     z-index: 2;
-    padding: 5vh 2.5vw;
+    padding: 4vh 2.5vw 5.5vh;
+  }
+  .showcase-info .s-kicker {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(11px, 0.95vw, 18px);
+    text-transform: uppercase;
+    letter-spacing: 0.35vw;
+    color: var(--gold);
+    margin-bottom: 0.6vh;
   }
   .showcase-info .s-name {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(28px, 2.8vw, 56px);
+    font-size: clamp(26px, 2.6vw, 52px);
     text-transform: uppercase;
-    letter-spacing: 0.15vw;
+    letter-spacing: 0.1vw;
     color: var(--white);
     margin-bottom: 0.6vh;
+    line-height: 1.05;
   }
   .showcase-info .s-desc {
-    font-size: clamp(12px, 1.1vw, 22px);
-    color: rgba(255,255,255,0.6);
-    max-width: 92%;
+    font-size: clamp(12px, 1.05vw, 22px);
+    color: rgba(255,255,255,0.65);
+    max-width: 95%;
     line-height: 1.4;
+    margin-bottom: 1.2vh;
+  }
+  .showcase-info .s-price-row {
+    display: flex;
+    gap: 1.2vw;
+    align-items: baseline;
+  }
+  .showcase-info .s-price-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+  }
+  .showcase-info .s-price-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(10px, 0.85vw, 16px);
+    letter-spacing: 0.25vw;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0.3vh;
   }
   .showcase-info .s-price {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 3.2vw, 64px);
+    font-size: clamp(30px, 2.9vw, 60px);
     color: var(--gold);
-    margin-top: 1vh;
+    line-height: 1;
+  }
+  .showcase-info .s-price.lg {
+    color: var(--gold-light);
   }
 
   .showcase-dots {
     position: absolute;
-    bottom: 2.5vh;
+    bottom: 2vh;
     right: 2vw;
     display: flex;
     gap: 0.5vw;
@@ -132,15 +167,16 @@
     border-radius: 4px;
   }
 
-  /* ===== RIGHT: FULL MENU LIST ===== */
+  /* ===== RIGHT: MENU LIST ===== */
   .p2-right {
-    width: 64%;
+    width: 66%;
     height: 100%;
-    padding: 3.5vh 3.2vw 2.5vh 3.2vw;
+    padding: 3vh 2.6vw 2vh 2.8vw;
     display: flex;
     flex-direction: column;
     position: relative;
     background: linear-gradient(180deg, #2C2C2C 0%, #232323 100%);
+    overflow: hidden;
   }
   .p2-right::before {
     content: '';
@@ -151,13 +187,23 @@
     background: linear-gradient(180deg, var(--gold) 0%, transparent 40%, transparent 60%, var(--gold) 100%);
   }
 
+  .header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1.2vh;
+  }
+  .header-row .titles {
+    display: flex;
+    flex-direction: column;
+  }
   .menu-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 3.5vw, 80px);
-    letter-spacing: 0.3vw;
+    font-size: clamp(32px, 3.1vw, 70px);
+    letter-spacing: 0.25vw;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 0.6vh;
+    line-height: 1;
     position: relative;
   }
   .menu-title::after {
@@ -166,20 +212,79 @@
     width: clamp(40px, 4vw, 80px);
     height: 3px;
     background: var(--gold);
-    margin-top: 0.8vh;
+    margin-top: 0.6vh;
+  }
+  .menu-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(11px, 0.95vw, 18px);
+    letter-spacing: 0.35vw;
+    text-transform: uppercase;
+    color: rgba(212,168,67,0.5);
+    margin-bottom: 0.5vh;
+  }
+
+  .price-key {
+    display: flex;
+    align-items: center;
+    gap: 0.6vw;
+    padding: 0.6vh 1vw;
+    background: rgba(212,168,67,0.06);
+    border: 1px solid rgba(212,168,67,0.2);
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(11px, 0.95vw, 18px);
+    text-transform: uppercase;
+    letter-spacing: 0.18vw;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+  }
+  .price-key .reg-swatch,
+  .price-key .lg-swatch {
+    display: inline-block;
+    width: clamp(10px, 0.9vw, 18px);
+    height: clamp(3px, 0.25vw, 5px);
+    border-radius: 2px;
+    margin-right: 0.3vw;
+  }
+  .price-key .reg-swatch { background: var(--gold); }
+  .price-key .lg-swatch { background: var(--gold-light); }
+  .price-key .sep {
+    color: rgba(255,255,255,0.25);
+    margin: 0 0.4vw;
+  }
+
+  /* ===== CATEGORY HEADER ===== */
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+    margin: 1vh 0 0.6vh;
+  }
+  .category-header .cat-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(212,168,67,0.5), transparent);
+  }
+  .category-header .cat-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(18px, 1.6vw, 34px);
+    color: var(--gold);
+    letter-spacing: 0.3vw;
   }
 
   /* ===== MENU LIST ===== */
   .menu-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.2vh 2.4vw;
-    margin-top: 1.8vh;
+    gap: 0.6vh 1.8vw;
     flex: 1;
+    align-content: start;
   }
 
   .menu-item {
-    padding: 1.6vh 1.2vw 1.6vh 1.4vw;
+    padding: 0.9vh 0.8vw 0.9vh 1vw;
     background: rgba(255,255,255,0.025);
     border: 1px solid rgba(255,255,255,0.05);
     border-left: 3px solid var(--gold);
@@ -199,50 +304,95 @@
   .menu-item-header .name {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(18px, 1.65vw, 36px);
+    font-size: clamp(16px, 1.45vw, 32px);
     text-transform: uppercase;
-    letter-spacing: 0.05vw;
+    letter-spacing: 0.04vw;
     color: var(--white);
     flex: 1;
     min-width: 0;
+    line-height: 1.1;
   }
 
-  .menu-item-header .dots {
-    flex: 1;
-    min-width: 1.2vw;
-    border-bottom: 2px dotted rgba(255,255,255,0.12);
-    margin-bottom: 0.4vh;
-  }
-
-  .menu-item-header .price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(20px, 1.9vw, 42px);
-    color: var(--gold);
+  .menu-item-header .prices {
+    display: flex;
+    gap: 0.45vw;
+    align-items: baseline;
     white-space: nowrap;
+    line-height: 1;
+  }
+  .menu-item-header .price-reg {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(17px, 1.55vw, 34px);
+    color: var(--gold);
+    letter-spacing: 0.02vw;
+  }
+  .menu-item-header .price-sep {
+    color: rgba(255,255,255,0.18);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(15px, 1.4vw, 30px);
+  }
+  .menu-item-header .price-lg {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(17px, 1.55vw, 34px);
+    color: var(--gold-light);
+    letter-spacing: 0.02vw;
   }
 
   .menu-item .desc {
-    font-size: clamp(11px, 0.95vw, 20px);
-    color: rgba(255,255,255,0.5);
+    font-size: clamp(10px, 0.85vw, 18px);
+    color: rgba(255,255,255,0.55);
     font-weight: 400;
-    margin-top: 0.3vh;
-    line-height: 1.35;
+    margin-top: 0.2vh;
+    line-height: 1.25;
   }
 
-  .menu-item .tag {
-    display: inline-block;
+  /* ===== FOOTER STRIP: EXTRAS / EXCHANGE ===== */
+  .footer-strip {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.2vw;
+    margin-top: 1vh;
+  }
+
+  .info-card {
+    background: rgba(212,168,67,0.05);
+    border-left: 3px solid var(--gold);
+    padding: 0.9vh 1vw 1vh;
+    border-radius: 0 4px 4px 0;
+  }
+  .info-card .info-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(11px, 0.9vw, 18px);
-    letter-spacing: 0.15vw;
+    font-size: clamp(15px, 1.35vw, 28px);
     color: var(--gold);
-    background: rgba(212,168,67,0.1);
-    padding: 0.2vh 0.5vw;
-    margin-top: 0.5vh;
-    border-radius: 2px;
+    letter-spacing: 0.22vw;
+    margin-bottom: 0.4vh;
+  }
+  .info-card .info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4vw 1.4vw;
+  }
+  .info-card .info-pair {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4vw;
+  }
+  .info-card .info-pair .lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(12px, 1.1vw, 24px);
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.04vw;
+  }
+  .info-card .info-pair .val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 1.25vw, 26px);
+    color: var(--gold-light);
   }
 
   /* ===== CORNER ACCENT ===== */
-  .corner-accent { position: absolute; width: clamp(30px, 3vw, 50px); height: clamp(30px, 3vw, 50px); }
+  .corner-accent { position: absolute; width: clamp(30px, 3vw, 50px); height: clamp(30px, 3vw, 50px); z-index: 5; }
   .corner-accent.tr { top: 2vh; right: 1.5vw; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
 
   /* ===== PAGE INDICATOR ===== */
@@ -284,35 +434,18 @@
     to { opacity: 1; transform: translateY(0); }
   }
   .menu-title { animation: fadeInUp 0.6s ease both; }
-  .menu-item { animation: fadeInUp 0.5s ease both; }
-  .menu-item:nth-child(1) { animation-delay: 0.08s; }
-  .menu-item:nth-child(2) { animation-delay: 0.12s; }
-  .menu-item:nth-child(3) { animation-delay: 0.16s; }
-  .menu-item:nth-child(4) { animation-delay: 0.2s; }
-  .menu-item:nth-child(5) { animation-delay: 0.24s; }
-  .menu-item:nth-child(6) { animation-delay: 0.28s; }
-  .menu-item:nth-child(7) { animation-delay: 0.32s; }
-  .menu-item:nth-child(8) { animation-delay: 0.36s; }
-
-  /* ===== FOOTER NOTE ===== */
-  .footer-note {
-    display: flex;
-    align-items: center;
-    gap: 1vw;
-    margin-top: 1.2vh;
-    padding-top: 1vh;
-  }
-  .footer-note .line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-  .footer-note .text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(14px, 1.2vw, 26px);
-    color: rgba(212,168,67,0.5);
-    letter-spacing: 0.4vw;
-  }
+  .menu-item { animation: fadeInUp 0.4s ease both; }
+  .menu-item:nth-child(1) { animation-delay: 0.06s; }
+  .menu-item:nth-child(2) { animation-delay: 0.09s; }
+  .menu-item:nth-child(3) { animation-delay: 0.12s; }
+  .menu-item:nth-child(4) { animation-delay: 0.15s; }
+  .menu-item:nth-child(5) { animation-delay: 0.18s; }
+  .menu-item:nth-child(6) { animation-delay: 0.21s; }
+  .menu-item:nth-child(7) { animation-delay: 0.24s; }
+  .menu-item:nth-child(8) { animation-delay: 0.27s; }
+  .menu-item:nth-child(9) { animation-delay: 0.30s; }
+  .menu-item:nth-child(10) { animation-delay: 0.33s; }
+  .info-card { animation: fadeInUp 0.5s ease 0.4s both; }
 </style>
 </head>
 <body>
@@ -320,47 +453,112 @@
 <div class="page-wrapper">
 <div class="noise"></div>
 
-<!-- LEFT: Rotating showcase of hero items -->
+<!-- LEFT: Rotating showcase -->
 <div class="p2-left">
   <div class="showcase-container" id="showcase">
-    <!-- Slide 1: Island Burger -->
+
+    <!-- The Pinecone -->
     <div class="showcase-slide active" data-index="0">
-      <div class="bg-img"><img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=900&q=80" alt="Island Burger"></div>
+      <div class="bg-img"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=80" alt="The Pinecone Burger"></div>
       <div class="overlay"></div>
       <div class="showcase-info">
-        <div class="s-name">Island Burger</div>
-        <div class="s-desc">Thousand Island dressing, caramelized onions, roasted mushrooms, bacon, lettuce, tomato, pickles, cheddar cheese</div>
-        <div class="s-price">$22.50</div>
+        <div class="s-kicker">House Signature</div>
+        <div class="s-name">The Pinecone</div>
+        <div class="s-desc">Bacon, cheese, caramelized onion, mushroom, lettuce, tomato, pickle &amp; 1000 island dressing</div>
+        <div class="s-price-row">
+          <div class="s-price-block">
+            <span class="s-price-label">Regular</span>
+            <span class="s-price">$14.99</span>
+          </div>
+          <div class="s-price-block">
+            <span class="s-price-label">Large</span>
+            <span class="s-price lg">$17.99</span>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Slide 2: B.B.Q Burger -->
+
+    <!-- Bacon Jam Special -->
     <div class="showcase-slide" data-index="1">
-      <div class="bg-img"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=900&q=80" alt="BBQ Burger"></div>
+      <div class="bg-img"><img src="images/bacon-marm-burger.png" alt="Bacon Jam Special"></div>
       <div class="overlay"></div>
       <div class="showcase-info">
-        <div class="s-name">B.B.Q Burger</div>
-        <div class="s-desc">BBQ sauce, pickles, pulled pork, bacon, Havarti cheese, fried onions</div>
-        <div class="s-price">$22.50</div>
+        <div class="s-kicker">Featured</div>
+        <div class="s-name">Bacon Jam Special</div>
+        <div class="s-desc">Bacon jam, Havarti, onion &amp; spicy mayo on a fresh-pressed bun</div>
+        <div class="s-price-row">
+          <div class="s-price-block">
+            <span class="s-price-label">Regular</span>
+            <span class="s-price">$15.75</span>
+          </div>
+          <div class="s-price-block">
+            <span class="s-price-label">Large</span>
+            <span class="s-price lg">$17.99</span>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Slide 3: Bacon Marmalade Burger -->
+
+    <!-- The Mac & Smash -->
     <div class="showcase-slide" data-index="2">
-      <div class="bg-img"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=900&q=80" alt="Bacon Marmalade Burger"></div>
+      <div class="bg-img"><img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=900&q=80" alt="The Mac & Smash"></div>
       <div class="overlay"></div>
       <div class="showcase-info">
-        <div class="s-name">Bacon Marmalade Burger</div>
-        <div class="s-desc">Spicy mayo, bacon jam, Havarti cheese, onion rings</div>
-        <div class="s-price">$20.00</div>
+        <div class="s-kicker">Chef's Pick</div>
+        <div class="s-name">The Mac &amp; Smash</div>
+        <div class="s-desc">Bacon, cheese, pepperoni spread, lettuce, tomato &amp; chipotle sauce</div>
+        <div class="s-price-row">
+          <div class="s-price-block">
+            <span class="s-price-label">Regular</span>
+            <span class="s-price">$16.25</span>
+          </div>
+          <div class="s-price-block">
+            <span class="s-price-label">Large</span>
+            <span class="s-price lg">$19.99</span>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Slide 4: Po Boy Sandwich -->
+
+    <!-- California Chicken Burger -->
     <div class="showcase-slide" data-index="3">
-      <div class="bg-img"><img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=900&q=80" alt="Po Boy Sandwich"></div>
+      <div class="bg-img"><img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=900&q=80" alt="California Chicken Burger"></div>
       <div class="overlay"></div>
       <div class="showcase-info">
-        <div class="s-name">Po Boy Sandwich</div>
-        <div class="s-desc">Fried shrimp, lettuce, tomato, pickles, remoulade sauce</div>
-        <div class="s-price">$25.00</div>
+        <div class="s-kicker">Fresh &amp; Bright</div>
+        <div class="s-name">California Chicken</div>
+        <div class="s-desc">6 oz chicken, bacon, Havarti, lettuce, ranch, guacamole &amp; pico de gallo</div>
+        <div class="s-price-row">
+          <div class="s-price-block">
+            <span class="s-price-label">Regular</span>
+            <span class="s-price">$16.50</span>
+          </div>
+          <div class="s-price-block">
+            <span class="s-price-label">Large</span>
+            <span class="s-price lg">$20.99</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Po Boy -->
+    <div class="showcase-slide" data-index="4">
+      <div class="bg-img"><img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=900&q=80" alt="Po Boy"></div>
+      <div class="overlay"></div>
+      <div class="showcase-info">
+        <div class="s-kicker">House Favourite</div>
+        <div class="s-name">Po Boy</div>
+        <div class="s-desc">6 oz breaded shrimp, lettuce, tomato, pickle &amp; remoulade sauce</div>
+        <div class="s-price-row">
+          <div class="s-price-block">
+            <span class="s-price-label">Regular</span>
+            <span class="s-price">$15.99</span>
+          </div>
+          <div class="s-price-block">
+            <span class="s-price-label">Large</span>
+            <span class="s-price lg">$19.99</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -369,6 +567,7 @@
       <div class="dot" data-dot="1"></div>
       <div class="dot" data-dot="2"></div>
       <div class="dot" data-dot="3"></div>
+      <div class="dot" data-dot="4"></div>
     </div>
   </div>
 </div>
@@ -376,95 +575,173 @@
 <!-- RIGHT: Full menu list -->
 <div class="p2-right">
   <div class="corner-accent tr"></div>
-  <div class="menu-title">Burgers &amp; Sandwiches</div>
 
-  <div class="menu-list">
-    <!-- Island Burger -->
-    <div class="menu-item">
-      <div class="menu-item-header">
-        <span class="name">Island Burger</span>
-        <span class="dots"></span>
-        <span class="price">$22.50</span>
-      </div>
-      <div class="desc">Thousand Island dressing, caramelized onions, roasted mushrooms, bacon, lettuce, tomato, pickles, cheddar cheese</div>
+  <div class="header-row">
+    <div class="titles">
+      <div class="menu-subtitle">Hand-Pressed &amp; Stacked</div>
+      <div class="menu-title">Burgers &amp; Sandwiches</div>
     </div>
-
-    <!-- B.B.Q Burger -->
-    <div class="menu-item">
-      <div class="menu-item-header">
-        <span class="name">B.B.Q Burger</span>
-        <span class="dots"></span>
-        <span class="price">$22.50</span>
-      </div>
-      <div class="desc">BBQ sauce, pickles, pulled pork, bacon, Havarti cheese, fried onions</div>
-    </div>
-
-    <!-- Bacon Marmalade Burger -->
-    <div class="menu-item">
-      <div class="menu-item-header">
-        <span class="name">Bacon Marmalade Burger</span>
-        <span class="dots"></span>
-        <span class="price">$20.00</span>
-      </div>
-      <div class="desc">Spicy mayo, bacon jam, Havarti cheese, onion rings</div>
-    </div>
-
-    <!-- Mozzarella Melt Burger -->
-    <div class="menu-item">
-      <div class="menu-item-header">
-        <span class="name">Mozzarella Melt Burger</span>
-        <span class="dots"></span>
-        <span class="price">$19.50</span>
-      </div>
-      <div class="desc">Marinara sauce, pepperoni spread, Swiss cheese, 2 mozzarella sticks</div>
-    </div>
-
-    <!-- Po Boy Sandwich -->
-    <div class="menu-item">
-      <div class="menu-item-header">
-        <span class="name">Po Boy Sandwich</span>
-        <span class="dots"></span>
-        <span class="price">$25.00</span>
-      </div>
-      <div class="desc">Fried shrimp, lettuce, tomato, pickles, remoulade sauce</div>
-      <span class="tag">House Favourite</span>
-    </div>
-
-    <!-- Pulled Pork Sandwich -->
-    <div class="menu-item">
-      <div class="menu-item-header">
-        <span class="name">Pulled Pork Sandwich</span>
-        <span class="dots"></span>
-        <span class="price">$20.00</span>
-      </div>
-      <div class="desc">Topped with coleslaw</div>
-    </div>
-
-    <!-- Steak & Pepperoni Sandwich -->
-    <div class="menu-item">
-      <div class="menu-item-header">
-        <span class="name">Steak &amp; Pepperoni Sandwich</span>
-        <span class="dots"></span>
-        <span class="price">$19.50</span>
-      </div>
-      <div class="desc">Steak, pepperoni, lettuce, tomato, caramelized onions, special sauce</div>
-    </div>
-
-    <!-- Chicken Sandwich -->
-    <div class="menu-item">
-      <div class="menu-item-header">
-        <span class="name">Chicken Sandwich</span>
-        <span class="dots"></span>
-        <span class="price">$18.00</span>
-      </div>
-      <div class="desc">Coleslaw, spicy mayo, pickles</div>
+    <div class="price-key">
+      <span><span class="reg-swatch"></span>Reg</span>
+      <span class="sep">|</span>
+      <span><span class="lg-swatch"></span>Lg</span>
     </div>
   </div>
 
-  <div class="footer-note">
-    <div class="line"></div>
-    <div class="text">All Burgers Served With Fries</div>
-    <div class="line" style="background:linear-gradient(270deg, var(--gold), transparent);"></div>
+  <!-- BURGERS -->
+  <div class="category-header">
+    <span class="cat-name">Burgers</span>
+    <span class="cat-line"></span>
+  </div>
+
+  <div class="menu-list">
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Bacon Jam Special</span>
+        <span class="prices">
+          <span class="price-reg">$15.75</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$17.99</span>
+        </span>
+      </div>
+      <div class="desc">Bacon jam, Havarti, onion, spicy mayo</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">The Pinecone</span>
+        <span class="prices">
+          <span class="price-reg">$14.99</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$17.99</span>
+        </span>
+      </div>
+      <div class="desc">Bacon, cheese, caramelized onion, mushroom, lettuce, tomato, pickle, 1000 island</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">The Texan</span>
+        <span class="prices">
+          <span class="price-reg">$13.99</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$17.99</span>
+        </span>
+      </div>
+      <div class="desc">Bacon, Havarti, crispy onion, lettuce, tomato, pickles, B.B.Q sauce</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">The Mac &amp; Smash</span>
+        <span class="prices">
+          <span class="price-reg">$16.25</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$19.99</span>
+        </span>
+      </div>
+      <div class="desc">Bacon, cheese, pepperoni spread, lettuce, tomato, chipotle sauce</div>
+    </div>
+
+    <div class="menu-item" style="grid-column: span 2;">
+      <div class="menu-item-header">
+        <span class="name">California Chicken Burger</span>
+        <span class="prices">
+          <span class="price-reg">$16.50</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$20.99</span>
+        </span>
+      </div>
+      <div class="desc">6 oz chicken, bacon, Havarti, lettuce, ranch, guacamole, pico de gallo</div>
+    </div>
+  </div>
+
+  <!-- SANDWICHES -->
+  <div class="category-header">
+    <span class="cat-name">Sandwiches</span>
+    <span class="cat-line"></span>
+  </div>
+
+  <div class="menu-list">
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Smoked Pull Pork</span>
+        <span class="prices">
+          <span class="price-reg">$11.99</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$15.99</span>
+        </span>
+      </div>
+      <div class="desc">Smoked pull pork, house slaw, B.B.Q sauce</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Chicken Sandwich</span>
+        <span class="prices">
+          <span class="price-reg">$11.99</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$15.99</span>
+        </span>
+      </div>
+      <div class="desc">Breaded chicken, slaw, pickles, spicy mayo</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Steak &amp; Pepperoni</span>
+        <span class="prices">
+          <span class="price-reg">$16.99</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$19.99</span>
+        </span>
+      </div>
+      <div class="desc">Steak, pepperoni, caramelized onion, lettuce, tomato, Swiss, sauce</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-item-header">
+        <span class="name">Brisket Sandwich</span>
+        <span class="prices">
+          <span class="price-reg">$15.99</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$19.99</span>
+        </span>
+      </div>
+      <div class="desc">6 oz brisket, cheese sauce, crispy onion</div>
+    </div>
+
+    <div class="menu-item" style="grid-column: span 2;">
+      <div class="menu-item-header">
+        <span class="name">Po Boy</span>
+        <span class="prices">
+          <span class="price-reg">$15.99</span>
+          <span class="price-sep">/</span>
+          <span class="price-lg">$19.99</span>
+        </span>
+      </div>
+      <div class="desc">6 oz breaded shrimp, lettuce, tomato, pickle, remoulade sauce</div>
+    </div>
+  </div>
+
+  <!-- FOOTER: EXTRAS + EXCHANGE FRIES -->
+  <div class="footer-strip">
+    <div class="info-card">
+      <div class="info-title">Add Extras</div>
+      <div class="info-row">
+        <div class="info-pair"><span class="lbl">Extra Bacon</span><span class="val">$2.99</span></div>
+        <div class="info-pair"><span class="lbl">Extra Patty</span><span class="val">$4.99</span></div>
+        <div class="info-pair"><span class="lbl">Extra Cheese</span><span class="val">$1.50</span></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-title">Exchange Fries</div>
+      <div class="info-row">
+        <div class="info-pair"><span class="lbl">Poutine</span><span class="val">$4.99</span></div>
+        <div class="info-pair"><span class="lbl">Mac &amp; Cheese</span><span class="val">$5.99</span></div>
+        <div class="info-pair"><span class="lbl">Rice</span><span class="val">$2.99</span></div>
+      </div>
+    </div>
   </div>
 
   <div class="page-indicator">

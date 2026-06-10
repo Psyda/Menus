@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Pine Cone — Sides, Snacks &amp; Tacos</title>
+<title>The Pine Cone — Tacos, Salads, Mac &amp; Poutine</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -12,6 +12,7 @@
     --dark: #1A1A1A;
     --charcoal: #2C2C2C;
     --white: #FFFFFF;
+    --ember: #B0461D;
     --wood: #5C4033;
   }
 
@@ -36,50 +37,38 @@
     left: 0;
   }
 
-  /* ===== SHARED TYPOGRAPHY (viewport-scaled) ===== */
-  .menu-title {
+  /* ===== SHARED TYPOGRAPHY ===== */
+  .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 3.3vw, 72px);
-    letter-spacing: 0.3vw;
+    font-size: clamp(24px, 2.4vw, 54px);
+    letter-spacing: 0.22vw;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 1vh;
+    margin-bottom: 0.5vh;
+    line-height: 1;
     position: relative;
   }
-  .menu-title::after {
+  .section-title::after {
     content: '';
     display: block;
-    width: clamp(40px, 4vw, 80px);
+    width: clamp(34px, 3.2vw, 64px);
     height: 3px;
     background: var(--gold);
-    margin-top: 0.8vh;
+    margin-top: 0.5vh;
   }
-
-  .item-name {
+  .section-kicker {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(18px, 1.6vw, 34px);
+    font-size: clamp(10px, 0.85vw, 17px);
+    letter-spacing: 0.3vw;
     text-transform: uppercase;
-    letter-spacing: 0.05vw;
-    color: var(--white);
+    color: rgba(212,168,67,0.5);
+    margin-bottom: 0.3vh;
   }
 
-  .item-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(20px, 1.7vw, 36px);
-    color: var(--gold);
-    white-space: nowrap;
+  .gray-block {
+    background: linear-gradient(180deg, #2C2C2C 0%, #232323 100%);
   }
-
-  .item-desc {
-    font-size: clamp(11px, 0.95vw, 20px);
-    color: rgba(255,255,255,0.5);
-    font-weight: 400;
-    margin-top: 0.2vh;
-    line-height: 1.3;
-  }
-
-  /* ===== TEXTURES ===== */
   .wood-texture {
     background:
       repeating-linear-gradient(90deg, rgba(92,64,51,0.03) 0px, rgba(92,64,51,0.08) 2px, transparent 2px, transparent 8px),
@@ -87,226 +76,510 @@
       linear-gradient(180deg, #3E2E22 0%, #4A3728 30%, #3A2A1E 70%, #2E2018 100%);
   }
 
-  .gray-block {
-    background: linear-gradient(180deg, #2C2C2C 0%, #232323 100%);
-  }
-
-  /* ===== LEFT: SIDES & SNACKS ===== */
+  /* ===== LEFT: TACOS + MAC & CHEESE ===== */
   .p3-main {
-    width: 56%;
+    width: 54%;
     height: 100%;
-    padding: 3.5vh 2.8vw 2.5vh 3vw;
     display: flex;
     flex-direction: column;
+    position: relative;
     overflow: hidden;
+  }
+
+  /* === Top: Tacos === */
+  .p3-tacos {
+    flex: 0 0 35%;
+    padding: 2.8vh 2vw 1.8vh 2.6vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .taco-spotlight {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 1.4vw;
+    margin-top: 0.8vh;
+    height: calc(100% - 5vh);
+  }
+
+  .taco-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid var(--gold);
+    padding: 1.2vh 1.2vw;
     position: relative;
   }
-
-  .corner-accent { position: absolute; width: clamp(30px, 3vw, 50px); height: clamp(30px, 3vw, 50px); }
-  .corner-accent.tl { top: 2vh; left: 1.5vw; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
-
-  /* ===== SIDES GRID ===== */
-  .sides-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.4vh 2vw;
-    margin-top: 1vh;
-    flex: 1;
+  .taco-info::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: clamp(50px, 5vw, 80px);
+    height: clamp(50px, 5vw, 80px);
+    background: radial-gradient(circle at top right, rgba(212,168,67,0.1) 0%, transparent 70%);
+    pointer-events: none;
   }
 
-  .side-item {
-    padding: 0.9vh 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+  .taco-name {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .side-item-header {
-    display: flex;
+    justify-content: space-between;
     align-items: baseline;
-    gap: 0.5vw;
+    gap: 0.8vw;
   }
-
-  .side-item-header .name {
+  .taco-name .name {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(18px, 1.6vw, 34px);
+    font-size: clamp(20px, 1.9vw, 42px);
     text-transform: uppercase;
-    letter-spacing: 0.05vw;
+    letter-spacing: 0.04vw;
     color: var(--white);
-    white-space: nowrap;
+    line-height: 1.05;
   }
-
-  .side-item-header .dots {
-    flex: 1;
-    min-width: 1vw;
-    border-bottom: 2px dotted rgba(255,255,255,0.1);
-    margin-bottom: 0.4vh;
+  .taco-name .count {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(13px, 1.1vw, 24px);
+    color: rgba(212,168,67,0.65);
+    letter-spacing: 0.2vw;
+    text-transform: uppercase;
   }
-
-  .side-item-header .price {
+  .taco-price {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(20px, 1.7vw, 36px);
+    font-size: clamp(28px, 2.7vw, 58px);
     color: var(--gold);
-    white-space: nowrap;
+    line-height: 1;
+    margin-top: 0.4vh;
   }
-
-  /* Dual-price rows (Poutine, Fries) */
-  .dual-price-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .taco-desc {
+    margin-top: 0.6vh;
+    font-size: clamp(11px, 0.95vw, 19px);
+    color: rgba(255,255,255,0.6);
+    line-height: 1.35;
   }
-  .dual-price-item .dual-header {
-    margin-bottom: 0.2vh;
-  }
-  .dual-price-item .dual-header .name {
+  .taco-includes {
+    margin-top: 0.8vh;
+    padding-top: 0.6vh;
+    border-top: 1px dashed rgba(212,168,67,0.25);
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(18px, 1.6vw, 34px);
+    font-size: clamp(11px, 0.95vw, 20px);
+    letter-spacing: 0.18vw;
     text-transform: uppercase;
-    letter-spacing: 0.05vw;
-    color: var(--white);
+    color: var(--gold);
   }
-  .dual-price-row {
+  .taco-includes .what {
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    letter-spacing: 0.04vw;
+    text-transform: none;
+    margin-left: 0.4vw;
+    font-size: clamp(11px, 0.9vw, 19px);
+  }
+
+  .taco-img-wrap {
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid rgba(212,168,67,0.2);
+  }
+  .taco-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: slowZoom 12s ease-in-out infinite alternate;
+  }
+  .taco-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.4));
+  }
+  @keyframes slowZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+  }
+
+  /* === Bottom: Mac & Cheese === */
+  .p3-mac {
+    flex: 1;
+    padding: 2vh 2vw 2vh 2.6vw;
+    position: relative;
+    border-top: 1px solid rgba(212,168,67,0.15);
+    overflow: hidden;
+  }
+
+  .mac-header-row {
     display: flex;
-    align-items: baseline;
-    gap: 0.5vw;
-    padding-left: 1vw;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+    gap: 1vw;
+  }
+
+  .mac-sizes {
+    display: flex;
+    gap: 1vw;
+  }
+  .mac-size-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.6vh 1vw;
+    background: rgba(212,168,67,0.06);
+    border: 1px solid rgba(212,168,67,0.25);
+    border-radius: 5px;
+  }
+  .mac-size-card .lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(10px, 0.85vw, 17px);
+    text-transform: uppercase;
+    letter-spacing: 0.22vw;
+    color: rgba(255,255,255,0.55);
+  }
+  .mac-size-card .val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(20px, 1.9vw, 42px);
+    color: var(--gold);
+    line-height: 1;
     margin-top: 0.2vh;
   }
-  .dual-price-row .size-label {
+
+  .mac-extras-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    font-size: clamp(14px, 1.25vw, 26px);
+    font-weight: 700;
+    font-size: clamp(12px, 1.1vw, 22px);
+    letter-spacing: 0.26vw;
     text-transform: uppercase;
-    letter-spacing: 0.03vw;
-    color: rgba(255,255,255,0.6);
-    white-space: nowrap;
-  }
-  .dual-price-row .dots {
-    flex: 1;
-    min-width: 1vw;
-    border-bottom: 2px dotted rgba(255,255,255,0.1);
-    margin-bottom: 0.3vh;
-  }
-  .dual-price-row .price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(18px, 1.6vw, 34px);
-    color: var(--gold);
-    white-space: nowrap;
-  }
-
-  /* ===== FOOD IMAGES ===== */
-  .image-row {
+    color: rgba(212,168,67,0.7);
+    margin-bottom: 0.5vh;
     display: flex;
-    gap: 0.8vw;
-    margin-top: 1.4vh;
+    align-items: center;
+    gap: 0.6vw;
   }
-  .food-img {
-    overflow: hidden;
-    position: relative;
-    border-radius: 3px;
-  }
-  .food-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .food-img::after {
+  .mac-extras-label::before,
+  .mac-extras-label::after {
     content: '';
-    position: absolute;
-    inset: 0;
-    border: 1px solid rgba(212,168,67,0.15);
-    border-radius: 3px;
+    flex: 0 0 clamp(12px, 1.2vw, 26px);
+    height: 1px;
+    background: rgba(212,168,67,0.4);
+  }
+  .mac-extras-label::after { flex: 1; }
+
+  .extras-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(2, 1fr);
+    gap: 0.2vh 0.6vw;
+    margin-top: 0.3vh;
+  }
+  .extras-grid .col-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(10px, 0.9vw, 18px);
+    letter-spacing: 0.18vw;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    padding-bottom: 0.3vh;
+    border-bottom: 1px solid rgba(212,168,67,0.2);
+  }
+  .extras-grid .col-header.right {
+    text-align: right;
+  }
+  .extras-grid .row-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(13px, 1.2vw, 26px);
+    text-transform: uppercase;
+    letter-spacing: 0.04vw;
+    color: var(--white);
+    padding: 0.35vh 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: baseline;
+    gap: 0.5vw;
+  }
+  .extras-grid .row-name .oz {
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(9px, 0.75vw, 15px);
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.05vw;
+    text-transform: none;
+  }
+  .extras-grid .row-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(15px, 1.45vw, 32px);
+    color: var(--gold);
+    text-align: right;
+    padding: 0.35vh 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    white-space: nowrap;
+  }
+  .extras-grid .row-price.sm {
+    color: var(--gold-light);
   }
 
-  /* ===== RIGHT: TACOS ===== */
-  .p3-sidebar {
-    width: 44%;
+  /* ===== RIGHT: SALADS + POUTINE ===== */
+  .p3-side {
+    width: 46%;
     height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    position: relative;
   }
 
-  .p3-taco-section {
-    padding: 3.5vh 2.5vw 2.5vh;
-    flex: 1;
+  /* === Top: Salads === */
+  .p3-salads {
+    flex: 0 0 60%;
+    padding: 2.8vh 2vw 1.8vh;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
-  .taco-card {
+  .salads-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1vw;
+    margin-bottom: 1vh;
+  }
+  .price-key {
     display: flex;
     align-items: center;
-    gap: 1.2vw;
-    background: rgba(255,255,255,0.04);
-    padding: 1.4vh 1.2vw;
-    margin-bottom: 1.4vh;
+    gap: 0.5vw;
+    padding: 0.5vh 0.9vw;
+    background: rgba(212,168,67,0.06);
+    border: 1px solid rgba(212,168,67,0.2);
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(10px, 0.85vw, 16px);
+    text-transform: uppercase;
+    letter-spacing: 0.16vw;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+    margin-bottom: 0.4vh;
+  }
+  .price-key .sm-swatch,
+  .price-key .lg-swatch {
+    display: inline-block;
+    width: clamp(9px, 0.8vw, 16px);
+    height: clamp(3px, 0.22vw, 5px);
+    border-radius: 2px;
+    margin-right: 0.25vw;
+  }
+  .price-key .sm-swatch { background: var(--gold); }
+  .price-key .lg-swatch { background: var(--gold-light); }
+  .price-key .sep { color: rgba(255,255,255,0.25); margin: 0 0.3vw; }
+
+  .salad-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    flex: 1;
+  }
+
+  .salad-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.05);
     border-left: 3px solid var(--gold);
-  }
-  .taco-card-img {
-    width: clamp(90px, 8.5vw, 180px);
-    height: clamp(70px, 8vh, 140px);
-    overflow: hidden;
-    flex-shrink: 0;
-    border-radius: 4px;
-  }
-  .taco-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .taco-hero-img {
-    margin-top: 2vh;
-    flex: 1;
-    min-height: 15vh;
-    overflow: hidden;
-    border-radius: 4px;
-    position: relative;
-  }
-  .taco-hero-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .taco-hero-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 1px solid rgba(212,168,67,0.15);
-    border-radius: 4px;
-  }
-
-  /* ===== FOOTER STRIP ===== */
-  .footer-strip {
-    height: 8vh;
-    background: var(--dark);
+    padding: 0.9vh 1.1vw;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    gap: 1.5vw;
-    padding: 0 2.5vw;
-  }
-  .footer-strip .line {
     flex: 1;
-    height: 1px;
   }
-  .footer-strip .text {
+  .salad-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.8vw;
+  }
+  .salad-card-header .name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 1.5vw, 32px);
+    text-transform: uppercase;
+    letter-spacing: 0.04vw;
+    color: var(--white);
+    line-height: 1.05;
+    flex: 1;
+    min-width: 0;
+  }
+  .salad-card-header .prices {
+    display: flex;
+    gap: 0.45vw;
+    align-items: baseline;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .salad-card-header .price-sm {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(16px, 1.5vw, 32px);
     color: var(--gold);
-    letter-spacing: 0.5vw;
   }
+  .salad-card-header .price-sep {
+    color: rgba(255,255,255,0.18);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 1.35vw, 28px);
+  }
+  .salad-card-header .price-lg {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16px, 1.5vw, 32px);
+    color: var(--gold-light);
+  }
+  .salad-card .desc {
+    font-size: clamp(10px, 0.85vw, 17px);
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.2vh;
+    line-height: 1.25;
+  }
+  .salad-card .dressing {
+    margin-top: 0.4vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4vw;
+  }
+  .salad-card .dressing .d-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(10px, 0.85vw, 17px);
+    letter-spacing: 0.1vw;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .salad-card .dressing .d-opt {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(10px, 0.85vw, 17px);
+    text-transform: uppercase;
+    letter-spacing: 0.03vw;
+    color: rgba(255,255,255,0.65);
+    padding: 0.05vh 0.5vw;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 3px;
+  }
+
+  .salad-addons {
+    margin-top: 0.8vh;
+    padding: 0.7vh 1.1vw;
+    background: rgba(212,168,67,0.06);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 1.4vw;
+    flex-wrap: wrap;
+  }
+  .salad-addons .addons-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 1.25vw, 27px);
+    color: var(--gold);
+    letter-spacing: 0.16vw;
+  }
+  .salad-addons .addon-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4vw;
+  }
+  .salad-addons .addon-item .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(11px, 1vw, 21px);
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+  }
+  .salad-addons .addon-item .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 1.25vw, 27px);
+    color: var(--gold-light);
+  }
+
+  /* === Bottom: Poutine === */
+  .p3-poutine {
+    flex: 1;
+    padding: 2vh 2vw 2vh;
+    position: relative;
+    border-top: 1px solid rgba(212,168,67,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #2C2C2C 0%, #1f1f1f 100%);
+  }
+
+  .poutine-card {
+    display: flex;
+    gap: 1.2vw;
+    align-items: stretch;
+    flex: 1;
+    margin-top: 0.8vh;
+    min-height: 0;
+  }
+  .poutine-img {
+    flex: 0 0 38%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid rgba(212,168,67,0.2);
+  }
+  .poutine-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: slowZoom 10s ease-in-out infinite alternate;
+  }
+  .poutine-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%);
+  }
+
+  .poutine-sizes {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.8vh;
+  }
+  .poutine-size-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 3px solid var(--gold);
+    padding: 0.9vh 1.1vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .poutine-size-card .lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(13px, 1.15vw, 25px);
+    letter-spacing: 0.2vw;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .poutine-size-card .val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 2vw, 44px);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  /* ===== CORNER ACCENTS ===== */
+  .corner-accent { position: absolute; width: clamp(28px, 2.8vw, 46px); height: clamp(28px, 2.8vw, 46px); z-index: 5; }
+  .corner-accent.tl { top: 2vh; left: 1.5vw; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+  .corner-accent.tr { top: 2vh; right: 1.5vw; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
 
   /* ===== PAGE INDICATOR ===== */
   .page-indicator {
     position: absolute;
-    bottom: 1.5vh;
+    bottom: 1vh;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -341,19 +614,17 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .menu-title { animation: fadeInUp 0.6s ease both; }
-  .side-item, .dual-price-item { animation: fadeInUp 0.4s ease both; }
-  .side-item:nth-child(1), .dual-price-item:nth-child(1) { animation-delay: 0.05s; }
-  .side-item:nth-child(2), .dual-price-item:nth-child(2) { animation-delay: 0.08s; }
-  .side-item:nth-child(3) { animation-delay: 0.11s; }
-  .side-item:nth-child(4) { animation-delay: 0.14s; }
-  .side-item:nth-child(5) { animation-delay: 0.17s; }
-  .side-item:nth-child(6) { animation-delay: 0.20s; }
-  .side-item:nth-child(7) { animation-delay: 0.23s; }
-  .side-item:nth-child(8) { animation-delay: 0.26s; }
-  .taco-card { animation: fadeInUp 0.5s ease both; }
-  .taco-card:nth-child(2) { animation-delay: 0.1s; }
-  .taco-card:nth-child(3) { animation-delay: 0.15s; }
+  .section-title { animation: fadeInUp 0.6s ease both; }
+  .taco-info { animation: fadeInUp 0.5s ease 0.1s both; }
+  .taco-img-wrap { animation: fadeInUp 0.5s ease 0.15s both; }
+  .mac-size-card { animation: fadeInUp 0.4s ease both; }
+  .salad-card { animation: fadeInUp 0.4s ease both; }
+  .salad-card:nth-child(1) { animation-delay: 0.1s; }
+  .salad-card:nth-child(2) { animation-delay: 0.15s; }
+  .salad-card:nth-child(3) { animation-delay: 0.2s; }
+  .salad-addons { animation: fadeInUp 0.4s ease 0.25s both; }
+  .poutine-img { animation: fadeInUp 0.5s ease 0.1s both; }
+  .poutine-size-card { animation: fadeInUp 0.4s ease both; }
 </style>
 </head>
 <body>
@@ -361,188 +632,177 @@
 <div class="page-wrapper">
 <div class="noise"></div>
 
-<!-- LEFT: Sides & Snacks -->
+<!-- LEFT: TACOS (top) + MAC & CHEESE (bottom) -->
 <div class="p3-main gray-block">
-  <div class="corner-accent tl"></div>
 
-  <div class="menu-title">Sides &amp; Snacks</div>
+  <!-- TACOS -->
+  <div class="p3-tacos">
+    <div class="corner-accent tl"></div>
 
-  <div class="sides-grid">
-    <!-- Poutine (dual price) -->
-    <div class="dual-price-item">
-      <div class="dual-header">
-        <span class="name">Poutine</span>
-      </div>
-      <div class="dual-price-row">
-        <span class="size-label">Small</span>
-        <span class="dots"></span>
-        <span class="price">$10.00</span>
-      </div>
-      <div class="dual-price-row">
-        <span class="size-label">Large</span>
-        <span class="dots"></span>
-        <span class="price">$16.00</span>
-      </div>
-    </div>
+    <div class="section-kicker">Crispy &amp; Spicy</div>
+    <div class="section-title">Tacos</div>
 
-    <!-- Chicken Wings -->
-    <div class="side-item">
-      <div class="side-item-header">
-        <span class="name">Chicken Wings (8)</span>
-        <span class="dots"></span>
-        <span class="price">$16.00</span>
+    <div class="taco-spotlight">
+      <div class="taco-info">
+        <div class="taco-name">
+          <span class="name">Fried Chicken Taco</span>
+          <span class="count">×3</span>
+        </div>
+        <div class="taco-price">$16.99</div>
+        <div class="taco-desc">Jalapeno sauce, jalapeno, corn salsa, cheese &amp; housemade slaw on warm tortillas</div>
+        <div class="taco-includes">
+          Includes <span class="what">Rice &amp; Drink</span>
+        </div>
       </div>
-      <div class="item-desc">Choice of BBQ or Buffalo</div>
-    </div>
 
-    <!-- Chicken Tenders -->
-    <div class="side-item">
-      <div class="side-item-header">
-        <span class="name">Chicken Tenders (5)</span>
-        <span class="dots"></span>
-        <span class="price">$12.00</span>
-      </div>
-    </div>
-
-    <!-- Popcorn Chicken -->
-    <div class="side-item">
-      <div class="side-item-header">
-        <span class="name">Popcorn Chicken</span>
-        <span class="dots"></span>
-        <span class="price">$10.00</span>
-      </div>
-    </div>
-
-    <!-- Onion Rings -->
-    <div class="side-item">
-      <div class="side-item-header">
-        <span class="name">Onion Rings</span>
-        <span class="dots"></span>
-        <span class="price">$9.00</span>
-      </div>
-    </div>
-
-    <!-- Fries (dual price) -->
-    <div class="dual-price-item">
-      <div class="dual-header">
-        <span class="name">Fries</span>
-      </div>
-      <div class="dual-price-row">
-        <span class="size-label">Small</span>
-        <span class="dots"></span>
-        <span class="price">$5.00</span>
-      </div>
-      <div class="dual-price-row">
-        <span class="size-label">Large</span>
-        <span class="dots"></span>
-        <span class="price">$8.50</span>
-      </div>
-    </div>
-
-    <!-- Cheese Sticks -->
-    <div class="side-item">
-      <div class="side-item-header">
-        <span class="name">Cheese Sticks (4)</span>
-        <span class="dots"></span>
-        <span class="price">$8.00</span>
-      </div>
-    </div>
-
-    <!-- Pizza Slice -->
-    <div class="side-item">
-      <div class="side-item-header">
-        <span class="name">Pizza Slice</span>
-        <span class="dots"></span>
-        <span class="price">$5.00</span>
-      </div>
-    </div>
-
-    <!-- Pogos -->
-    <div class="side-item">
-      <div class="side-item-header">
-        <span class="name">Pogos</span>
-        <span class="dots"></span>
-        <span class="price">$4.00</span>
-      </div>
-    </div>
-
-    <!-- Hot Dog -->
-    <div class="side-item">
-      <div class="side-item-header">
-        <span class="name">Hot Dog</span>
-        <span class="dots"></span>
-        <span class="price">$3.75</span>
+      <div class="taco-img-wrap">
+        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=700&q=80" alt="Fried Chicken Tacos">
       </div>
     </div>
   </div>
 
-  <!-- Food images -->
-  <div class="image-row">
-    <div class="food-img" style="flex:1.5;height:14vh;">
-      <img src="images/poutine.png" alt="Poutine">
+  <!-- MAC & CHEESE -->
+  <div class="p3-mac wood-texture">
+    <div class="mac-header-row">
+      <div>
+        <div class="section-kicker">Comfort &amp; Cheese</div>
+        <div class="section-title">Mac &amp; Cheese</div>
+      </div>
+      <div class="mac-sizes">
+        <div class="mac-size-card">
+          <span class="lbl">Regular</span>
+          <span class="val">$9.99</span>
+        </div>
+        <div class="mac-size-card">
+          <span class="lbl">Large</span>
+          <span class="val">$17.99</span>
+        </div>
+      </div>
     </div>
-    <div class="food-img" style="flex:1;height:14vh;">
-      <img src="https://images.unsplash.com/photo-1624153064067-566cae78993d?q=80" alt="Chicken Wings">
-    </div>
-  </div>
 
-  <div class="image-row">
-    <div class="food-img" style="flex:1;height:12vh;">
-      <img src="images/onionrings.png" alt="Onion Rings">
-    </div>
-    <div class="food-img" style="flex:1;height:12vh;">
-      <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=80" alt="French Fries">
-    </div>
-    <div class="food-img" style="flex:1;height:12vh;">
-      <img src="https://images.unsplash.com/photo-1548340748-6d2b7d7da280?w=400&q=80" alt="Mozzarella Sticks">
+    <div class="mac-extras-label">Add Extras</div>
+
+    <div class="extras-grid">
+      <div class="col-header">Topping</div>
+      <div class="col-header right">Small</div>
+      <div class="col-header right">Large</div>
+
+      <div class="row-name">Brisket <span class="oz">3oz / 6oz</span></div>
+      <div class="row-price sm">$5.99</div>
+      <div class="row-price">$11.99</div>
+
+      <div class="row-name">Pulled Pork <span class="oz">3oz / 6oz</span></div>
+      <div class="row-price sm">$2.99</div>
+      <div class="row-price">$5.99</div>
+
+      <div class="row-name">Bacon</div>
+      <div class="row-price sm">$3.99</div>
+      <div class="row-price">$7.99</div>
+
+      <div class="row-name">Popcorn Chicken</div>
+      <div class="row-price sm">$4.50</div>
+      <div class="row-price">$8.99</div>
+
+      <div class="row-name">Hot Dog</div>
+      <div class="row-price sm">$2.99</div>
+      <div class="row-price">$5.99</div>
     </div>
   </div>
 </div>
 
-<!-- RIGHT: Tacos -->
-<div class="p3-sidebar">
-  <div class="p3-taco-section wood-texture">
-    <div class="menu-title">Tacos</div>
+<!-- RIGHT: SALADS (top) + POUTINE (bottom) -->
+<div class="p3-side gray-block">
 
-    <!-- Bacon Shrimp Taco -->
-    <div class="taco-card">
-      <div class="taco-card-img">
-        <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=300&q=80" alt="Bacon Shrimp Tacos">
+  <!-- SALADS -->
+  <div class="p3-salads">
+    <div class="corner-accent tr"></div>
+
+    <div class="salads-header">
+      <div>
+        <div class="section-kicker">Fresh &amp; Crisp</div>
+        <div class="section-title">Salads</div>
       </div>
-      <div style="flex:1;">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;">
-          <span class="item-name">Bacon Shrimp Taco (3)</span>
-          <span class="item-price">$22.50</span>
-        </div>
-        <div class="item-desc">Bacon-wrapped shrimp, spicy mayo, guacamole, pineapple salsa, pickled onions</div>
+      <div class="price-key">
+        <span><span class="sm-swatch"></span>Sm</span>
+        <span class="sep">|</span>
+        <span><span class="lg-swatch"></span>Lg</span>
       </div>
     </div>
 
-    <!-- Fried Chicken Taco -->
-    <div class="taco-card">
-      <div class="taco-card-img">
-        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&q=80" alt="Fried Chicken Tacos">
-      </div>
-      <div style="flex:1;">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;">
-          <span class="item-name">Fried Chicken Taco (3)</span>
-          <span class="item-price">$16.00</span>
+    <div class="salad-list">
+      <!-- Caesar -->
+      <div class="salad-card">
+        <div class="salad-card-header">
+          <span class="name">Caesar Salad</span>
+          <span class="prices">
+            <span class="price-sm">$9.99</span>
+            <span class="price-sep">/</span>
+            <span class="price-lg">$15.99</span>
+          </span>
         </div>
-        <div class="item-desc">Fried chicken, jalapeno sauce, jalapenos, Monterey Jack cheese, corn salsa, coleslaw</div>
+        <div class="desc">Romaine, croutons, bacon, parmesan</div>
+      </div>
+
+      <!-- Chef's -->
+      <div class="salad-card">
+        <div class="salad-card-header">
+          <span class="name">Chef's Salad</span>
+          <span class="prices">
+            <span class="price-sm">$11.99</span>
+            <span class="price-sep">/</span>
+            <span class="price-lg">$17.99</span>
+          </span>
+        </div>
+        <div class="desc">Romaine, bell pepper, tomato, cheese, carrot, spinach, onion, cucumber</div>
+        <div class="dressing">
+          <span class="d-label">Choice of</span>
+          <span class="d-opt">Italian</span>
+          <span class="d-opt">Ranch</span>
+          <span class="d-opt">Catalina</span>
+        </div>
+      </div>
+
+      <!-- Taco Salad -->
+      <div class="salad-card">
+        <div class="salad-card-header">
+          <span class="name">Taco Salad</span>
+          <span class="prices">
+            <span class="price-sm">$13.99</span>
+            <span class="price-sep">/</span>
+            <span class="price-lg">$19.99</span>
+          </span>
+        </div>
+        <div class="desc">6 oz beef, bell pepper, tomato, onion, cheese, tortilla chips, corn — Catalina dressing</div>
       </div>
     </div>
 
-    <!-- Taco spread image -->
-    <div class="taco-hero-img">
-      <img src="https://images.unsplash.com/photo-1613514785940-daed07799d9b?w=600&q=80" alt="Tacos spread">
+    <div class="salad-addons">
+      <div class="addons-title">Add To Any Salad</div>
+      <div class="addon-item"><span class="label">Chicken</span><span class="price">$8.99</span></div>
+      <div class="addon-item"><span class="label">Smoked Chicken</span><span class="price">$9.99</span></div>
     </div>
   </div>
 
-  <!-- Footer strip -->
-  <div class="footer-strip">
-    <div class="line" style="background:linear-gradient(90deg,transparent,var(--gold));"></div>
-    <span class="text">Enjoy Your Meal</span>
-    <div class="line" style="background:linear-gradient(270deg,transparent,var(--gold));"></div>
+  <!-- POUTINE -->
+  <div class="p3-poutine">
+    <div class="section-kicker">Classic Québécois</div>
+    <div class="section-title">Poutine</div>
+
+    <div class="poutine-card">
+      <div class="poutine-img">
+        <img src="images/poutine.png" alt="Poutine">
+      </div>
+      <div class="poutine-sizes">
+        <div class="poutine-size-card">
+          <span class="lbl">Regular</span>
+          <span class="val">$11.99</span>
+        </div>
+        <div class="poutine-size-card">
+          <span class="lbl">Large</span>
+          <span class="val">$17.99</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Pine Cone — Tacos, Mac &amp; Poutine</title>
+<title>The Pine Cone — Tacos, Salads, Mac &amp; Poutine</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -40,30 +40,30 @@
   /* ===== SHARED TYPOGRAPHY ===== */
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(28px, 2.7vw, 60px);
-    letter-spacing: 0.25vw;
+    font-size: clamp(24px, 2.4vw, 54px);
+    letter-spacing: 0.22vw;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 0.6vh;
+    margin-bottom: 0.5vh;
     line-height: 1;
     position: relative;
   }
   .section-title::after {
     content: '';
     display: block;
-    width: clamp(36px, 3.5vw, 70px);
+    width: clamp(34px, 3.2vw, 64px);
     height: 3px;
     background: var(--gold);
-    margin-top: 0.6vh;
+    margin-top: 0.5vh;
   }
   .section-kicker {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(11px, 0.9vw, 18px);
-    letter-spacing: 0.32vw;
+    font-size: clamp(10px, 0.85vw, 17px);
+    letter-spacing: 0.3vw;
     text-transform: uppercase;
     color: rgba(212,168,67,0.5);
-    margin-bottom: 0.4vh;
+    margin-bottom: 0.3vh;
   }
 
   .gray-block {
@@ -78,7 +78,7 @@
 
   /* ===== LEFT: TACOS + MAC & CHEESE ===== */
   .p3-main {
-    width: 58%;
+    width: 54%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -86,10 +86,10 @@
     overflow: hidden;
   }
 
-  /* === Top section: Tacos === */
+  /* === Top: Tacos === */
   .p3-tacos {
-    flex: 0 0 38%;
-    padding: 3vh 2.4vw 2vh 2.8vw;
+    flex: 0 0 35%;
+    padding: 2.8vh 2vw 1.8vh 2.6vw;
     position: relative;
     overflow: hidden;
   }
@@ -97,8 +97,8 @@
   .taco-spotlight {
     display: grid;
     grid-template-columns: 1.05fr 1fr;
-    gap: 1.6vw;
-    margin-top: 1vh;
+    gap: 1.4vw;
+    margin-top: 0.8vh;
     height: calc(100% - 5vh);
   }
 
@@ -108,7 +108,7 @@
     justify-content: center;
     background: rgba(255,255,255,0.03);
     border-left: 3px solid var(--gold);
-    padding: 1.4vh 1.3vw;
+    padding: 1.2vh 1.2vw;
     position: relative;
   }
   .taco-info::after {
@@ -130,7 +130,7 @@
   .taco-name .name {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(22px, 2vw, 44px);
+    font-size: clamp(20px, 1.9vw, 42px);
     text-transform: uppercase;
     letter-spacing: 0.04vw;
     color: var(--white);
@@ -139,32 +139,32 @@
   .taco-name .count {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(14px, 1.2vw, 26px);
+    font-size: clamp(13px, 1.1vw, 24px);
     color: rgba(212,168,67,0.65);
     letter-spacing: 0.2vw;
     text-transform: uppercase;
   }
   .taco-price {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 3vw, 64px);
+    font-size: clamp(28px, 2.7vw, 58px);
     color: var(--gold);
     line-height: 1;
-    margin-top: 0.5vh;
+    margin-top: 0.4vh;
   }
   .taco-desc {
-    margin-top: 0.8vh;
-    font-size: clamp(12px, 1vw, 20px);
+    margin-top: 0.6vh;
+    font-size: clamp(11px, 0.95vw, 19px);
     color: rgba(255,255,255,0.6);
-    line-height: 1.4;
+    line-height: 1.35;
   }
   .taco-includes {
-    margin-top: 1vh;
-    padding-top: 0.8vh;
+    margin-top: 0.8vh;
+    padding-top: 0.6vh;
     border-top: 1px dashed rgba(212,168,67,0.25);
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(11px, 1vw, 22px);
-    letter-spacing: 0.2vw;
+    font-size: clamp(11px, 0.95vw, 20px);
+    letter-spacing: 0.18vw;
     text-transform: uppercase;
     color: var(--gold);
   }
@@ -174,7 +174,7 @@
     letter-spacing: 0.04vw;
     text-transform: none;
     margin-left: 0.4vw;
-    font-size: clamp(11px, 0.95vw, 20px);
+    font-size: clamp(11px, 0.9vw, 19px);
   }
 
   .taco-img-wrap {
@@ -200,10 +200,10 @@
     to { transform: scale(1.08); }
   }
 
-  /* === Bottom section: Mac & Cheese === */
+  /* === Bottom: Mac & Cheese === */
   .p3-mac {
     flex: 1;
-    padding: 2.2vh 2.4vw 2.5vh 2.8vw;
+    padding: 2vh 2vw 2vh 2.6vw;
     position: relative;
     border-top: 1px solid rgba(212,168,67,0.15);
     overflow: hidden;
@@ -213,19 +213,19 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 1.2vh;
+    margin-bottom: 1vh;
     gap: 1vw;
   }
 
   .mac-sizes {
     display: flex;
-    gap: 1.2vw;
+    gap: 1vw;
   }
   .mac-size-card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0.7vh 1.2vw;
+    padding: 0.6vh 1vw;
     background: rgba(212,168,67,0.06);
     border: 1px solid rgba(212,168,67,0.25);
     border-radius: 5px;
@@ -233,14 +233,14 @@
   .mac-size-card .lbl {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(11px, 0.9vw, 18px);
+    font-size: clamp(10px, 0.85vw, 17px);
     text-transform: uppercase;
-    letter-spacing: 0.25vw;
+    letter-spacing: 0.22vw;
     color: rgba(255,255,255,0.55);
   }
   .mac-size-card .val {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(22px, 2.1vw, 46px);
+    font-size: clamp(20px, 1.9vw, 42px);
     color: var(--gold);
     line-height: 1;
     margin-top: 0.2vh;
@@ -249,11 +249,11 @@
   .mac-extras-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(13px, 1.15vw, 24px);
-    letter-spacing: 0.28vw;
+    font-size: clamp(12px, 1.1vw, 22px);
+    letter-spacing: 0.26vw;
     text-transform: uppercase;
     color: rgba(212,168,67,0.7);
-    margin-bottom: 0.6vh;
+    margin-bottom: 0.5vh;
     display: flex;
     align-items: center;
     gap: 0.6vw;
@@ -261,25 +261,26 @@
   .mac-extras-label::before,
   .mac-extras-label::after {
     content: '';
-    flex: 0 0 clamp(14px, 1.4vw, 30px);
+    flex: 0 0 clamp(12px, 1.2vw, 26px);
     height: 1px;
     background: rgba(212,168,67,0.4);
   }
+  .mac-extras-label::after { flex: 1; }
 
   .extras-grid {
     display: grid;
     grid-template-columns: 2fr repeat(2, 1fr);
-    gap: 0.4vh 0.6vw;
-    margin-top: 0.4vh;
+    gap: 0.2vh 0.6vw;
+    margin-top: 0.3vh;
   }
   .extras-grid .col-header {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(11px, 0.95vw, 19px);
-    letter-spacing: 0.2vw;
+    font-size: clamp(10px, 0.9vw, 18px);
+    letter-spacing: 0.18vw;
     text-transform: uppercase;
     color: rgba(255,255,255,0.4);
-    padding-bottom: 0.4vh;
+    padding-bottom: 0.3vh;
     border-bottom: 1px solid rgba(212,168,67,0.2);
   }
   .extras-grid .col-header.right {
@@ -288,11 +289,11 @@
   .extras-grid .row-name {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(14px, 1.3vw, 28px);
+    font-size: clamp(13px, 1.2vw, 26px);
     text-transform: uppercase;
     letter-spacing: 0.04vw;
     color: var(--white);
-    padding: 0.5vh 0;
+    padding: 0.35vh 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     display: flex;
     align-items: baseline;
@@ -300,17 +301,17 @@
   }
   .extras-grid .row-name .oz {
     font-family: 'Barlow', sans-serif;
-    font-size: clamp(10px, 0.8vw, 16px);
+    font-size: clamp(9px, 0.75vw, 15px);
     color: rgba(255,255,255,0.35);
     letter-spacing: 0.05vw;
     text-transform: none;
   }
   .extras-grid .row-price {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(17px, 1.55vw, 34px);
+    font-size: clamp(15px, 1.45vw, 32px);
     color: var(--gold);
     text-align: right;
-    padding: 0.5vh 0;
+    padding: 0.35vh 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     white-space: nowrap;
   }
@@ -318,9 +319,9 @@
     color: var(--gold-light);
   }
 
-  /* ===== RIGHT: POUTINE + DECOR ===== */
+  /* ===== RIGHT: SALADS + POUTINE ===== */
   .p3-side {
-    width: 42%;
+    width: 46%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -328,23 +329,202 @@
     position: relative;
   }
 
-  /* Top: Poutine hero */
-  .poutine-hero {
-    flex: 1;
-    padding: 3.5vh 2vw 2.5vh;
+  /* === Top: Salads === */
+  .p3-salads {
+    flex: 0 0 60%;
+    padding: 2.8vh 2vw 1.8vh;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
 
-  .poutine-img {
+  .salads-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1vw;
+    margin-bottom: 1vh;
+  }
+  .price-key {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    padding: 0.5vh 0.9vw;
+    background: rgba(212,168,67,0.06);
+    border: 1px solid rgba(212,168,67,0.2);
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(10px, 0.85vw, 16px);
+    text-transform: uppercase;
+    letter-spacing: 0.16vw;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+    margin-bottom: 0.4vh;
+  }
+  .price-key .sm-swatch,
+  .price-key .lg-swatch {
+    display: inline-block;
+    width: clamp(9px, 0.8vw, 16px);
+    height: clamp(3px, 0.22vw, 5px);
+    border-radius: 2px;
+    margin-right: 0.25vw;
+  }
+  .price-key .sm-swatch { background: var(--gold); }
+  .price-key .lg-swatch { background: var(--gold-light); }
+  .price-key .sep { color: rgba(255,255,255,0.25); margin: 0 0.3vw; }
+
+  .salad-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
     flex: 1;
+  }
+
+  .salad-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-left: 3px solid var(--gold);
+    padding: 0.9vh 1.1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+  }
+  .salad-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.8vw;
+  }
+  .salad-card-header .name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 1.5vw, 32px);
+    text-transform: uppercase;
+    letter-spacing: 0.04vw;
+    color: var(--white);
+    line-height: 1.05;
+    flex: 1;
+    min-width: 0;
+  }
+  .salad-card-header .prices {
+    display: flex;
+    gap: 0.45vw;
+    align-items: baseline;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .salad-card-header .price-sm {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16px, 1.5vw, 32px);
+    color: var(--gold);
+  }
+  .salad-card-header .price-sep {
+    color: rgba(255,255,255,0.18);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 1.35vw, 28px);
+  }
+  .salad-card-header .price-lg {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16px, 1.5vw, 32px);
+    color: var(--gold-light);
+  }
+  .salad-card .desc {
+    font-size: clamp(10px, 0.85vw, 17px);
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.2vh;
+    line-height: 1.25;
+  }
+  .salad-card .dressing {
+    margin-top: 0.4vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4vw;
+  }
+  .salad-card .dressing .d-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(10px, 0.85vw, 17px);
+    letter-spacing: 0.1vw;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .salad-card .dressing .d-opt {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(10px, 0.85vw, 17px);
+    text-transform: uppercase;
+    letter-spacing: 0.03vw;
+    color: rgba(255,255,255,0.65);
+    padding: 0.05vh 0.5vw;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 3px;
+  }
+
+  .salad-addons {
+    margin-top: 0.8vh;
+    padding: 0.7vh 1.1vw;
+    background: rgba(212,168,67,0.06);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 1.4vw;
+    flex-wrap: wrap;
+  }
+  .salad-addons .addons-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 1.25vw, 27px);
+    color: var(--gold);
+    letter-spacing: 0.16vw;
+  }
+  .salad-addons .addon-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4vw;
+  }
+  .salad-addons .addon-item .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(11px, 1vw, 21px);
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+  }
+  .salad-addons .addon-item .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 1.25vw, 27px);
+    color: var(--gold-light);
+  }
+
+  /* === Bottom: Poutine === */
+  .p3-poutine {
+    flex: 1;
+    padding: 2vh 2vw 2vh;
+    position: relative;
+    border-top: 1px solid rgba(212,168,67,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #2C2C2C 0%, #1f1f1f 100%);
+  }
+
+  .poutine-card {
+    display: flex;
+    gap: 1.2vw;
+    align-items: stretch;
+    flex: 1;
+    margin-top: 0.8vh;
+    min-height: 0;
+  }
+  .poutine-img {
+    flex: 0 0 38%;
     position: relative;
     overflow: hidden;
     border-radius: 5px;
-    margin-top: 1.2vh;
-    margin-bottom: 1.4vh;
     border: 1px solid rgba(212,168,67,0.2);
   }
   .poutine-img img {
@@ -357,74 +537,42 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
-  }
-  .poutine-img .img-tag {
-    position: absolute;
-    bottom: 1vh;
-    left: 1vw;
-    z-index: 2;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(14px, 1.2vw, 26px);
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 0.25vw;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%);
   }
 
   .poutine-sizes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8vw;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.8vh;
   }
   .poutine-size-card {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.06);
     border-left: 3px solid var(--gold);
-    padding: 1.2vh 1vw;
+    padding: 0.9vh 1.1vw;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
   }
   .poutine-size-card .lbl {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: clamp(12px, 1.05vw, 22px);
-    letter-spacing: 0.22vw;
+    font-size: clamp(13px, 1.15vw, 25px);
+    letter-spacing: 0.2vw;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.6);
   }
   .poutine-size-card .val {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(24px, 2.3vw, 50px);
+    font-size: clamp(22px, 2vw, 44px);
     color: var(--gold);
     line-height: 1;
-    margin-top: 0.3vh;
-  }
-
-  /* Footer strip: Enjoy Your Meal */
-  .footer-strip {
-    height: 7vh;
-    background: var(--dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5vw;
-    padding: 0 2.5vw;
-    flex-shrink: 0;
-  }
-  .footer-strip .line {
-    flex: 1;
-    height: 1px;
-  }
-  .footer-strip .text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(16px, 1.5vw, 32px);
-    color: var(--gold);
-    letter-spacing: 0.5vw;
   }
 
   /* ===== CORNER ACCENTS ===== */
-  .corner-accent { position: absolute; width: clamp(30px, 3vw, 50px); height: clamp(30px, 3vw, 50px); z-index: 5; }
+  .corner-accent { position: absolute; width: clamp(28px, 2.8vw, 46px); height: clamp(28px, 2.8vw, 46px); z-index: 5; }
   .corner-accent.tl { top: 2vh; left: 1.5vw; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
   .corner-accent.tr { top: 2vh; right: 1.5vw; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
 
@@ -470,13 +618,13 @@
   .taco-info { animation: fadeInUp 0.5s ease 0.1s both; }
   .taco-img-wrap { animation: fadeInUp 0.5s ease 0.15s both; }
   .mac-size-card { animation: fadeInUp 0.4s ease both; }
-  .mac-size-card:nth-child(1) { animation-delay: 0.1s; }
-  .mac-size-card:nth-child(2) { animation-delay: 0.15s; }
-  .extras-grid .row-name, .extras-grid .row-price { animation: fadeInUp 0.4s ease both; }
+  .salad-card { animation: fadeInUp 0.4s ease both; }
+  .salad-card:nth-child(1) { animation-delay: 0.1s; }
+  .salad-card:nth-child(2) { animation-delay: 0.15s; }
+  .salad-card:nth-child(3) { animation-delay: 0.2s; }
+  .salad-addons { animation: fadeInUp 0.4s ease 0.25s both; }
   .poutine-img { animation: fadeInUp 0.5s ease 0.1s both; }
   .poutine-size-card { animation: fadeInUp 0.4s ease both; }
-  .poutine-size-card:nth-child(1) { animation-delay: 0.2s; }
-  .poutine-size-card:nth-child(2) { animation-delay: 0.25s; }
 </style>
 </head>
 <body>
@@ -562,35 +710,99 @@
   </div>
 </div>
 
-<!-- RIGHT: POUTINE -->
-<div class="p3-side">
-  <div class="poutine-hero gray-block" style="background: linear-gradient(180deg, #2C2C2C 0%, #1f1f1f 100%);">
+<!-- RIGHT: SALADS (top) + POUTINE (bottom) -->
+<div class="p3-side gray-block">
+
+  <!-- SALADS -->
+  <div class="p3-salads">
     <div class="corner-accent tr"></div>
 
-    <div class="section-kicker">Classic Québécois</div>
-    <div class="section-title">Poutine</div>
-
-    <div class="poutine-img">
-      <img src="images/poutine.png" alt="Poutine">
-      <div class="img-tag">Loaded &amp; Hot</div>
+    <div class="salads-header">
+      <div>
+        <div class="section-kicker">Fresh &amp; Crisp</div>
+        <div class="section-title">Salads</div>
+      </div>
+      <div class="price-key">
+        <span><span class="sm-swatch"></span>Sm</span>
+        <span class="sep">|</span>
+        <span><span class="lg-swatch"></span>Lg</span>
+      </div>
     </div>
 
-    <div class="poutine-sizes">
-      <div class="poutine-size-card">
-        <span class="lbl">Regular</span>
-        <span class="val">$11.99</span>
+    <div class="salad-list">
+      <!-- Caesar -->
+      <div class="salad-card">
+        <div class="salad-card-header">
+          <span class="name">Caesar Salad</span>
+          <span class="prices">
+            <span class="price-sm">$9.99</span>
+            <span class="price-sep">/</span>
+            <span class="price-lg">$15.99</span>
+          </span>
+        </div>
+        <div class="desc">Romaine, croutons, bacon, parmesan</div>
       </div>
-      <div class="poutine-size-card">
-        <span class="lbl">Large</span>
-        <span class="val">$17.99</span>
+
+      <!-- Chef's -->
+      <div class="salad-card">
+        <div class="salad-card-header">
+          <span class="name">Chef's Salad</span>
+          <span class="prices">
+            <span class="price-sm">$11.99</span>
+            <span class="price-sep">/</span>
+            <span class="price-lg">$17.99</span>
+          </span>
+        </div>
+        <div class="desc">Romaine, bell pepper, tomato, cheese, carrot, spinach, onion, cucumber</div>
+        <div class="dressing">
+          <span class="d-label">Choice of</span>
+          <span class="d-opt">Italian</span>
+          <span class="d-opt">Ranch</span>
+          <span class="d-opt">Catalina</span>
+        </div>
       </div>
+
+      <!-- Taco Salad -->
+      <div class="salad-card">
+        <div class="salad-card-header">
+          <span class="name">Taco Salad</span>
+          <span class="prices">
+            <span class="price-sm">$13.99</span>
+            <span class="price-sep">/</span>
+            <span class="price-lg">$19.99</span>
+          </span>
+        </div>
+        <div class="desc">6 oz beef, bell pepper, tomato, onion, cheese, tortilla chips, corn — Catalina dressing</div>
+      </div>
+    </div>
+
+    <div class="salad-addons">
+      <div class="addons-title">Add To Any Salad</div>
+      <div class="addon-item"><span class="label">Chicken</span><span class="price">$8.99</span></div>
+      <div class="addon-item"><span class="label">Smoked Chicken</span><span class="price">$9.99</span></div>
     </div>
   </div>
 
-  <div class="footer-strip">
-    <div class="line" style="background:linear-gradient(90deg,transparent,var(--gold));"></div>
-    <span class="text">Enjoy Your Meal</span>
-    <div class="line" style="background:linear-gradient(270deg,transparent,var(--gold));"></div>
+  <!-- POUTINE -->
+  <div class="p3-poutine">
+    <div class="section-kicker">Classic Québécois</div>
+    <div class="section-title">Poutine</div>
+
+    <div class="poutine-card">
+      <div class="poutine-img">
+        <img src="images/poutine.png" alt="Poutine">
+      </div>
+      <div class="poutine-sizes">
+        <div class="poutine-size-card">
+          <span class="lbl">Regular</span>
+          <span class="val">$11.99</span>
+        </div>
+        <div class="poutine-size-card">
+          <span class="lbl">Large</span>
+          <span class="val">$17.99</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -598,7 +810,6 @@
   <div class="pip"></div>
   <div class="pip"></div>
   <div class="pip active"></div>
-  <div class="pip"></div>
 </div>
 </div>
 

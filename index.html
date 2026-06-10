@@ -11,6 +11,7 @@
     "pinecone1": "pinecone/page1.html",
     "pinecone2": "pinecone/page2.html",
     "pinecone3": "pinecone/page3.html",
+    "pinecone4": "pinecone/page4.html",
     // Green Room
     "greenroom1": "greenroom/page1.html",
     "greenroom2": "greenroom/page2.html",
@@ -195,6 +196,11 @@
           <div class="btn-desc">Tacos · Mac · Poutine</div>
           <div class="btn-url">?page=pinecone3</div>
         </a>
+        <a class="page-btn" href="?page=pinecone4">
+          <div class="btn-page">Page 4</div>
+          <div class="btn-desc">Salads</div>
+          <div class="btn-url">?page=pinecone4</div>
+        </a>
       </div>
     </div>
 
@@ -227,7 +233,7 @@
 <script>
   // If a ?page= was given but didn't match any route, show the error banner
   const p = new URLSearchParams(window.location.search).get("page");
-  if (p && !{"pinecone1":1,"pinecone2":1,"pinecone3":1,"greenroom1":1,"greenroom2":1,"greenroom3":1}[p]) {
+  if (p && !{"pinecone1":1,"pinecone2":1,"pinecone3":1,"pinecone4":1,"greenroom1":1,"greenroom2":1,"greenroom3":1}[p]) {
     const box = document.getElementById('errorBox');
     document.getElementById('errorVal').textContent = '?page=' + p + ' — no matching route';
     box.classList.add('visible');

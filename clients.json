@@ -1,0 +1,6 @@
+{
+  "clients": [
+    { "id": "pinecone", "name": "The Pine Cone", "screens": 3, "accent": "#f8a800" },
+    { "id": "greenroom", "name": "The Green Room", "screens": 3, "accent": "#00e87c" }
+  ]
+}

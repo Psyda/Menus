@@ -1,0 +1,873 @@
+{
+  "schema": 1,
+  "version": 1,
+  "client": "pinecone",
+  "name": "The Pine Cone",
+  "tagline": "Smokehouse & Kitchen",
+  "logo": "images/logo.png",
+  "theme": "smokehouse",
+  "fonts": {
+    "display": "Bebas Neue",
+    "body": "Barlow"
+  },
+  "ticker": "",
+  "brand": {
+    "hours": "11:00 AM — 9:00 PM",
+    "hoursLabel": "Kitchen Hours",
+    "status": "Now Smoking · Low & Slow",
+    "social": "@thepineconekitchen",
+    "wifi": "PineCone-Guest",
+    "badges": [
+      "Hand-Pressed",
+      "Slow-Smoked"
+    ]
+  },
+  "screens": [
+    {
+      "id": "s1",
+      "title": "Smokehouse",
+      "subtitle": "From The Pit",
+      "layout": "cards",
+      "options": {
+        "columns": 2,
+        "sidebar": "brand"
+      },
+      "sections": [
+        {
+          "id": "s1-brisket",
+          "title": "Beef Brisket",
+          "subtitle": "Slow-smoked, hand-cut",
+          "accent": 1,
+          "featured": true,
+          "image": "https://images.unsplash.com/photo-1558030006-450675393462?w=900&q=80",
+          "note": "Includes Fries, B.B.Q sauce & Drink",
+          "deals": [],
+          "items": [
+            {
+              "id": "s1-br-1",
+              "name": "Quarter Pound",
+              "detail": "4 oz",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$13.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s1-br-2",
+              "name": "Half Pound",
+              "detail": "8 oz",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$20.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s1-br-3",
+              "name": "Full Pound",
+              "detail": "16 oz",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$32.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "s1-ribs",
+          "title": "Ribs",
+          "subtitle": "Smoked",
+          "accent": 1,
+          "featured": false,
+          "image": "",
+          "note": "Includes Fries, B.B.Q sauce & Drink",
+          "deals": [],
+          "items": [
+            {
+              "id": "s1-ri-1",
+              "name": "Half Rack",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$19.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s1-ri-2",
+              "name": "Full Rack",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$27.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "s1-chicken",
+          "title": "Smoked Chicken",
+          "subtitle": "",
+          "accent": 1,
+          "featured": false,
+          "image": "",
+          "note": "Includes Fries & Drink",
+          "deals": [],
+          "items": [
+            {
+              "id": "s1-ch-1",
+              "name": "Leg",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$17.50"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s1-ch-2",
+              "name": "Breast",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$19.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s1-ch-3",
+              "name": "Half Chicken",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$27.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "Burgers & Sandwiches",
+      "subtitle": "Hand-Pressed & Stacked",
+      "layout": "feature-list",
+      "options": {
+        "columns": 2,
+        "panel": "left",
+        "thumbs": false,
+        "intervalSec": 5
+      },
+      "sections": [
+        {
+          "id": "s2-burgers",
+          "title": "Burgers",
+          "subtitle": "",
+          "accent": 1,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "items": [
+            {
+              "id": "s2-bu-1",
+              "name": "Bacon Jam Special",
+              "detail": "Bacon jam, Havarti, onion, spicy mayo",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$15.75"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$17.99"
+                }
+              ],
+              "image": "images/bacon-marm-burger.png",
+              "bgImage": "",
+              "badge": "Featured",
+              "featured": true,
+              "hidden": false
+            },
+            {
+              "id": "s2-bu-2",
+              "name": "The Pinecone",
+              "detail": "Bacon, cheese, caramelized onion, mushroom, lettuce, tomato, pickle, 1000 island",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$14.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$17.99"
+                }
+              ],
+              "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=80",
+              "bgImage": "",
+              "badge": "House Signature",
+              "featured": true,
+              "hidden": false
+            },
+            {
+              "id": "s2-bu-3",
+              "name": "The Texan",
+              "detail": "Bacon, Havarti, crispy onion, lettuce, tomato, pickles, B.B.Q sauce",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$13.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$17.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s2-bu-4",
+              "name": "The Mac & Smash",
+              "detail": "Bacon, cheese, pepperoni spread, lettuce, tomato, chipotle sauce",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$16.25"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$19.99"
+                }
+              ],
+              "image": "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=900&q=80",
+              "bgImage": "",
+              "badge": "Chef's Pick",
+              "featured": true,
+              "hidden": false
+            },
+            {
+              "id": "s2-bu-5",
+              "name": "California Chicken Burger",
+              "detail": "6 oz chicken, bacon, Havarti, lettuce, ranch, guacamole, pico de gallo",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$16.50"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$20.99"
+                }
+              ],
+              "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=900&q=80",
+              "bgImage": "",
+              "badge": "Fresh & Bright",
+              "featured": true,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "s2-extras",
+          "title": "Add Extras",
+          "subtitle": "",
+          "accent": 1,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "items": [
+            {
+              "id": "s2-ex-1",
+              "name": "Extra Bacon",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$2.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s2-ex-2",
+              "name": "Extra Patty",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$4.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s2-ex-3",
+              "name": "Extra Cheese",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$1.50"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "s2-sandwiches",
+          "title": "Sandwiches",
+          "subtitle": "",
+          "accent": 2,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "items": [
+            {
+              "id": "s2-sa-1",
+              "name": "Smoked Pull Pork",
+              "detail": "Smoked pull pork, house slaw, B.B.Q sauce",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$11.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$15.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s2-sa-2",
+              "name": "Chicken Sandwich",
+              "detail": "Breaded chicken, slaw, pickles, spicy mayo",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$11.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$15.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s2-sa-3",
+              "name": "Steak & Pepperoni",
+              "detail": "Steak, pepperoni, caramelized onion, lettuce, tomato, Swiss, sauce",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$16.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$19.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s2-sa-4",
+              "name": "Brisket Sandwich",
+              "detail": "6 oz brisket, cheese sauce, crispy onion",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$15.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$19.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s2-sa-5",
+              "name": "Po Boy",
+              "detail": "6 oz breaded shrimp, lettuce, tomato, pickle, remoulade sauce",
+              "prices": [
+                {
+                  "label": "Reg",
+                  "value": "$15.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$19.99"
+                }
+              ],
+              "image": "https://images.unsplash.com/photo-1509722747041-616f39b57569?w=900&q=80",
+              "bgImage": "",
+              "badge": "House Favourite",
+              "featured": true,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "s2-exchange",
+          "title": "Exchange Fries",
+          "subtitle": "",
+          "accent": 2,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "items": [
+            {
+              "id": "s2-xc-1",
+              "name": "Poutine",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$4.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s2-xc-2",
+              "name": "Mac & Cheese",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$5.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s2-xc-3",
+              "name": "Rice",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$2.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "title": "Tacos · Mac · Salads · Poutine",
+      "subtitle": "Kitchen Favourites",
+      "layout": "cards",
+      "options": {
+        "columns": 2,
+        "sidebar": "off"
+      },
+      "sections": [
+        {
+          "id": "s3-tacos",
+          "title": "Tacos",
+          "subtitle": "Crispy & Spicy",
+          "accent": 2,
+          "featured": true,
+          "image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=700&q=80",
+          "note": "Includes Rice & Drink",
+          "deals": [],
+          "items": [
+            {
+              "id": "s3-ta-1",
+              "name": "Fried Chicken Taco",
+              "detail": "×3 — Jalapeno sauce, jalapeno, corn salsa, cheese & housemade slaw",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$16.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "s3-mac",
+          "title": "Mac & Cheese",
+          "subtitle": "Comfort & Cheese",
+          "accent": 1,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "items": [
+            {
+              "id": "s3-ma-1",
+              "name": "Regular",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$9.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s3-ma-2",
+              "name": "Large",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$17.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "s3-macx",
+          "title": "Mac Extras",
+          "subtitle": "Add to any Mac",
+          "accent": 1,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "items": [
+            {
+              "id": "s3-mx-1",
+              "name": "Brisket",
+              "detail": "3oz / 6oz",
+              "prices": [
+                {
+                  "label": "Sm",
+                  "value": "$5.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$11.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s3-mx-2",
+              "name": "Pulled Pork",
+              "detail": "3oz / 6oz",
+              "prices": [
+                {
+                  "label": "Sm",
+                  "value": "$2.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$5.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s3-mx-3",
+              "name": "Bacon",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "Sm",
+                  "value": "$3.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$7.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s3-mx-4",
+              "name": "Popcorn Chicken",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "Sm",
+                  "value": "$4.50"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$8.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s3-mx-5",
+              "name": "Hot Dog",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "Sm",
+                  "value": "$2.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$5.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "s3-salads",
+          "title": "Salads",
+          "subtitle": "Fresh & Crisp",
+          "accent": 3,
+          "featured": false,
+          "image": "",
+          "note": "Add to any salad — Chicken $8.99 · Smoked Chicken $9.99",
+          "deals": [],
+          "items": [
+            {
+              "id": "s3-sl-1",
+              "name": "Caesar Salad",
+              "detail": "Romaine, croutons, bacon, parmesan",
+              "prices": [
+                {
+                  "label": "Sm",
+                  "value": "$9.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$15.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s3-sl-2",
+              "name": "Chef's Salad",
+              "detail": "Romaine, bell pepper, tomato, cheese, carrot, spinach, onion, cucumber — Italian, Ranch or Catalina",
+              "prices": [
+                {
+                  "label": "Sm",
+                  "value": "$11.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$17.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s3-sl-3",
+              "name": "Taco Salad",
+              "detail": "6 oz beef, bell pepper, tomato, onion, cheese, tortilla chips, corn — Catalina dressing",
+              "prices": [
+                {
+                  "label": "Sm",
+                  "value": "$13.99"
+                },
+                {
+                  "label": "Lg",
+                  "value": "$19.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "s3-poutine",
+          "title": "Poutine",
+          "subtitle": "Classic Québécois",
+          "accent": 1,
+          "featured": false,
+          "image": "images/poutine.png",
+          "note": "",
+          "deals": [],
+          "items": [
+            {
+              "id": "s3-po-1",
+              "name": "Regular",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$11.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            },
+            {
+              "id": "s3-po-2",
+              "name": "Large",
+              "detail": "",
+              "prices": [
+                {
+                  "label": "",
+                  "value": "$17.99"
+                }
+              ],
+              "image": "",
+              "bgImage": "",
+              "badge": "",
+              "featured": false,
+              "hidden": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

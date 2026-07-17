@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "version": 10,
+  "client": "greenroom",
+  "name": "The Green Room",
+  "tagline": "Dispensary",
+  "logo": "images/logo.png",
+  "theme": "neon",
+  "fonts": { "display": "Bebas Neue", "body": "Barlow" },
+  "ticker": "Welcome to The Green Room Dispensary • Open Daily 8AM – 10PM • Valid ID Required • Ask About Our Daily Specials",
+  "brand": {
+    "hours": "8:00 AM — 10:00 PM",
+    "hoursLabel": "Open Daily",
+    "status": "Valid ID Required",
+    "social": "",
+    "wifi": "",
+    "badges": ["Lab Tested", "Premium Quality"]
+  },
+  "screens": [
+    {
+      "id": "s1",
+      "title": "Vape Pens",
+      "subtitle": "Distillate · Live Resin · HTFSE",
+      "layout": "feature-list",
+      "options": { "columns": 2, "panel": "right", "thumbs": true, "intervalSec": 5 },
+      "sections": [
+        {
+          "id": "s1-1g",
+          "title": "1 Gram Vapes",
+          "subtitle": "",
+          "accent": 1,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": ["1 for $30", "2 for $50", "3+ for $25 each"],
+          "items": [
+            { "id": "s1-1g-1", "name": "Drizzle", "detail": "Glo Pods · Distillate", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }, { "label": "3+", "value": "$25 ea" }], "image": "images/ProductPics/1g drizzle glowpod vapes.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s1-1g-2", "name": "Gas Gang", "detail": "Distillate", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }, { "label": "3+", "value": "$25 ea" }], "image": "images/ProductPics/1g vol3-gasgang.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s1-1g-3", "name": "Vikingz", "detail": "Black Widow · Indica", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }, { "label": "3+", "value": "$25 ea" }], "image": "images/ProductPics/Vikingz-BlackWidow-Indica.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s1-1g-4", "name": "IB-High", "detail": "Rainbow Pop · Distillate", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }, { "label": "3+", "value": "$25 ea" }], "image": "images/ProductPics/IB-HIGH-RainbowPop.png", "badge": "", "featured": false, "hidden": false }
+          ]
+        },
+        {
+          "id": "s1-htfse",
+          "title": "1g HTFSE / Live Resin",
+          "subtitle": "",
+          "accent": 2,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "items": [
+            { "id": "s1-ht-1", "name": "Drizzle", "detail": "1g · Live Resin", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }, { "label": "3+", "value": "$25 ea" }], "image": "images/ProductPics/drizzle_liveset.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s1-ht-2", "name": "Gas Gang", "detail": "HTFSE", "prices": [{ "label": "1", "value": "$60" }], "image": "images/ProductPics/gasgang-sour-tsunami-hybrid-box.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s1-ht-3", "name": "High Voltage", "detail": "Sauce", "prices": [{ "label": "1", "value": "$60" }, { "label": "2", "value": "$100" }], "image": "images/ProductPics/Cart-HighVoltage.png", "badge": "", "featured": false, "hidden": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "Cart Refills",
+      "subtitle": "Sauce · Distillate · CO2 · Full Spectrum · Diamond",
+      "layout": "feature-list",
+      "options": {
+        "columns": 2,
+        "panel": "right",
+        "thumbs": true,
+        "intervalSec": 4,
+        "takeover": { "enabled": true, "menuSec": 20, "promoSec": 15 }
+      },
+      "sections": [
+        {
+          "id": "s2-premium",
+          "title": "Premium Refills",
+          "subtitle": "",
+          "accent": 1,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "items": [
+            { "id": "s2-pr-1", "name": "High Voltage", "detail": "Sauce", "prices": [{ "label": "1", "value": "$60" }, { "label": "2", "value": "$100" }], "image": "images/ProductPics/Cart-HighVoltage.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s2-pr-2", "name": "Drizzle", "detail": "Distillate", "prices": [{ "label": "1", "value": "$60" }, { "label": "2", "value": "$110" }], "image": "images/ProductPics/drizzle-dragonfly.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s2-pr-3", "name": "Gold Stream", "detail": "Flavoured · Organic", "prices": [{ "label": "1", "value": "$50" }, { "label": "2", "value": "$70" }], "image": "images/ProductPics/goldenstream.jpg", "badge": "", "featured": false, "hidden": false }
+          ]
+        },
+        {
+          "id": "s2-value",
+          "title": "Value Refills",
+          "subtitle": "",
+          "accent": 2,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "items": [
+            { "id": "s2-va-1", "name": "Wonka", "detail": "Full Spectrum", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }], "image": "images/ProductPics/wonka.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s2-va-2", "name": "Drip", "detail": "Diamond", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }], "image": "images/ProductPics/drip.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s2-va-3", "name": "Gas Gang", "detail": "HTFSE", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }], "image": "images/ProductPics/ggcart.png", "badge": "", "featured": false, "hidden": false }
+          ]
+        },
+        {
+          "id": "s2-promos",
+          "title": "Promos",
+          "subtitle": "",
+          "accent": 3,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": [],
+          "role": "featured",
+          "items": [
+            { "id": "s2-po-1", "name": "Vice Lady", "detail": "Premium Distillate · INDIV · 96% THC", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }], "image": "https://i.imgur.com/B7laCtK.png", "bgImage": "images/ProductPics/vicebackg.png", "badge": "New Arrival!", "featured": true, "hidden": false },
+            { "id": "s2-po-2", "name": "Gas Gang HTFSE", "detail": "Full Spectrum · 1g Cart · Lab Tested", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }], "image": "images/ProductPics/GasGang.png", "bgImage": "https://images.unsplash.com/photo-1547070451-e3857a8ea62a?q=80&w=1200&auto=format&fit=crop", "badge": "High Terpene", "featured": true, "hidden": false },
+            { "id": "s2-po-3", "name": "High Voltage", "detail": "Sauce Cart · 98% THC · Solventless", "prices": [{ "label": "1", "value": "$60" }, { "label": "2", "value": "$100" }], "image": "images/ProductPics/Cart-HighVoltage.png", "bgImage": "https://i.imgur.com/KB74Vl1.jpeg", "badge": "Premium Refill", "featured": true, "hidden": false },
+            { "id": "s2-po-4", "name": "Drizzle Switch", "detail": "Indica · Sativa · Hybrid", "prices": [{ "label": "1", "value": "$30" }, { "label": "2", "value": "$50" }, { "label": "3+", "value": "$25 ea" }], "image": "images/ProductPics/drizzle_liveset.png", "bgImage": "images/ProductPics/tiedye.jpg", "badge": "Live Resin", "featured": true, "hidden": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "title": "XL Vapes",
+      "subtitle": "2g · 3g · 6g Vapes and Switches",
+      "layout": "feature-list",
+      "options": { "columns": 2, "panel": "right", "thumbs": true, "intervalSec": 5 },
+      "sections": [
+        {
+          "id": "s3-2g",
+          "title": "2 Gram Vapes",
+          "subtitle": "",
+          "accent": 3,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": ["1 for $50", "2 for $70"],
+          "items": [
+            { "id": "s3-2g-1", "name": "Gas Gang", "detail": "2g Vape Pens", "prices": [{ "label": "1", "value": "$50" }, { "label": "2", "value": "$70" }], "image": "images/ProductPics/GAS-GANG-2g-copy-600x595.jpg", "badge": "", "featured": false, "hidden": false },
+            { "id": "s3-2g-2", "name": "Vikingz", "detail": "Platinum Cake · Indica", "prices": [{ "label": "1", "value": "$50" }, { "label": "2", "value": "$70" }], "image": "images/ProductPics/vikings-platinum-cake-2.2g-indica.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s3-2g-3", "name": "Drizzle Switch", "detail": "Indica · Sativa · Hybrid", "prices": [{ "label": "1", "value": "$50" }, { "label": "2", "value": "$70" }], "image": "images/ProductPics/drizzleswitcha.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s3-2g-4", "name": "Gold Stream", "detail": "Flavoured · Organic", "prices": [{ "label": "1", "value": "$50" }, { "label": "2", "value": "$70" }], "image": "images/ProductPics/goldenstream.jpg", "badge": "", "featured": false, "hidden": false }
+          ]
+        },
+        {
+          "id": "s3-3g",
+          "title": "3 Gram Vapes",
+          "subtitle": "",
+          "accent": 2,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": ["1 for $60", "2 for $110", "3 or more for $55 each"],
+          "items": [
+            { "id": "s3-3g-1", "name": "PandaSquad", "detail": "Hybrid", "prices": [{ "label": "1", "value": "$60" }, { "label": "2", "value": "$110" }], "image": "images/ProductPics/panda_tempimage.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s3-3g-2", "name": "Drizzle - God Pod", "detail": "Sativa", "prices": [{ "label": "1", "value": "$60" }, { "label": "2", "value": "$110" }], "image": "images/ProductPics/drizzle-dragonfly.png", "badge": "", "featured": false, "hidden": false },
+            { "id": "s3-3g-3", "name": "Heisenberg", "detail": "Multi Flavor Switch", "prices": [{ "label": "1", "value": "$60" }, { "label": "2", "value": "$110" }], "image": "images/ProductPics/3g-heisenswitch.png", "badge": "", "featured": false, "hidden": false }
+          ]
+        },
+        {
+          "id": "s3-6g",
+          "title": "6 Gram Vapes",
+          "subtitle": "",
+          "accent": 1,
+          "featured": false,
+          "image": "",
+          "note": "",
+          "deals": ["$100 each"],
+          "items": [
+            { "id": "s3-6g-1", "name": "Heisenberg", "detail": "6g Switch", "prices": [{ "label": "", "value": "$100" }], "image": "images/ProductPics/6g-heisenberg-vapes.png", "badge": "", "featured": false, "hidden": false }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "menus",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Digital signage menus + client self-serve editor (static displays on GitHub Pages, editor API on Vercel)",
+  "scripts": {
+    "dev": "node tools/dev-server.mjs",
+    "hash-password": "node tools/hash-password.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

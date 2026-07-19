@@ -1,0 +1,51 @@
+name: Build DoneYet
+
+on:
+  push:
+    branches: ["main", "claude/**"]
+    paths:
+      - "DoneYet/**"
+      - "DoneYet.LogicTests/**"
+      - ".github/workflows/build-doneyet.yml"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Run logic tests
+        run: dotnet run --project DoneYet.LogicTests -c Release
+
+  build:
+    needs: test
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Publish single-file exe
+        run: >
+          dotnet publish DoneYet/DoneYet.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:EnableCompressionInSingleFile=true
+          -o publish
+
+      - name: Upload DoneYet.exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: DoneYet-win-x64
+          path: publish/DoneYet.exe
+          if-no-files-found: error
